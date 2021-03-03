@@ -1,0 +1,6 @@
+framework module Pods_LearnersDictionary {
+  umbrella header "Pods-LearnersDictionary-umbrella.h"
+
+  export *
+  module * { export * }
+}
