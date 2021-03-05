@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71130DF825F269A600FF0BD6 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71130DF725F269A600FF0BD6 /* CoreDataService.swift */; };
+		71130DFB25F26D3700FF0BD6 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71130DFA25F26D3700FF0BD6 /* SearchPresenter.swift */; };
 		7128ABDC25ED1915000633AD /* LearnersDictionary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABDA25ED1915000633AD /* LearnersDictionary.xcdatamodeld */; };
 		7128ABDE25ED1916000633AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7128ABDD25ED1916000633AD /* Assets.xcassets */; };
 		7128ABE125ED1916000633AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7128ABDF25ED1916000633AD /* LaunchScreen.storyboard */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		67395F5C3941506DD567D0D0 /* Pods-LearnersDictionary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnersDictionary.release.xcconfig"; path = "Target Support Files/Pods-LearnersDictionary/Pods-LearnersDictionary.release.xcconfig"; sourceTree = "<group>"; };
+		71130DF725F269A600FF0BD6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		71130DFA25F26D3700FF0BD6 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		7128ABCE25ED1915000633AD /* LearnersDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnersDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7128ABDB25ED1915000633AD /* LearnersDictionary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnersDictionary.xcdatamodel; sourceTree = "<group>"; };
 		7128ABDD25ED1916000633AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +63,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		71130DF625F2698500FF0BD6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				71130DF725F269A600FF0BD6 /* CoreDataService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		7128ABC525ED1915000633AD = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +95,7 @@
 				7128ABEE25ED1938000633AD /* AppDelegate.swift */,
 				7128ABEF25ED1938000633AD /* MainTabBarController.swift */,
 				7128ABEB25ED1938000633AD /* Search */,
+				71130DF625F2698500FF0BD6 /* Service */,
 				7128ABDD25ED1916000633AD /* Assets.xcassets */,
 				7128ABDF25ED1916000633AD /* LaunchScreen.storyboard */,
 				7128ABE225ED1916000633AD /* Info.plist */,
@@ -95,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				7128ABED25ED1938000633AD /* SearchCoordinator.swift */,
+				71130DFA25F26D3700FF0BD6 /* SearchPresenter.swift */,
 				7128ABEC25ED1938000633AD /* SearchViewController.swift */,
 				71B0514E25ED4C0C00A1EA4B /* Model */,
 			);
@@ -254,8 +268,10 @@
 			files = (
 				7128ABF225ED1938000633AD /* SearchCoordinator.swift in Sources */,
 				7128ABF125ED1938000633AD /* SearchViewController.swift in Sources */,
+				71130DFB25F26D3700FF0BD6 /* SearchPresenter.swift in Sources */,
 				7128ABF425ED1938000633AD /* MainTabBarController.swift in Sources */,
 				71B0514C25ED4BEC00A1EA4B /* Word+CoreDataProperties.swift in Sources */,
+				71130DF825F269A600FF0BD6 /* CoreDataService.swift in Sources */,
 				7128ABF325ED1938000633AD /* AppDelegate.swift in Sources */,
 				7128ABDC25ED1915000633AD /* LearnersDictionary.xcdatamodeld in Sources */,
 				71B0514B25ED4BEC00A1EA4B /* Word+CoreDataClass.swift in Sources */,

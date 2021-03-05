@@ -12,8 +12,11 @@ class SearchCoordinator {
 
     init(navigationController: UINavigationController = UINavigationController()) {
 		self.navigationController = navigationController
+		let searchPresenter = SearchPresenterImplementation()
 		let searchVC = SearchViewController()
-		searchVC.coordinator = self
+		searchPresenter.coordinator = self
+		searchPresenter.view = searchVC
+		searchVC.presenter = searchPresenter
 		searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
 		navigationController.viewControllers = [searchVC]
 		navigationController.navigationBar.prefersLargeTitles = true
