@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-LearnersDictionary/Pods-LearnersDictionary-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework

@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  WordlistViewController.swift
 //  LearnersDictionary
 //
 //  Created by Robert Mukhtarov on 01.03.2021.
@@ -8,21 +8,30 @@
 import UIKit
 import SnapKit
 
-class SearchViewController: UIViewController, SearchView {
-	var presenter: SearchPresenter?
+class WordlistViewController: UIViewController, WordlistView {
+	var presenter: WordlistPresenterProtocol?
 	private var tableView = UITableView()
 	private var searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
 		super.viewDidLoad()
-		title = "Search"
+		setupView()
 		setupTableView()
 		setupSearchController()
 		presenter?.viewDidLoad()
     }
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
+		navigationController?.navigationBar.shadowImage = nil
+	}
+
+	private func setupView() {
+		title = "Search"
+	}
 }
 
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+extension WordlistViewController: UITableViewDelegate, UITableViewDataSource {
 	private func setupTableView() {
 		view.addSubview(tableView)
 		tableView.delegate = self
@@ -43,6 +52,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 		return cell
     }
 
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+		presenter?.didSelectWord(at: indexPath)
+	}
+
 	func reloadData() {
 		tableView.reloadData()
 	}
@@ -56,7 +70,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension SearchViewController: UISearchBarDelegate {
+extension WordlistViewController: UISearchBarDelegate {
 	private func setupSearchController() {
 		searchController.obscuresBackgroundDuringPresentation = false
 		let searchBar = searchController.searchBar

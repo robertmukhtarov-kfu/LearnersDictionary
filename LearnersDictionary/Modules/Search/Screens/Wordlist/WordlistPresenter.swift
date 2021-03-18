@@ -1,5 +1,5 @@
 //
-//  SearchPresenter.swift
+//  WordlistPresenter.swift
 //  LearnersDictionary
 //
 //  Created by Robert Mukhtarov on 05.03.2021.
@@ -7,11 +7,11 @@
 
 import CoreData
 
-protocol SearchView: AnyObject {
+protocol WordlistView: AnyObject {
 	func reloadData()
 }
 
-protocol SearchPresenter {
+protocol WordlistPresenterProtocol {
 	var numberOfSections: Int { get }
 	var indexTitles: [String] { get }
 	func viewDidLoad()
@@ -19,27 +19,29 @@ protocol SearchPresenter {
 	func getNumberOfRows(in section: Int) -> Int
 	func searchBarTextDidChange(text: String)
 	func searchBarCancelTapped()
+	func didSelectWord(at indexPath: IndexPath)
 }
 
-class SearchPresenterImplementation: SearchPresenter {
-	weak var view: SearchView?
+class WordlistPresenter: WordlistPresenterProtocol {
+	weak var view: WordlistView?
 	var coordinator: SearchCoordinator?
 	let context = CoreDataService().persistentContainer.viewContext
 
-	var numberOfSections: Int
-	var indexTitles: [String]
+	var numberOfSections: Int {
+		indexToSectionMap.count
+	}
+	var indexTitles: [String] {
+		indexToSectionMap.keys.sorted()
+	}
 
 	private var wordlist: [[String]] = []
-	private let indexToSectionMap =
-		[
-		"#": 0, "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8,
-		"I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17,
-		"R": 18, "S": 19, "T": 20, "U": 21, "V": 22, "W": 23, "X": 24, "Y": 25, "Z": 26
-		]
+	private let indexToSectionMap = Dictionary(
+		uniqueKeysWithValues: "#ABCDEFGHIJKLMNOPQRSTUVWXYZ".enumerated().map {
+			(String($1), $0)
+		}
+	)
 
 	init() {
-		numberOfSections = indexToSectionMap.count
-		indexTitles = indexToSectionMap.keys.sorted()
 		eraseWordlist()
 	}
 
@@ -71,7 +73,7 @@ class SearchPresenterImplementation: SearchPresenter {
 		do {
 			let words = try context.fetch(fetchRequest)
 			let wordsStr = words.map { $0.spelling }
-			wordsStr.forEach { addWord(word: $0, indexOffset: indexOffset) }
+			wordsStr.forEach { add(word: $0, indexOffset: indexOffset) }
 		} catch {
 			print(error)
 		}
@@ -82,7 +84,7 @@ class SearchPresenterImplementation: SearchPresenter {
 		setWordlist(fetchRequest: Word.fetchRequest(), indexOffset: 0)
 	}
 
-	private func addWord(word: String, indexOffset: Int) {
+	private func add(word: String, indexOffset: Int) {
 		guard word.count - 1 >= indexOffset else {
 			wordlist[0].append(word)
 			return
@@ -99,6 +101,11 @@ class SearchPresenterImplementation: SearchPresenter {
 			.uppercased()
 		guard let firstLetterIndex = indexToSectionMap[firstLetter] else { return }
 		wordlist[firstLetterIndex].append(word)
+	}
+
+	func didSelectWord(at indexPath: IndexPath) {
+		let word = wordlist[indexPath.section][indexPath.row]
+		coordinator?.showEntry(for: word)
 	}
 
 	func searchBarTextDidChange(text: String) {
