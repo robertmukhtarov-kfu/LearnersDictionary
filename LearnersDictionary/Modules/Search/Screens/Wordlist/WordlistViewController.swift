@@ -29,6 +29,10 @@ class WordlistViewController: UIViewController, WordlistView {
 	private func setupView() {
 		title = "Search"
 	}
+
+	func showError(message: String) {
+		showErrorAlert(message: message)
+	}
 }
 
 extension WordlistViewController: UITableViewDelegate, UITableViewDataSource {

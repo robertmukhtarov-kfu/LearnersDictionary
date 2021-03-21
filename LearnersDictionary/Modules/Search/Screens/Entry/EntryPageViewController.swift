@@ -73,13 +73,10 @@ extension EntryPageViewController: EntryPageView {
 		}
 	}
 
-	func showAlert(message: String) {
-		let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-		let action = UIAlertAction(title: "OK", style: .default) { _ in
+	func showError(message: String) {
+		showErrorAlert(message: message) {
 			self.presenter?.errorOccurred()
 		}
-		alertController.addAction(action)
-		present(alertController, animated: true)
 	}
 }
 

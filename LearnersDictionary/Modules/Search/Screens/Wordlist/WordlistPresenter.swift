@@ -5,10 +5,11 @@
 //  Created by Robert Mukhtarov on 05.03.2021.
 //
 
-import CoreData
+import Foundation
 
 protocol WordlistView: AnyObject {
 	func reloadData()
+	func showError(message: String)
 }
 
 protocol WordlistPresenterProtocol {
@@ -25,7 +26,7 @@ protocol WordlistPresenterProtocol {
 class WordlistPresenter: WordlistPresenterProtocol {
 	weak var view: WordlistView?
 	var coordinator: SearchCoordinator?
-	let context = CoreDataService().persistentContainer.viewContext
+	let coreDataService = CoreDataService()
 
 	var numberOfSections: Int {
 		indexToSectionMap.count
@@ -46,7 +47,7 @@ class WordlistPresenter: WordlistPresenterProtocol {
 	}
 
 	func viewDidLoad() {
-		setWordlistFull()
+		setupWordlist()
 		view?.reloadData()
 	}
 
@@ -62,26 +63,24 @@ class WordlistPresenter: WordlistPresenterProtocol {
 		wordlist = [[String]](repeating: [], count: numberOfSections)
 	}
 
-	private func setWordlist(fetchRequest: NSFetchRequest<Word>, indexOffset: Int) {
+	private func setupWordlist(predicate: NSPredicate? = nil, indexOffset: Int = 0) {
 		eraseWordlist()
 		let descriptor = NSSortDescriptor(
 			key: "spelling",
 			ascending: true,
 			selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
 		)
-		fetchRequest.sortDescriptors = [descriptor]
-		do {
-			let words = try context.fetch(fetchRequest)
-			let wordsStr = words.map { $0.spelling }
-			wordsStr.forEach { add(word: $0, indexOffset: indexOffset) }
-		} catch {
-			print(error)
+		let sortDescriptors = [descriptor]
+		coreDataService.fetchWordlist(predicate: predicate, sortDescriptors: sortDescriptors) { result in
+			switch result {
+			case .success(let words):
+				let wordsStr = words.map { $0.spelling }
+				wordsStr.forEach { self.add(word: $0, indexOffset: indexOffset) }
+				self.view?.reloadData()
+			case .failure:
+				self.view?.showError(message: "Failed to load the wordlist.")
+			}
 		}
-		view?.reloadData()
-	}
-
-	private func setWordlistFull() {
-		setWordlist(fetchRequest: Word.fetchRequest(), indexOffset: 0)
 	}
 
 	private func add(word: String, indexOffset: Int) {
@@ -111,16 +110,14 @@ class WordlistPresenter: WordlistPresenterProtocol {
 	func searchBarTextDidChange(text: String) {
 		let prefix = text
 		guard !prefix.isEmpty else {
-			setWordlistFull()
+			setupWordlist()
 			return
 		}
 		let predicate = NSPredicate(format: "spelling BEGINSWITH[cd] %@", prefix)
-		let fetchRequest = Word.fetchRequest() as NSFetchRequest<Word>
-		fetchRequest.predicate = predicate
-		setWordlist(fetchRequest: fetchRequest, indexOffset: text.count)
+		setupWordlist(predicate: predicate, indexOffset: text.count)
 	}
 
 	func searchBarCancelTapped() {
-		setWordlistFull()
+		setupWordlist()
 	}
 }

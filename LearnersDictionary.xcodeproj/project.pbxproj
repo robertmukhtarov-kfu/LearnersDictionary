@@ -19,6 +19,7 @@
 		7128ABF225ED1938000633AD /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABED25ED1938000633AD /* SearchCoordinator.swift */; };
 		7128ABF325ED1938000633AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABEE25ED1938000633AD /* AppDelegate.swift */; };
 		7128ABF425ED1938000633AD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABEF25ED1938000633AD /* MainTabBarController.swift */; };
+		7148CE462604AD7000E500F7 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148CE452604AD7000E500F7 /* UIViewController.swift */; };
 		714F47DF25FFC236008E3434 /* EntryNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F47DE25FFC236008E3434 /* EntryNetworkService.swift */; };
 		718FD56E25F61BD4002DFC38 /* Sense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718FD56D25F61BD4002DFC38 /* Sense.swift */; };
 		71B0518025ED684D00A1EA4B /* Wordlist.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */; };
@@ -52,6 +53,7 @@
 		7128ABED25ED1938000633AD /* SearchCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		7128ABEE25ED1938000633AD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7128ABEF25ED1938000633AD /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		7148CE452604AD7000E500F7 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		714F47DE25FFC236008E3434 /* EntryNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNetworkService.swift; sourceTree = "<group>"; };
 		718FD56D25F61BD4002DFC38 /* Sense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sense.swift; sourceTree = "<group>"; };
 		71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wordlist.sqlite; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				712419E725F8AD4700A0A8B1 /* Colors.swift */,
 				71B4CDFE2600DCA500034724 /* NSAttributedString.swift */,
+				7148CE452604AD7000E500F7 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				714F47DF25FFC236008E3434 /* EntryNetworkService.swift in Sources */,
 				71130DFB25F26D3700FF0BD6 /* WordlistPresenter.swift in Sources */,
 				71B4CDE52600AF0800034724 /* EntryParserService.swift in Sources */,
+				7148CE462604AD7000E500F7 /* UIViewController.swift in Sources */,
 				71DE0DC225FBFE2B008E32F2 /* SearchNavigationController.swift in Sources */,
 				7128ABF425ED1938000633AD /* MainTabBarController.swift in Sources */,
 				71130DF825F269A600FF0BD6 /* CoreDataService.swift in Sources */,

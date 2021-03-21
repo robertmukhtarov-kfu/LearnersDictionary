@@ -8,11 +8,15 @@
 import CoreData
 
 protocol CoreDataServiceProtocol {
-	var persistentContainer: NSPersistentContainer { get }
+	func fetchWordlist(
+		predicate: NSPredicate?,
+		sortDescriptors: [NSSortDescriptor]?,
+		completion: (Result<[Word], Error>) -> Void
+	)
 }
 
 class CoreDataService: CoreDataServiceProtocol {
-	lazy var persistentContainer: NSPersistentContainer = {
+	private lazy var persistentContainer: NSPersistentContainer = {
 		let container = NSPersistentContainer(name: "LearnersDictionary")
 		container.persistentStoreDescriptions = [description]
 		container.loadPersistentStores { _, error in
@@ -27,6 +31,23 @@ class CoreDataService: CoreDataServiceProtocol {
 
 	init() {
 		setupDescription()
+	}
+
+	func fetchWordlist(
+		predicate: NSPredicate?,
+		sortDescriptors: [NSSortDescriptor]?,
+		completion: (Result<[Word], Error>) -> Void
+	) {
+		let context = persistentContainer.viewContext
+		let fetchRequest = Word.fetchRequest() as NSFetchRequest<Word>
+		fetchRequest.predicate = predicate
+		fetchRequest.sortDescriptors = sortDescriptors
+		do {
+			let words = try context.fetch(fetchRequest)
+			completion(.success(words))
+		} catch {
+			completion(.failure(error))
+		}
 	}
 
 	private func setupDescription() {

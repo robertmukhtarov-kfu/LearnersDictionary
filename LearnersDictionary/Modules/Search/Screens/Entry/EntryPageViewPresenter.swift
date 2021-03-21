@@ -10,7 +10,7 @@ import Foundation
 protocol EntryPageView: AnyObject {
 	func setTitle(_ title: String)
 	func configure(with entries: [Entry])
-	func showAlert(message: String)
+	func showError(message: String)
 }
 
 protocol EntryPageViewPresenterProtocol {
@@ -45,7 +45,7 @@ class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 			case .success(let entriesData):
 				self.parseEntries(from: entriesData)
 			case .failure(let error):
-				self.view?.showAlert(message: error.localizedDescription)
+				self.view?.showError(message: error.localizedDescription)
 			}
 		}
 	}
@@ -57,7 +57,7 @@ class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 			case .success(let parsedEntries):
 				self.view?.configure(with: parsedEntries)
 			case .failure(let error):
-				self.view?.showAlert(message: error.localizedDescription)
+				self.view?.showError(message: error.localizedDescription)
 			}
 		}
 	}
