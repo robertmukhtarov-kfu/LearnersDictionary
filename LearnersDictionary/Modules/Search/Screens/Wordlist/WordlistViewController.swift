@@ -80,8 +80,14 @@ extension WordlistViewController: UISearchBarDelegate {
 		let searchBar = searchController.searchBar
 		searchBar.delegate = self
 		searchBar.placeholder = "Type a word"
+		searchBar.showsBookmarkButton = true
+		searchBar.setImage(UIImage(named: "camera.fill"), for: .bookmark, state: .normal)
 		navigationItem.searchController = searchController
 		navigationItem.hidesSearchBarWhenScrolling = false
+	}
+
+	func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+		presenter?.cameraButtonTapped()
 	}
 
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

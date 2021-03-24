@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71050E3E2607969F00A3F733 /* TextRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71050E3D2607969F00A3F733 /* TextRecognitionViewController.swift */; };
+		71050E41260796BB00A3F733 /* TextRecognitionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71050E40260796BB00A3F733 /* TextRecognitionPresenter.swift */; };
 		710B614325F912CE0009BADA /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710B614125F912CE0009BADA /* EntryViewController.swift */; };
 		710B614425F912CE0009BADA /* EntryPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710B614225F912CE0009BADA /* EntryPageViewController.swift */; };
 		71130DF825F269A600FF0BD6 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71130DF725F269A600FF0BD6 /* CoreDataService.swift */; };
@@ -19,8 +21,13 @@
 		7128ABF225ED1938000633AD /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABED25ED1938000633AD /* SearchCoordinator.swift */; };
 		7128ABF325ED1938000633AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABEE25ED1938000633AD /* AppDelegate.swift */; };
 		7128ABF425ED1938000633AD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABEF25ED1938000633AD /* MainTabBarController.swift */; };
+		712CD1212608D33600F6753A /* TextRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712CD1202608D33600F6753A /* TextRecognitionService.swift */; };
+		7135B5762608E72300B7CBF8 /* RecognizedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B5752608E72300B7CBF8 /* RecognizedWord.swift */; };
+		7135B5792608F8E500B7CBF8 /* RecognizedWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B5782608F8E500B7CBF8 /* RecognizedWordView.swift */; };
 		7148CE462604AD7000E500F7 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148CE452604AD7000E500F7 /* UIViewController.swift */; };
 		714F47DF25FFC236008E3434 /* EntryNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F47DE25FFC236008E3434 /* EntryNetworkService.swift */; };
+		71711999260A1D5A00D2B6AF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71711998260A1D5A00D2B6AF /* UIImage.swift */; };
+		717C4E052607D373005C5A50 /* TextRecognitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C4E042607D373005C5A50 /* TextRecognitionCoordinator.swift */; };
 		718FD56E25F61BD4002DFC38 /* Sense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718FD56D25F61BD4002DFC38 /* Sense.swift */; };
 		71B0518025ED684D00A1EA4B /* Wordlist.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */; };
 		71B4CDE52600AF0800034724 /* EntryParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDE42600AF0800034724 /* EntryParserService.swift */; };
@@ -39,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		67395F5C3941506DD567D0D0 /* Pods-LearnersDictionary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnersDictionary.release.xcconfig"; path = "Target Support Files/Pods-LearnersDictionary/Pods-LearnersDictionary.release.xcconfig"; sourceTree = "<group>"; };
+		71050E3D2607969F00A3F733 /* TextRecognitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionViewController.swift; sourceTree = "<group>"; };
+		71050E40260796BB00A3F733 /* TextRecognitionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionPresenter.swift; sourceTree = "<group>"; };
 		710B614125F912CE0009BADA /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		710B614225F912CE0009BADA /* EntryPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryPageViewController.swift; sourceTree = "<group>"; };
 		71130DF725F269A600FF0BD6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
@@ -53,8 +62,13 @@
 		7128ABED25ED1938000633AD /* SearchCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		7128ABEE25ED1938000633AD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7128ABEF25ED1938000633AD /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		712CD1202608D33600F6753A /* TextRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionService.swift; sourceTree = "<group>"; };
+		7135B5752608E72300B7CBF8 /* RecognizedWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedWord.swift; sourceTree = "<group>"; };
+		7135B5782608F8E500B7CBF8 /* RecognizedWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedWordView.swift; sourceTree = "<group>"; };
 		7148CE452604AD7000E500F7 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		714F47DE25FFC236008E3434 /* EntryNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNetworkService.swift; sourceTree = "<group>"; };
+		71711998260A1D5A00D2B6AF /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		717C4E042607D373005C5A50 /* TextRecognitionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionCoordinator.swift; sourceTree = "<group>"; };
 		718FD56D25F61BD4002DFC38 /* Sense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sense.swift; sourceTree = "<group>"; };
 		71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wordlist.sqlite; sourceTree = "<group>"; };
 		71B4CDE42600AF0800034724 /* EntryParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryParserService.swift; sourceTree = "<group>"; };
@@ -93,6 +107,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		71050E3C2607952000A3F733 /* Text Recognition */ = {
+			isa = PBXGroup;
+			children = (
+				717C4E042607D373005C5A50 /* TextRecognitionCoordinator.swift */,
+				71050E3D2607969F00A3F733 /* TextRecognitionViewController.swift */,
+				71050E40260796BB00A3F733 /* TextRecognitionPresenter.swift */,
+			);
+			path = "Text Recognition";
+			sourceTree = "<group>";
+		};
 		710B614025F912CE0009BADA /* Entry */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +133,7 @@
 				71130DF725F269A600FF0BD6 /* CoreDataService.swift */,
 				714F47DE25FFC236008E3434 /* EntryNetworkService.swift */,
 				71B4CDE42600AF0800034724 /* EntryParserService.swift */,
+				712CD1202608D33600F6753A /* TextRecognitionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -119,6 +144,7 @@
 				712419E725F8AD4700A0A8B1 /* Colors.swift */,
 				71B4CDFE2600DCA500034724 /* NSAttributedString.swift */,
 				7148CE452604AD7000E500F7 /* UIViewController.swift */,
+				71711998260A1D5A00D2B6AF /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				71E5786725F52A2400FA98E2 /* Entry */,
+				7135B5752608E72300B7CBF8 /* RecognizedWord.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				71DE0DC825FC07A1008E32F2 /* EntryToolbar.swift */,
+				7135B5782608F8E500B7CBF8 /* RecognizedWordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,6 +247,7 @@
 				71DE0DC125FBFE2B008E32F2 /* SearchNavigationController.swift */,
 				71DE0DAB25FB9703008E32F2 /* Wordlist */,
 				710B614025F912CE0009BADA /* Entry */,
+				71050E3C2607952000A3F733 /* Text Recognition */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -279,6 +308,7 @@
 				7128ABCC25ED1915000633AD /* Resources */,
 				81DAF4A1775C3A386035FF99 /* [CP] Embed Pods Frameworks */,
 				712B725125EECE7F00C1F781 /* ShellScript */,
+				A15E4436191B80F2A488B24B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -392,6 +422,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LearnersDictionary/Pods-LearnersDictionary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A15E4436191B80F2A488B24B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LearnersDictionary/Pods-LearnersDictionary-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LearnersDictionary/Pods-LearnersDictionary-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LearnersDictionary/Pods-LearnersDictionary-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -405,10 +452,14 @@
 				71E5787025F52AC900FA98E2 /* Entry.swift in Sources */,
 				710B614425F912CE0009BADA /* EntryPageViewController.swift in Sources */,
 				710B614325F912CE0009BADA /* EntryViewController.swift in Sources */,
+				717C4E052607D373005C5A50 /* TextRecognitionCoordinator.swift in Sources */,
 				7128ABF225ED1938000633AD /* SearchCoordinator.swift in Sources */,
+				71050E41260796BB00A3F733 /* TextRecognitionPresenter.swift in Sources */,
 				71E5786C25F52A8200FA98E2 /* Word+CoreDataProperties.swift in Sources */,
+				71050E3E2607969F00A3F733 /* TextRecognitionViewController.swift in Sources */,
 				71B4CDFF2600DCA500034724 /* NSAttributedString.swift in Sources */,
 				71E5786B25F52A8200FA98E2 /* Word+CoreDataClass.swift in Sources */,
+				71711999260A1D5A00D2B6AF /* UIImage.swift in Sources */,
 				7128ABF125ED1938000633AD /* WordlistViewController.swift in Sources */,
 				714F47DF25FFC236008E3434 /* EntryNetworkService.swift in Sources */,
 				71130DFB25F26D3700FF0BD6 /* WordlistPresenter.swift in Sources */,
@@ -418,11 +469,14 @@
 				7128ABF425ED1938000633AD /* MainTabBarController.swift in Sources */,
 				71130DF825F269A600FF0BD6 /* CoreDataService.swift in Sources */,
 				71DE0DC925FC07A1008E32F2 /* EntryToolbar.swift in Sources */,
+				712CD1212608D33600F6753A /* TextRecognitionService.swift in Sources */,
 				71EEE9A02603422000E6DFDD /* PrivateStrings.swift in Sources */,
 				71E5787325F52AD400FA98E2 /* Definition.swift in Sources */,
 				7128ABF325ED1938000633AD /* AppDelegate.swift in Sources */,
 				71B4CDEE2600AFFE00034724 /* EntryParserError.swift in Sources */,
 				7128ABDC25ED1915000633AD /* LearnersDictionary.xcdatamodeld in Sources */,
+				7135B5792608F8E500B7CBF8 /* RecognizedWordView.swift in Sources */,
+				7135B5762608E72300B7CBF8 /* RecognizedWord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,7 @@ protocol WordlistPresenterProtocol {
 	func searchBarTextDidChange(text: String)
 	func searchBarCancelTapped()
 	func didSelectWord(at indexPath: IndexPath)
+	func cameraButtonTapped()
 }
 
 class WordlistPresenter: WordlistPresenterProtocol {
@@ -119,5 +120,9 @@ class WordlistPresenter: WordlistPresenterProtocol {
 
 	func searchBarCancelTapped() {
 		setupWordlist()
+	}
+
+	func cameraButtonTapped() {
+		coordinator?.showCamera()
 	}
 }

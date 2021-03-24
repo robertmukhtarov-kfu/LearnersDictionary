@@ -9,6 +9,7 @@ import UIKit
 
 class SearchCoordinator {
 	var navigationController: SearchNavigationController
+	var textRecognitionCoordinator = TextRecognitionCoordinator()
 
     init(navigationController: SearchNavigationController = SearchNavigationController()) {
 		self.navigationController = navigationController
@@ -31,6 +32,12 @@ class SearchCoordinator {
 		entryPageViewPresenter.view = entryPageViewController
 		entryPageViewController.presenter = entryPageViewPresenter
 		navigationController.pushViewController(entryPageViewController, animated: true)
+	}
+
+	func showCamera() {
+		textRecognitionCoordinator.start()
+		let imagePickerVC = textRecognitionCoordinator.imagePickerController
+		navigationController.present(imagePickerVC, animated: true)
 	}
 
 	func closeEntry() {
