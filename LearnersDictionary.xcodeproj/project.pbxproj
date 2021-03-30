@@ -23,9 +23,10 @@
 		7128ABF425ED1938000633AD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABEF25ED1938000633AD /* MainTabBarController.swift */; };
 		712CD1212608D33600F6753A /* TextRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712CD1202608D33600F6753A /* TextRecognitionService.swift */; };
 		7135B5762608E72300B7CBF8 /* RecognizedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B5752608E72300B7CBF8 /* RecognizedWord.swift */; };
-		7135B5792608F8E500B7CBF8 /* RecognizedWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B5782608F8E500B7CBF8 /* RecognizedWordView.swift */; };
 		7148CE462604AD7000E500F7 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148CE452604AD7000E500F7 /* UIViewController.swift */; };
 		714F47DF25FFC236008E3434 /* EntryNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F47DE25FFC236008E3434 /* EntryNetworkService.swift */; };
+		71519779260F37CC00FFFEEB /* RecognizedWordLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71519778260F37CC00FFFEEB /* RecognizedWordLayer.swift */; };
+		7151977C260F3EDE00FFFEEB /* RecognizedWordsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151977B260F3EDE00FFFEEB /* RecognizedWordsImageView.swift */; };
 		71711999260A1D5A00D2B6AF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71711998260A1D5A00D2B6AF /* UIImage.swift */; };
 		717C4E052607D373005C5A50 /* TextRecognitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C4E042607D373005C5A50 /* TextRecognitionCoordinator.swift */; };
 		718FD56E25F61BD4002DFC38 /* Sense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718FD56D25F61BD4002DFC38 /* Sense.swift */; };
@@ -34,6 +35,7 @@
 		71B4CDEE2600AFFE00034724 /* EntryParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDED2600AFFE00034724 /* EntryParserError.swift */; };
 		71B4CDF52600B2A600034724 /* EntryPageViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDF42600B2A600034724 /* EntryPageViewPresenter.swift */; };
 		71B4CDFF2600DCA500034724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDFE2600DCA500034724 /* NSAttributedString.swift */; };
+		71BABA61260D1C01001B5999 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BABA60260D1C01001B5999 /* ImageScrollView.swift */; };
 		71DE0DC225FBFE2B008E32F2 /* SearchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DE0DC125FBFE2B008E32F2 /* SearchNavigationController.swift */; };
 		71DE0DC925FC07A1008E32F2 /* EntryToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DE0DC825FC07A1008E32F2 /* EntryToolbar.swift */; };
 		71E5786B25F52A8200FA98E2 /* Word+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5786925F52A8200FA98E2 /* Word+CoreDataClass.swift */; };
@@ -64,9 +66,10 @@
 		7128ABEF25ED1938000633AD /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		712CD1202608D33600F6753A /* TextRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionService.swift; sourceTree = "<group>"; };
 		7135B5752608E72300B7CBF8 /* RecognizedWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedWord.swift; sourceTree = "<group>"; };
-		7135B5782608F8E500B7CBF8 /* RecognizedWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedWordView.swift; sourceTree = "<group>"; };
 		7148CE452604AD7000E500F7 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		714F47DE25FFC236008E3434 /* EntryNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNetworkService.swift; sourceTree = "<group>"; };
+		71519778260F37CC00FFFEEB /* RecognizedWordLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedWordLayer.swift; sourceTree = "<group>"; };
+		7151977B260F3EDE00FFFEEB /* RecognizedWordsImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedWordsImageView.swift; sourceTree = "<group>"; };
 		71711998260A1D5A00D2B6AF /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		717C4E042607D373005C5A50 /* TextRecognitionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionCoordinator.swift; sourceTree = "<group>"; };
 		718FD56D25F61BD4002DFC38 /* Sense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sense.swift; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		71B4CDED2600AFFE00034724 /* EntryParserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryParserError.swift; sourceTree = "<group>"; };
 		71B4CDF42600B2A600034724 /* EntryPageViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPageViewPresenter.swift; sourceTree = "<group>"; };
 		71B4CDFE2600DCA500034724 /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
+		71BABA60260D1C01001B5999 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		71DE0DC125FBFE2B008E32F2 /* SearchNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigationController.swift; sourceTree = "<group>"; };
 		71DE0DC825FC07A1008E32F2 /* EntryToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryToolbar.swift; sourceTree = "<group>"; };
 		71E5786925F52A8200FA98E2 /* Word+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Word+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				717C4E042607D373005C5A50 /* TextRecognitionCoordinator.swift */,
 				71050E3D2607969F00A3F733 /* TextRecognitionViewController.swift */,
 				71050E40260796BB00A3F733 /* TextRecognitionPresenter.swift */,
+				7151977B260F3EDE00FFFEEB /* RecognizedWordsImageView.swift */,
+				71519778260F37CC00FFFEEB /* RecognizedWordLayer.swift */,
 			);
 			path = "Text Recognition";
 			sourceTree = "<group>";
@@ -123,6 +129,7 @@
 				71B4CDF42600B2A600034724 /* EntryPageViewPresenter.swift */,
 				710B614225F912CE0009BADA /* EntryPageViewController.swift */,
 				710B614125F912CE0009BADA /* EntryViewController.swift */,
+				71DE0DC825FC07A1008E32F2 /* EntryToolbar.swift */,
 			);
 			path = Entry;
 			sourceTree = "<group>";
@@ -196,6 +203,14 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
+		7151978426122F0A00FFFEEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				71BABA60260D1C01001B5999 /* ImageScrollView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		71B0514E25ED4C0C00A1EA4B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,18 +241,9 @@
 			isa = PBXGroup;
 			children = (
 				71DE0DC625FC0230008E32F2 /* Screens */,
-				71DE0DC525FC021F008E32F2 /* Views */,
+				7151978426122F0A00FFFEEB /* Views */,
 			);
 			path = Search;
-			sourceTree = "<group>";
-		};
-		71DE0DC525FC021F008E32F2 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				71DE0DC825FC07A1008E32F2 /* EntryToolbar.swift */,
-				7135B5782608F8E500B7CBF8 /* RecognizedWordView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		71DE0DC625FC0230008E32F2 /* Screens */ = {
@@ -458,6 +464,7 @@
 				71E5786C25F52A8200FA98E2 /* Word+CoreDataProperties.swift in Sources */,
 				71050E3E2607969F00A3F733 /* TextRecognitionViewController.swift in Sources */,
 				71B4CDFF2600DCA500034724 /* NSAttributedString.swift in Sources */,
+				7151977C260F3EDE00FFFEEB /* RecognizedWordsImageView.swift in Sources */,
 				71E5786B25F52A8200FA98E2 /* Word+CoreDataClass.swift in Sources */,
 				71711999260A1D5A00D2B6AF /* UIImage.swift in Sources */,
 				7128ABF125ED1938000633AD /* WordlistViewController.swift in Sources */,
@@ -475,7 +482,8 @@
 				7128ABF325ED1938000633AD /* AppDelegate.swift in Sources */,
 				71B4CDEE2600AFFE00034724 /* EntryParserError.swift in Sources */,
 				7128ABDC25ED1915000633AD /* LearnersDictionary.xcdatamodeld in Sources */,
-				7135B5792608F8E500B7CBF8 /* RecognizedWordView.swift in Sources */,
+				71BABA61260D1C01001B5999 /* ImageScrollView.swift in Sources */,
+				71519779260F37CC00FFFEEB /* RecognizedWordLayer.swift in Sources */,
 				7135B5762608E72300B7CBF8 /* RecognizedWord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

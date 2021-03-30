@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FittedSheets
 
 class TextRecognitionCoordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	let imagePickerController = UIImagePickerController()
@@ -35,24 +34,6 @@ class TextRecognitionCoordinator: NSObject, UIImagePickerControllerDelegate, UIN
 		textRecognitionPresenter.view = textRecognitionVC
 		textRecognitionVC.presenter = textRecognitionPresenter
 		imagePickerController.pushViewController(textRecognitionVC, animated: false)
-	}
-
-	func showEntrySheet(for word: String) {
-		let entryPageViewPresenter = EntryPageViewPresenter(word: word)
-		let entryPageViewController = EntryPageViewController()
-		entryPageViewPresenter.view = entryPageViewController
-		entryPageViewController.presenter = entryPageViewPresenter
-		let navigationController = UINavigationController()
-		navigationController.navigationBar.isTranslucent = false
-		navigationController.viewControllers = [entryPageViewController]
-		let sheetOptions = SheetOptions(shrinkPresentingViewController: false)
-		let sheetController = SheetViewController(
-			controller: navigationController,
-			sizes: [.fixed(200), .marginFromTop(40)],
-			options: sheetOptions
-		)
-		sheetController.overlayColor = .clear
-		imagePickerController.present(sheetController, animated: true)
 	}
 
 	func dismissImagePicker() {

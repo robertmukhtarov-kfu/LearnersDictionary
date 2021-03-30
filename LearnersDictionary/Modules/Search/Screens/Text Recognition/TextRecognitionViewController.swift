@@ -6,15 +6,18 @@
 //
 
 import UIKit
+import FittedSheets
 
 class TextRecognitionViewController: UIViewController {
 	var presenter: TextRecognitionPresenter?
-	let imageView = UIImageView()
+	var isEntrySheetShown = false
+
+	private let imageView = RecognizedWordsImageView()
+	private var entryPageView: EntryPageView?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupView()
-		setupImageView()
 		presenter?.viewDidLoad()
 	}
 
@@ -30,17 +33,7 @@ class TextRecognitionViewController: UIViewController {
 			action: #selector(doneButtonTapped(_:))
 		)
 		navigationItem.hidesBackButton = true
-	}
-
-	private func setupImageView() {
-		view.addSubview(imageView)
-		let safeArea = view.safeAreaLayoutGuide
-		imageView.snp.makeConstraints { make in
-			make.top.equalTo(safeArea.snp.topMargin)
-			make.bottom.equalTo(safeArea.snp.bottomMargin)
-			make.left.right.equalTo(view)
-		}
-		imageView.contentMode = .scaleAspectFit
+		imageView.delegate = self
 	}
 
 	@objc func doneButtonTapped(_ sender: UIBarButtonItem) {
@@ -49,45 +42,55 @@ class TextRecognitionViewController: UIViewController {
 }
 
 extension TextRecognitionViewController: TextRecognitionView {
-	func setImage(_ image: UIImage) {
+	func set(image: UIImage) {
+		imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: image.size)
 		imageView.image = image
-	}
-
-	func showRecognizedWords(_ words: [RecognizedWord]) {
-		for word in words {
-			let transformedFrame = word.frame.applying(transformMatrix())
-			let recognizedWordView = RecognizedWordView(frame: transformedFrame, word: word.text)
-			recognizedWordView.addTarget(self, action: #selector(tappedOnWord(_:)), for: .touchUpInside)
-			view.addSubview(recognizedWordView)
+		let imageScrollViewFrame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+		let imageScrollView = ImageScrollView(frame: imageScrollViewFrame, imageView: imageView)
+		view.addSubview(imageScrollView)
+		imageScrollView.snp.makeConstraints { make in
+			make.edges.equalTo(view)
 		}
 	}
 
-	@objc private func tappedOnWord(_ sender: RecognizedWordView) {
-		presenter?.lookUp(word: sender.word)
-//		sender.isSelected = true
+	func set(entryPageView: EntryPageView) {
+		self.entryPageView = entryPageView
 	}
 
-	private func transformMatrix() -> CGAffineTransform {
-		guard let image = imageView.image else { return CGAffineTransform() }
-		let imageViewWidth = imageView.frame.size.width
-		let imageViewHeight = imageView.frame.size.height
-		let imageWidth = image.size.width
-		let imageHeight = image.size.height
+	func showRecognizedWords(_ words: [RecognizedWord]) {
+		words.forEach { imageView.addRectangle(for: $0) }
+	}
 
-		let imageViewAspectRatio = imageViewWidth / imageViewHeight
-		let imageAspectRatio = imageWidth / imageHeight
-		let scale =
-			imageViewAspectRatio > imageAspectRatio
-			? imageViewHeight / imageHeight : imageViewWidth / imageWidth
+	func showEntrySheet() {
+		guard let entryPageVC = entryPageView as? EntryPageViewController else { return }
+		let entryNavigationController = UINavigationController(rootViewController: entryPageVC)
+		entryNavigationController.navigationBar.isTranslucent = false
 
-		let scaledImageWidth = imageWidth * scale
-		let scaledImageHeight = imageHeight * scale
-		let xValue = (imageViewWidth - scaledImageWidth) / CGFloat(2.0)
-		let yValue = (imageViewHeight - scaledImageHeight) / CGFloat(2.0)
+		let sheetOptions = SheetOptions(
+			shrinkPresentingViewController: false,
+			useInlineMode: true
+		)
 
-		var transform = CGAffineTransform.identity
-		transform = transform.translatedBy(x: xValue, y: yValue)
-		transform = transform.scaledBy(x: scale, y: scale)
-		return transform
+		let sheetController = SheetViewController(
+			controller: entryNavigationController,
+			sizes: [.fixed(200), .fullscreen],
+			options: sheetOptions
+		)
+
+		sheetController.overlayColor = .clear
+		sheetController.allowGestureThroughOverlay = true
+		sheetController.didDismiss = { _ in
+			self.imageView.deselect()
+			self.isEntrySheetShown = false
+		}
+
+		sheetController.animateIn(to: view, in: self)
+		isEntrySheetShown = true
+	}
+}
+
+extension TextRecognitionViewController: RecognizedWordViewDelegate {
+	func recognizedWordsImageView(didSelect word: String) {
+		presenter?.lookUp(word: word)
 	}
 }

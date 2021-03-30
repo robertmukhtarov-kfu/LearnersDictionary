@@ -8,8 +8,11 @@
 import UIKit
 
 protocol TextRecognitionView: AnyObject {
-	func setImage(_ image: UIImage)
+	var isEntrySheetShown: Bool { get }
+	func set(image: UIImage)
+	func set(entryPageView: EntryPageView)
 	func showRecognizedWords(_ words: [RecognizedWord])
+	func showEntrySheet()
 }
 
 protocol TextRecognitionPresenterProtocol {
@@ -22,7 +25,9 @@ protocol TextRecognitionPresenterProtocol {
 class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 	weak var view: TextRecognitionView?
 	var coordinator: TextRecognitionCoordinator?
-	let textRecognizer = TextRecognitionService()
+
+	private let entryPageViewPresenter = EntryPageViewPresenter()
+	private let textRecognizer = TextRecognitionService()
 
 	let image: UIImage
 
@@ -31,7 +36,10 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 	}
 
 	func viewDidLoad() {
-		view?.setImage(image)
+		view?.set(image: image)
+		let entryPageViewController = EntryPageViewController()
+		entryPageViewPresenter.view = entryPageViewController
+		view?.set(entryPageView: entryPageViewController)
 		recognizeText(on: image)
 	}
 
@@ -51,10 +59,16 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 	}
 
 	func lookUp(word: String) {
-		coordinator?.showEntrySheet(for: word)
+		guard let view = view else { return }
+		entryPageViewPresenter.set(word: word)
+		if !view.isEntrySheetShown { view.showEntrySheet() }
 	}
 
 	func doneButtonTapped() {
 		coordinator?.dismissImagePicker()
+	}
+
+	func assignEntryPageViewToPresenter(_ entryPageView: EntryPageView) {
+		entryPageViewPresenter.view = entryPageView
 	}
 }

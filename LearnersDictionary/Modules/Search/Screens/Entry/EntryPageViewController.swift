@@ -78,6 +78,12 @@ extension EntryPageViewController: EntryPageView {
 			self.presenter?.errorOccurred()
 		}
 	}
+
+	func reset() {
+		toolbar.segmentedControl.removeAllSegments()
+		pages = []
+		setViewControllers([UIViewController()], direction: .forward, animated: false)
+	}
 }
 
 extension EntryPageViewController: UIPageViewControllerDelegate {

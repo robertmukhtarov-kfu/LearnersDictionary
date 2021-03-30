@@ -7,7 +7,11 @@
 
 import UIKit
 
-class EntryToolbar: UIToolbar {
+protocol EntryToolbarView {
+	func configureSegmentedControl(with items: [String])
+}
+
+class EntryToolbar: UIToolbar, EntryToolbarView {
 	let segmentedControl = UISegmentedControl(items: [])
 
 	override init(frame: CGRect) {
@@ -22,13 +26,6 @@ class EntryToolbar: UIToolbar {
 	private func setupToolbar() {
 		barTintColor = .background
 		isTranslucent = false
-	}
-
-	func configureSegmentedControl(with items: [String]) {
-		for (index, title) in items.enumerated() {
-			segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
-		}
-		segmentedControl.selectedSegmentIndex = 0
 		let container = UIView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height))
 		container.addSubview(segmentedControl)
 		container.snp.makeConstraints { make in
@@ -39,5 +36,12 @@ class EntryToolbar: UIToolbar {
 			make.top.equalTo(container.snp.top)
 		}
 		setItems([UIBarButtonItem(customView: container)], animated: true)
+	}
+
+	func configureSegmentedControl(with items: [String]) {
+		for (index, title) in items.enumerated() {
+			segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
+		}
+		segmentedControl.selectedSegmentIndex = 0
 	}
 }
