@@ -7,7 +7,13 @@
 
 import UIKit
 
-class TextRecognitionCoordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+protocol TextRecognitionCoordinatorProtocol {
+	func start()
+	func startTextRecognition(image: UIImage)
+	func dismissImagePicker()
+}
+
+class TextRecognitionCoordinator: NSObject, TextRecognitionCoordinatorProtocol {
 	let imagePickerController = UIImagePickerController()
 
 	func start() {
@@ -18,13 +24,6 @@ class TextRecognitionCoordinator: NSObject, UIImagePickerControllerDelegate, UIN
 		} else {
 			imagePickerController.sourceType = .photoLibrary
 		}
-	}
-
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-		guard let image = info[.originalImage] as? UIImage else {
-			return
-		}
-		startTextRecognition(image: image)
 	}
 
 	func startTextRecognition(image: UIImage) {
@@ -38,5 +37,14 @@ class TextRecognitionCoordinator: NSObject, UIImagePickerControllerDelegate, UIN
 
 	func dismissImagePicker() {
 		imagePickerController.dismiss(animated: true)
+	}
+}
+
+extension TextRecognitionCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+		guard let image = info[.originalImage] as? UIImage else {
+			return
+		}
+		startTextRecognition(image: image)
 	}
 }

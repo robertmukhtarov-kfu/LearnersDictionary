@@ -7,7 +7,12 @@
 
 import UIKit
 
-class RecognizedWordLayer: CAShapeLayer {
+protocol RecognizedWordLayerProtocol {
+	func select()
+	func deselect()
+}
+
+class RecognizedWordLayer: CAShapeLayer, RecognizedWordLayerProtocol {
 	let word: String
 
 	init(frame: CGRect, word: String) {

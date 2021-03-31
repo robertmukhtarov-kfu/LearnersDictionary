@@ -7,7 +7,14 @@
 
 import UIKit
 
-class SearchCoordinator {
+protocol SearchCoordinatorProtocol {
+	func showWordlist()
+	func showEntry(for word: String)
+	func showCamera()
+	func closeEntry()
+}
+
+class SearchCoordinator: SearchCoordinatorProtocol {
 	var navigationController: SearchNavigationController
 	var textRecognitionCoordinator = TextRecognitionCoordinator()
 

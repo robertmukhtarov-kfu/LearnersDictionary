@@ -57,7 +57,7 @@ class EntryPageViewController: UIPageViewController {
 }
 
 extension EntryPageViewController: EntryPageView {
-	func setTitle(_ title: String) {
+	func set(title: String) {
 		self.title = title
 	}
 

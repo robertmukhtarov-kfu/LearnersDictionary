@@ -8,7 +8,11 @@
 import Foundation
 import SwiftyJSON
 
-class EntryParserService {
+protocol EntryParserServiceProtocol {
+	func parse(_ jsonData: Data, for word: String, _ completion: @escaping (Result<[Entry], EntryParserError>) -> Void)
+}
+
+class EntryParserService: EntryParserServiceProtocol {
 	func parse(_ jsonData: Data, for word: String, _ completion: @escaping (Result<[Entry], EntryParserError>) -> Void) {
 		guard let allEntries = try? JSON(data: jsonData) else {
 			return completion(.failure(.notJSON))

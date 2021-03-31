@@ -10,21 +10,21 @@ import UIKit
 class SearchNavigationController: UINavigationController {
 	init() {
 		super.init(navigationBarClass: nil, toolbarClass: nil)
-		commonInit()
+		setup()
 	}
 
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
-		commonInit()
+		setup()
 	}
 
 	// For iOS 11
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-		commonInit()
+		setup()
 	}
 
-	private func commonInit() {
+	private func setup() {
 		navigationBar.isTranslucent = false
 		navigationBar.prefersLargeTitles = true
 		tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)

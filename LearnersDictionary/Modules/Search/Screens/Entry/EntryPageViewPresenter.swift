@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EntryPageView: AnyObject {
-	func setTitle(_ title: String)
+	func set(title: String)
 	func configure(with entries: [Entry])
 	func showError(message: String)
 	func reset()
@@ -43,7 +43,7 @@ class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 	func set(word: String) {
 		self.word = word
 		view?.reset()
-		view?.setTitle(word)
+		view?.set(title: word)
 		downloadEntries()
 	}
 
