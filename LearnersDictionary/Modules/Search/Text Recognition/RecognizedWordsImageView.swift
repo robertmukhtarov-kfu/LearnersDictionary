@@ -21,7 +21,7 @@ class RecognizedWordsImageView: UIImageView, RecognizedWordsImageViewProtocol {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func addRectangle(for recognizedWord: RecognizedWord) {
+	func addRectangle(for recognizedWord: RecognizedWordModel) {
 		let frame = recognizedWord.frame
 		let text = recognizedWord.text
 		let recognizedWordLayer = RecognizedWordLayer(frame: frame, word: text)

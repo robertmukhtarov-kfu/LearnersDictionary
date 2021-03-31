@@ -9,10 +9,10 @@ import UIKit
 import SnapKit
 
 class EntryViewController: UIViewController {
-	let entry: Entry
+	let entry: EntryModel
 	let textView = UITextView()
 
-	init(entry: Entry) {
+	init(entry: EntryModel) {
 		self.entry = entry
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -48,7 +48,7 @@ class EntryViewController: UIViewController {
 		textView.attributedText = entryText
 	}
 
-	private func definitionsString(from definitions: [Definition]) -> NSAttributedString {
+	private func definitionsString(from definitions: [DefinitionModel]) -> NSAttributedString {
 		let definitionsString = NSMutableAttributedString()
 		for definition in definitions {
 			for (index, sense) in definition.senses.enumerated() {

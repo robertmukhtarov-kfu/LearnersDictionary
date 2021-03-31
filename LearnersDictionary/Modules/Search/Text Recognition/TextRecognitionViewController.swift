@@ -57,7 +57,7 @@ extension TextRecognitionViewController: TextRecognitionView {
 		self.entryPageView = entryPageView
 	}
 
-	func showRecognizedWords(_ words: [RecognizedWord]) {
+	func showRecognizedWords(_ words: [RecognizedWordModel]) {
 		words.forEach { imageView.addRectangle(for: $0) }
 	}
 

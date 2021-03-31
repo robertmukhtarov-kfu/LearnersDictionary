@@ -61,7 +61,7 @@ extension EntryPageViewController: EntryPageView {
 		self.title = title
 	}
 
-	func configure(with entries: [Entry]) {
+	func configure(with entries: [EntryModel]) {
 		var functionalLabels: [String] = []
 		entries.forEach { entry in
 			pages.append(EntryViewController(entry: entry))

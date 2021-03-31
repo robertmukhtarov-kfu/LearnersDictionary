@@ -9,7 +9,7 @@ import UIKit
 
 protocol EntryPageView: AnyObject {
 	func set(title: String)
-	func configure(with entries: [Entry])
+	func configure(with entries: [EntryModel])
 	func showError(message: String)
 	func reset()
 }

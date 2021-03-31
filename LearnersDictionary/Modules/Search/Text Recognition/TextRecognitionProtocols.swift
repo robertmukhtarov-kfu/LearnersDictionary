@@ -17,7 +17,7 @@ protocol TextRecognitionView: AnyObject {
 	var isEntrySheetShown: Bool { get }
 	func set(image: UIImage)
 	func set(entryPageView: EntryPageView)
-	func showRecognizedWords(_ words: [RecognizedWord])
+	func showRecognizedWords(_ words: [RecognizedWordModel])
 	func showEntrySheet()
 }
 
