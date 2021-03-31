@@ -7,14 +7,6 @@
 
 import UIKit
 
-protocol RecognizedWordsImageViewProtocol {
-	func deselect()
-}
-
-protocol RecognizedWordViewDelegate: AnyObject {
-	func recognizedWordsImageView(didSelect word: String)
-}
-
 class RecognizedWordsImageView: UIImageView, RecognizedWordsImageViewProtocol {
 	private var rectangles: [RecognizedWordLayer] = []
 	private var selectedLayer: RecognizedWordLayer?

@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol TextRecognitionCoordinatorProtocol {
-	func start()
-	func startTextRecognition(image: UIImage)
-	func dismissImagePicker()
-}
-
 class TextRecognitionCoordinator: NSObject, TextRecognitionCoordinatorProtocol {
 	let imagePickerController = UIImagePickerController()
 

@@ -7,21 +7,6 @@
 
 import UIKit
 
-protocol TextRecognitionView: AnyObject {
-	var isEntrySheetShown: Bool { get }
-	func set(image: UIImage)
-	func set(entryPageView: EntryPageView)
-	func showRecognizedWords(_ words: [RecognizedWord])
-	func showEntrySheet()
-}
-
-protocol TextRecognitionPresenterProtocol {
-	func viewDidLoad()
-	func doneButtonTapped()
-	func lookUp(word: String)
-	func recognizeText(on image: UIImage)
-}
-
 class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 	weak var view: TextRecognitionView?
 	var coordinator: TextRecognitionCoordinator?
@@ -37,10 +22,14 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 
 	func viewDidLoad() {
 		view?.set(image: image)
+		setupEntryPage()
+		recognizeText(on: image)
+	}
+
+	private func setupEntryPage() {
 		let entryPageViewController = EntryPageViewController()
 		entryPageViewPresenter.view = entryPageViewController
 		view?.set(entryPageView: entryPageViewController)
-		recognizeText(on: image)
 	}
 
 	func recognizeText(on image: UIImage) {

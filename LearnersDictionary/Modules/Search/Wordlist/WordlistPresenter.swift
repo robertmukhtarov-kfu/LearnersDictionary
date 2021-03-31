@@ -7,23 +7,6 @@
 
 import Foundation
 
-protocol WordlistView: AnyObject {
-	func reloadData()
-	func showError(message: String)
-}
-
-protocol WordlistPresenterProtocol {
-	var numberOfSections: Int { get }
-	var indexTitles: [String] { get }
-	func viewDidLoad()
-	func getTitle(forCellAt indexPath: IndexPath) -> String
-	func getNumberOfRows(in section: Int) -> Int
-	func searchBarTextDidChange(text: String)
-	func searchBarCancelTapped()
-	func didSelectWord(at indexPath: IndexPath)
-	func cameraButtonTapped()
-}
-
 class WordlistPresenter: WordlistPresenterProtocol {
 	weak var view: WordlistView?
 	var coordinator: SearchCoordinator?

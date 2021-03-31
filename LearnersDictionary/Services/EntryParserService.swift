@@ -9,11 +9,11 @@ import Foundation
 import SwiftyJSON
 
 protocol EntryParserServiceProtocol {
-	func parse(_ jsonData: Data, for word: String, _ completion: @escaping (Result<[Entry], EntryParserError>) -> Void)
+	func parse(_ jsonData: Data, for word: String, _ completion: @escaping (Result<[EntryModel], EntryParserError>) -> Void)
 }
 
 class EntryParserService: EntryParserServiceProtocol {
-	func parse(_ jsonData: Data, for word: String, _ completion: @escaping (Result<[Entry], EntryParserError>) -> Void) {
+	func parse(_ jsonData: Data, for word: String, _ completion: @escaping (Result<[EntryModel], EntryParserError>) -> Void) {
 		guard let allEntries = try? JSON(data: jsonData) else {
 			return completion(.failure(.notJSON))
 		}
@@ -52,11 +52,11 @@ class EntryParserService: EntryParserServiceProtocol {
 		return .success(entries)
 	}
 
-	private func parseEntries(from jsonEntries: [JSON], for word: String) -> Result<[Entry], EntryParserError> {
+	private func parseEntries(from jsonEntries: [JSON], for word: String) -> Result<[EntryModel], EntryParserError> {
 		let functions = getFunctionalLabels(from: jsonEntries)
 		let transcriptions = getTranscriptions(from: jsonEntries)
-		let definitions: [[Definition]]
-		var result: [Entry] = []
+		let definitions: [[DefinitionModel]]
+		var result: [EntryModel] = []
 
 		switch getDefinitions(from: jsonEntries) {
 		case .success(let parsedDefinitions):
@@ -67,7 +67,7 @@ class EntryParserService: EntryParserServiceProtocol {
 
 		for i in 0..<jsonEntries.count {
 			result.append(
-				Entry(
+				EntryModel(
 					headword: word,
 					functionalLabel: functions[i],
 					transcription: transcriptions[i],
@@ -102,33 +102,33 @@ class EntryParserService: EntryParserServiceProtocol {
 		return pronunciations
 	}
 
-	private func getDefinitions(from jsonEntries: [JSON]) -> Result<[[Definition]], EntryParserError> {
-		var allDefinitions: [[Definition]] = []
+	private func getDefinitions(from jsonEntries: [JSON]) -> Result<[[DefinitionModel]], EntryParserError> {
+		var allDefinitions: [[DefinitionModel]] = []
 		for entry in jsonEntries {
 			guard let sseq = entry["def"][0]["sseq"].array else {
 				return .failure(.invalidSenseSequence)
 			}
-			var definitions: [Definition] = []
+			var definitions: [DefinitionModel] = []
 			for ssubseq in sseq {
 				guard let ssubseq = ssubseq.array else {
 					return .failure(.invalidSenseSubsequence)
 				}
-				let senses: [Sense]
+				let senses: [SenseModel]
 				switch getSenses(from: ssubseq) {
 				case .success(let parsedSenses):
 					senses = parsedSenses
 				case .failure(let error):
 					return .failure(error)
 				}
-				definitions.append(Definition(senses: senses))
+				definitions.append(DefinitionModel(senses: senses))
 			}
 			allDefinitions.append(definitions)
 		}
 		return .success(allDefinitions)
 	}
 
-	private func getSenses(from jsonSenseSubsequence: [JSON]) -> Result<[Sense], EntryParserError> {
-		var senses: [Sense] = []
+	private func getSenses(from jsonSenseSubsequence: [JSON]) -> Result<[SenseModel], EntryParserError> {
+		var senses: [SenseModel] = []
 		for sense in jsonSenseSubsequence {
 			guard sense[0].string == "sense" else { continue }
 			guard let senseContent = sense[1].dictionary else {
@@ -141,7 +141,7 @@ class EntryParserService: EntryParserServiceProtocol {
 			guard let type = definingText[0][0].string else { continue }
 			guard type == "text" else { continue }
 			guard let text = definingText[0][1].string else { continue }
-			senses.append(Sense(number: senseNumber, definingText: text.replacingOccurrences(of: "{bc}", with: "")))
+			senses.append(SenseModel(number: senseNumber, definingText: text.replacingOccurrences(of: "{bc}", with: "")))
 		}
 		return .success(senses)
 	}

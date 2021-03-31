@@ -8,11 +8,11 @@
 import MLKit
 
 protocol TextRecognitionServiceProtocol {
-	func recognizeText(in image: UIImage, completion: @escaping (Result<[RecognizedWord], Error>) -> Void)
+	func recognizeText(in image: UIImage, completion: @escaping (Result<[RecognizedWordModel], Error>) -> Void)
 }
 
 class TextRecognitionService: TextRecognitionServiceProtocol {
-	func recognizeText(in image: UIImage, completion: @escaping (Result<[RecognizedWord], Error>) -> Void) {
+	func recognizeText(in image: UIImage, completion: @escaping (Result<[RecognizedWordModel], Error>) -> Void) {
 		guard let rotatedImage = image.redrawnWithCorrectOrientation() else {
 			return completion(.success([]))
 		}
@@ -30,12 +30,12 @@ class TextRecognitionService: TextRecognitionServiceProtocol {
 		}
 	}
 
-	private func extractWords(from text: Text) -> [RecognizedWord] {
-		var words: [RecognizedWord] = []
+	private func extractWords(from text: Text) -> [RecognizedWordModel] {
+		var words: [RecognizedWordModel] = []
 		for block in text.blocks {
 			for line in block.lines {
 				for element in line.elements {
-					let recognizedWord = RecognizedWord(
+					let recognizedWord = RecognizedWordModel(
 						text: element.text.lowercased(),
 						frame: element.frame
 					)

@@ -1,5 +1,5 @@
 //
-//  RecognizedWord.swift
+//  RecognizedWordModel.swift
 //  LearnersDictionary
 //
 //  Created by Robert Mukhtarov on 22.03.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct RecognizedWord {
+struct RecognizedWordModel {
 	let text: String
 	let frame: CGRect
 }

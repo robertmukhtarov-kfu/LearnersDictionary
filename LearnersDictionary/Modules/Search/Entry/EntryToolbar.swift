@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol EntryToolbarView {
-	func configureSegmentedControl(with items: [String])
-}
-
 class EntryToolbar: UIToolbar, EntryToolbarView {
 	let segmentedControl = UISegmentedControl(items: [])
 

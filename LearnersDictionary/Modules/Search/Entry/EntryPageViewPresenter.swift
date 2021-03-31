@@ -7,24 +7,12 @@
 
 import Foundation
 
-protocol EntryPageView: AnyObject {
-	func set(title: String)
-	func configure(with entries: [Entry])
-	func showError(message: String)
-	func reset()
-}
-
-protocol EntryPageViewPresenterProtocol {
-	func viewDidLoad()
-	func set(word: String)
-	func errorOccurred()
-}
-
 class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 	var coordinator: SearchCoordinator?
 	weak var view: EntryPageView?
 	var word: String?
 
+	// TODO: Repository
 	let entryDownloader = EntryNetworkService()
 	let entryParser = EntryParserService()
 
@@ -53,7 +41,7 @@ class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 
 	private func downloadEntries() {
 		guard let word = word else { return }
-		EntryNetworkService().loadEntries(for: word) { result in
+		entryDownloader.loadEntries(for: word) { result in
 			switch result {
 			case .success(let entriesData):
 				self.parseEntries(from: entriesData)
