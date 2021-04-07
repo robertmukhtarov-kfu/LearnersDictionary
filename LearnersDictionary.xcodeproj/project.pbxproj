@@ -46,6 +46,8 @@
 		71E5787025F52AC900FA98E2 /* EntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5786F25F52AC900FA98E2 /* EntryModel.swift */; };
 		71E5787325F52AD400FA98E2 /* DefinitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5787225F52AD400FA98E2 /* DefinitionModel.swift */; };
 		71EEE9A02603422000E6DFDD /* PrivateStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEE99F2603422000E6DFDD /* PrivateStrings.swift */; };
+		71F8D78D261C816B00696C3A /* EntryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8D78C261C816B00696C3A /* EntryRepository.swift */; };
+		71F8D790261C853900696C3A /* EntryNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8D78F261C853900696C3A /* EntryNetworkError.swift */; };
 		996AD9D7AD99228994AEEDE9 /* Pods_LearnersDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765D0C98BA3CAF53792D4B37 /* Pods_LearnersDictionary.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +94,8 @@
 		71E5786F25F52AC900FA98E2 /* EntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryModel.swift; sourceTree = "<group>"; };
 		71E5787225F52AD400FA98E2 /* DefinitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionModel.swift; sourceTree = "<group>"; };
 		71EEE99F2603422000E6DFDD /* PrivateStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateStrings.swift; sourceTree = "<group>"; };
+		71F8D78C261C816B00696C3A /* EntryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRepository.swift; sourceTree = "<group>"; };
+		71F8D78F261C853900696C3A /* EntryNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNetworkError.swift; sourceTree = "<group>"; };
 		765D0C98BA3CAF53792D4B37 /* Pods_LearnersDictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnersDictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD05D5A72F73A4BA691B02F9 /* Pods-LearnersDictionary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnersDictionary.debug.xcconfig"; path = "Target Support Files/Pods-LearnersDictionary/Pods-LearnersDictionary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +194,7 @@
 				71B0514E25ED4C0C00A1EA4B /* Models */,
 				71EEE997260334CA00E6DFDD /* Entities */,
 				71130DF625F2698500FF0BD6 /* Services */,
+				71F8D78B261C808A00696C3A /* Repositories */,
 				71B4CDEC2600AFDD00034724 /* Errors */,
 				712419EA25F8AD4B00A0A8B1 /* Extensions */,
 				7128ABDD25ED1916000633AD /* Assets.xcassets */,
@@ -231,6 +236,7 @@
 		71B4CDEC2600AFDD00034724 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
+				71F8D78F261C853900696C3A /* EntryNetworkError.swift */,
 				71B4CDED2600AFFE00034724 /* EntryParserError.swift */,
 			);
 			path = Errors;
@@ -292,6 +298,14 @@
 				71EEE99F2603422000E6DFDD /* PrivateStrings.swift */,
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		71F8D78B261C808A00696C3A /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				71F8D78C261C816B00696C3A /* EntryRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		9EB8381462D4E97AE898EEC1 /* Frameworks */ = {
@@ -471,7 +485,9 @@
 				71E5786B25F52A8200FA98E2 /* Word+CoreDataClass.swift in Sources */,
 				71DDD0F82614D1D90072A154 /* TextRecognitionProtocols.swift in Sources */,
 				71711999260A1D5A00D2B6AF /* UIImage.swift in Sources */,
+				71F8D790261C853900696C3A /* EntryNetworkError.swift in Sources */,
 				7128ABF125ED1938000633AD /* WordlistViewController.swift in Sources */,
+				71F8D78D261C816B00696C3A /* EntryRepository.swift in Sources */,
 				714F47DF25FFC236008E3434 /* EntryNetworkService.swift in Sources */,
 				71130DFB25F26D3700FF0BD6 /* WordlistPresenter.swift in Sources */,
 				71B4CDE52600AF0800034724 /* EntryParserService.swift in Sources */,

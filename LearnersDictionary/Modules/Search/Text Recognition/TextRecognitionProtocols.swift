@@ -14,11 +14,11 @@ protocol TextRecognitionCoordinatorProtocol {
 }
 
 protocol TextRecognitionView: AnyObject {
-	var isEntrySheetShown: Bool { get }
 	func set(image: UIImage)
-	func set(entryPageView: EntryPageView)
+	func prepareEntrySheet(for word: String)
+	func showEntries(_ entries: [EntryModel])
 	func showRecognizedWords(_ words: [RecognizedWordModel])
-	func showEntrySheet()
+	func showError(message: String)
 }
 
 protocol TextRecognitionPresenterProtocol {

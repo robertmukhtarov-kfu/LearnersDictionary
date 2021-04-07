@@ -11,7 +11,7 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 	weak var view: TextRecognitionView?
 	var coordinator: TextRecognitionCoordinator?
 
-	private let entryPageViewPresenter = EntryPageViewPresenter()
+	private let entryRepository = EntryRepository()
 	private let textRecognizer = TextRecognitionService()
 
 	let image: UIImage
@@ -22,14 +22,7 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 
 	func viewDidLoad() {
 		view?.set(image: image)
-		setupEntryPage()
 		recognizeText(on: image)
-	}
-
-	private func setupEntryPage() {
-		let entryPageViewController = EntryPageViewController()
-		entryPageViewPresenter.view = entryPageViewController
-		view?.set(entryPageView: entryPageViewController)
 	}
 
 	func recognizeText(on image: UIImage) {
@@ -49,15 +42,18 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 
 	func lookUp(word: String) {
 		guard let view = view else { return }
-		entryPageViewPresenter.set(word: word)
-		if !view.isEntrySheetShown { view.showEntrySheet() }
+		view.prepareEntrySheet(for: word)
+		entryRepository.entries(for: word) { result in
+			switch result {
+			case .success(let parsedEntries):
+				view.showEntries(parsedEntries)
+			case .failure(let error):
+				view.showError(message: error.localizedDescription)
+			}
+		}
 	}
 
 	func doneButtonTapped() {
 		coordinator?.dismissImagePicker()
-	}
-
-	func assignEntryPageViewToPresenter(_ entryPageView: EntryPageView) {
-		entryPageViewPresenter.view = entryPageView
 	}
 }

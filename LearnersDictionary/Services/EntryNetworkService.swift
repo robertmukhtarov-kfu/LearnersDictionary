@@ -8,7 +8,7 @@
 import Alamofire
 
 protocol EntryNetworkServiceProtocol {
-	func loadEntries(for word: String, _ completion: @escaping (Result<Data?, Error>) -> Void)
+	func loadEntries(for word: String, completion: @escaping (Result<Data, EntryNetworkError>) -> Void)
 }
 
 class EntryNetworkService: EntryNetworkServiceProtocol {
@@ -20,16 +20,19 @@ class EntryNetworkService: EntryNetworkServiceProtocol {
 		return url
 	}()
 
-	let key = PrivateStrings.apiKey.rawValue
+	let key = PrivateStrings.apiKey
 
-	func loadEntries(for word: String, _ completion: @escaping (Result<Data?, Error>) -> Void) {
+	func loadEntries(for word: String, completion: @escaping (Result<Data, EntryNetworkError>) -> Void) {
 		let entryURL = baseURL.appendingPathComponent(word)
 		AF.request(entryURL, parameters: ["key": key]).validate().responseJSON { response in
 			switch response.result {
 			case .success:
-				return completion(.success(response.data))
-			case .failure(let error):
-				return completion(.failure(error))
+				guard let data = response.data else {
+					return completion(.failure(.noData))
+				}
+				return completion(.success(data))
+			case .failure:
+				return completion(.failure(.entryLoadFailure))
 			}
 		}
 	}

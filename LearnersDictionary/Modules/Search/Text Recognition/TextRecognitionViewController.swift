@@ -10,10 +10,10 @@ import FittedSheets
 
 class TextRecognitionViewController: UIViewController {
 	var presenter: TextRecognitionPresenter?
-	var isEntrySheetShown = false
 
+	private var isEntrySheetShown = false
 	private let imageView = RecognizedWordsImageView()
-	private var entryPageView: EntryPageView?
+	private var entryPageView = EntryPageViewController()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -53,17 +53,22 @@ extension TextRecognitionViewController: TextRecognitionView {
 		}
 	}
 
-	func set(entryPageView: EntryPageView) {
-		self.entryPageView = entryPageView
+	func showEntries(_ entries: [EntryModel]) {
+		entryPageView.configure(with: entries)
 	}
 
 	func showRecognizedWords(_ words: [RecognizedWordModel]) {
 		words.forEach { imageView.addRectangle(for: $0) }
 	}
 
-	func showEntrySheet() {
-		guard let entryPageVC = entryPageView as? EntryPageViewController else { return }
-		let entryNavigationController = UINavigationController(rootViewController: entryPageVC)
+	func prepareEntrySheet(for word: String) {
+		entryPageView.reset()
+		if !isEntrySheetShown { showEntrySheet() }
+		entryPageView.set(title: word)
+	}
+
+	private func showEntrySheet() {
+		let entryNavigationController = UINavigationController(rootViewController: entryPageView)
 		entryNavigationController.navigationBar.isTranslucent = false
 
 		let sheetOptions = SheetOptions(
@@ -86,6 +91,10 @@ extension TextRecognitionViewController: TextRecognitionView {
 
 		sheetController.animateIn(to: view, in: self)
 		isEntrySheetShown = true
+	}
+
+	func showError(message: String) {
+		showErrorAlert(message: message)
 	}
 }
 

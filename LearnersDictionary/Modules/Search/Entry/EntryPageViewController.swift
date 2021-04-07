@@ -73,16 +73,16 @@ extension EntryPageViewController: EntryPageView {
 		}
 	}
 
-	func showError(message: String) {
-		showErrorAlert(message: message) {
-			self.presenter?.errorOccurred()
-		}
-	}
-
 	func reset() {
 		toolbar.segmentedControl.removeAllSegments()
 		pages = []
 		setViewControllers([UIViewController()], direction: .forward, animated: false)
+	}
+
+	func showError(message: String) {
+		showErrorAlert(message: message) {
+			self.presenter?.errorOccurred()
+		}
 	}
 }
 
