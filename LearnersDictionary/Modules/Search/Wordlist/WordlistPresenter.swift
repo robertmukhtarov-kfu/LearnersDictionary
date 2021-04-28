@@ -8,7 +8,7 @@
 import Foundation
 
 class WordlistPresenter: WordlistPresenterProtocol {
-	weak var view: WordlistView?
+	weak var view: WordlistViewProtocol?
 	var coordinator: SearchCoordinator?
 	let coreDataService = CoreDataService()
 

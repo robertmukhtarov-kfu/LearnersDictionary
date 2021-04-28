@@ -8,7 +8,7 @@
 import UIKit
 
 class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
-	weak var view: TextRecognitionView?
+	weak var view: TextRecognitionViewProtocol?
 	var coordinator: TextRecognitionCoordinator?
 
 	private let entryRepository = EntryRepository()

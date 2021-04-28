@@ -7,6 +7,29 @@
 
 import UIKit
 
+extension Dictionary where Key == NSAttributedString.Key, Value == Any {
+	static let headword: Self = [
+		.font: UIFont.boldSystemFont(ofSize: 20),
+		.foregroundColor: UIColor.text
+	]
+	static let senseNumber: Self = [
+		.font: UIFont.boldSystemFont(ofSize: 18),
+		.foregroundColor: UIColor.text
+	]
+	static let body: Self = [
+		.font: UIFont.preferredFont(forTextStyle: .body),
+		.foregroundColor: UIColor.text
+	]
+	static let statusLabel: Self = [
+		.font: UIFont.italicSystemFont(ofSize: 16),
+		.foregroundColor: UIColor.darkGray
+	]
+	static let grammaticalLabel: Self = [
+		.font: UIFont.preferredFont(forTextStyle: .body),
+		.foregroundColor: UIColor.systemGray
+	]
+}
+
 extension NSAttributedString {
 	static var newLine: NSAttributedString {
 		NSAttributedString(string: "\n")
@@ -15,11 +38,8 @@ extension NSAttributedString {
 	static func headword(string: String) -> NSAttributedString {
 		let paragraphStyle = NSMutableParagraphStyle()
 		paragraphStyle.paragraphSpacing = 8
-		let headword = NSMutableAttributedString(string: string, attributes: [
-			.font: UIFont.boldSystemFont(ofSize: 20),
-			.foregroundColor: UIColor.text,
-			.paragraphStyle: paragraphStyle
-		])
+		let headword = NSMutableAttributedString(string: string, attributes: .headword)
+		headword.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: headword.length))
 		headword.append(.newLine)
 		return headword
 	}
@@ -27,26 +47,26 @@ extension NSAttributedString {
 	static func transcription(string: String) -> NSAttributedString {
 		let paragraphStyle = NSMutableParagraphStyle()
 		paragraphStyle.paragraphSpacing = 8
-		let transcription = NSMutableAttributedString(string: "/\(string)/", attributes: [
-			.font: UIFont.preferredFont(forTextStyle: .body),
-			.foregroundColor: UIColor.text,
-			.paragraphStyle: paragraphStyle
-		])
+		let transcription = NSMutableAttributedString(string: "/\(string)/", attributes: .body)
+		transcription.addAttribute(
+			.paragraphStyle,
+			value: paragraphStyle,
+			range: NSRange(location: 0, length: transcription.length)
+		)
 		transcription.append(.newLine)
 		return transcription
 	}
 
 	// TODO: Rewrite the method, fix indentation
-	static func sense(index: Int, number: String?, definingText: String) -> NSAttributedString {
+	static func sense(index: Int, number: String?, definingText: NSAttributedString) -> NSAttributedString {
 		let senseString = NSMutableAttributedString()
 		let senseNumber = number ?? "1"
 		let attributedNumber = NSAttributedString(
 			string: senseNumber,
-			attributes: [.font: UIFont.boldSystemFont(ofSize: 18)])
+			attributes: .senseNumber
+		)
 
-		let attributedDefiningText = NSAttributedString(
-			string: definingText,
-			attributes: [.font: UIFont.preferredFont(forTextStyle: .body)])
+		let attributedDefiningText = definingText
 
 		senseString.append(attributedNumber)
 		senseString.append(NSAttributedString(string: "  "))

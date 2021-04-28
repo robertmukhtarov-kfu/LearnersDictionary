@@ -13,6 +13,7 @@ class TextRecognitionCoordinator: NSObject, TextRecognitionCoordinatorProtocol {
 	func start() {
 		imagePickerController.delegate = self
 		imagePickerController.modalPresentationStyle = .fullScreen
+		imagePickerController.navigationController?.navigationBar.prefersLargeTitles = false
 		if UIImagePickerController.isSourceTypeAvailable(.camera) {
 			imagePickerController.sourceType = .camera
 		} else {

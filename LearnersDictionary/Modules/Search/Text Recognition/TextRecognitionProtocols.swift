@@ -13,7 +13,7 @@ protocol TextRecognitionCoordinatorProtocol {
 	func dismissImagePicker()
 }
 
-protocol TextRecognitionView: AnyObject {
+protocol TextRecognitionViewProtocol: AnyObject {
 	func set(image: UIImage)
 	func prepareEntrySheet(for word: String)
 	func showEntries(_ entries: [EntryModel])

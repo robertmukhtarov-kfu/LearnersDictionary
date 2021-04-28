@@ -11,8 +11,11 @@
 		71050E41260796BB00A3F733 /* TextRecognitionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71050E40260796BB00A3F733 /* TextRecognitionPresenter.swift */; };
 		710B614325F912CE0009BADA /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710B614125F912CE0009BADA /* EntryViewController.swift */; };
 		710B614425F912CE0009BADA /* EntryPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710B614225F912CE0009BADA /* EntryPageViewController.swift */; };
+		711103A62635496F009DA5D0 /* UserCollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711103A52635496F009DA5D0 /* UserCollectionDetailViewController.swift */; };
+		711103A92635497C009DA5D0 /* UserCollectionDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711103A82635497C009DA5D0 /* UserCollectionDetailPresenter.swift */; };
 		71130DF825F269A600FF0BD6 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71130DF725F269A600FF0BD6 /* CoreDataService.swift */; };
 		71130DFB25F26D3700FF0BD6 /* WordlistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71130DFA25F26D3700FF0BD6 /* WordlistPresenter.swift */; };
+		711C3E362628C8BB00E97CFC /* UserCollectionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F74912628C6F100DA4F2F /* UserCollectionsCoordinator.swift */; };
 		712419E825F8AD4700A0A8B1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712419E725F8AD4700A0A8B1 /* Colors.swift */; };
 		7128ABDC25ED1915000633AD /* LearnersDictionary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABDA25ED1915000633AD /* LearnersDictionary.xcdatamodeld */; };
 		7128ABDE25ED1916000633AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7128ABDD25ED1916000633AD /* Assets.xcassets */; };
@@ -22,12 +25,33 @@
 		7128ABF325ED1938000633AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABEE25ED1938000633AD /* AppDelegate.swift */; };
 		7128ABF425ED1938000633AD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7128ABEF25ED1938000633AD /* MainTabBarController.swift */; };
 		712CD1212608D33600F6753A /* TextRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712CD1202608D33600F6753A /* TextRecognitionService.swift */; };
+		713355222625B5F400BC0CB1 /* CardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713355212625B5F400BC0CB1 /* CardViewCell.swift */; };
 		7135B5762608E72300B7CBF8 /* RecognizedWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B5752608E72300B7CBF8 /* RecognizedWordModel.swift */; };
+		7135B6E02636A58A004F3DAC /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B6DF2636A58A004F3DAC /* CollectionDetailViewController.swift */; };
+		7135B6E32636A5D1004F3DAC /* CollectionDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B6E22636A5D1004F3DAC /* CollectionDetailPresenter.swift */; };
+		7135B6E62636A9A2004F3DAC /* MockDiscoverCollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B6E52636A9A2004F3DAC /* MockDiscoverCollectionService.swift */; };
+		7135B6E92636B4DC004F3DAC /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B6E82636B4DC004F3DAC /* DiscoverPresenter.swift */; };
+		7135B6ED2636B686004F3DAC /* WordOfTheDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B6EC2636B686004F3DAC /* WordOfTheDayModel.swift */; };
+		7135B6F92636BE58004F3DAC /* CardDetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B6F82636BE58004F3DAC /* CardDetailConfigurator.swift */; };
+		713B39C32636CB4000218709 /* TrackedScrollViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B39C22636CB4000218709 /* TrackedScrollViewProtocol.swift */; };
+		713B39C82636D82000218709 /* CollectionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B39C72636D82000218709 /* CollectionDetailTableViewCell.swift */; };
+		7141297626395A36007DA33E /* DiscoverProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7141297526395A36007DA33E /* DiscoverProtocols.swift */; };
+		7141297B26395BD7007DA33E /* UserCollectionsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7141297A26395BD7007DA33E /* UserCollectionsProtocols.swift */; };
+		7141297F26395CCB007DA33E /* UserCollectionDetailProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7141297E26395CCB007DA33E /* UserCollectionDetailProtocol.swift */; };
 		7148CE462604AD7000E500F7 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148CE452604AD7000E500F7 /* UIViewController.swift */; };
 		714F47DF25FFC236008E3434 /* EntryNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F47DE25FFC236008E3434 /* EntryNetworkService.swift */; };
 		71519779260F37CC00FFFEEB /* RecognizedWordLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71519778260F37CC00FFFEEB /* RecognizedWordLayer.swift */; };
 		7151977C260F3EDE00FFFEEB /* RecognizedWordsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151977B260F3EDE00FFFEEB /* RecognizedWordsImageView.swift */; };
+		715DA63D2632C0E600E360C5 /* UserCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DA63C2632C0E600E360C5 /* UserCollectionsViewController.swift */; };
+		715DA6402632C0EE00E360C5 /* UserCollectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DA63F2632C0EE00E360C5 /* UserCollectionsPresenter.swift */; };
+		715DA6432632C30F00E360C5 /* UserCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DA6422632C30F00E360C5 /* UserCollectionModel.swift */; };
+		715DA6462632C39B00E360C5 /* DiscoverCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DA6452632C39B00E360C5 /* DiscoverCollectionModel.swift */; };
+		715DA64A2632C73900E360C5 /* MockUserCollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DA6492632C73900E360C5 /* MockUserCollectionService.swift */; };
+		715DA64F2633475100E360C5 /* UserCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DA64E2633475100E360C5 /* UserCollectionCell.swift */; };
 		71711999260A1D5A00D2B6AF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71711998260A1D5A00D2B6AF /* UIImage.swift */; };
+		7177FA0D2623609D000D59C9 /* CollectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7177FA0C2623609D000D59C9 /* CollectionCardView.swift */; };
+		7177FA122623620F000D59C9 /* WordOfTheDayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7177FA112623620F000D59C9 /* WordOfTheDayCardView.swift */; };
+		7177FA19262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7177FA18262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift */; };
 		717C4E052607D373005C5A50 /* TextRecognitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C4E042607D373005C5A50 /* TextRecognitionCoordinator.swift */; };
 		718FD56E25F61BD4002DFC38 /* SenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718FD56D25F61BD4002DFC38 /* SenseModel.swift */; };
 		71B0518025ED684D00A1EA4B /* Wordlist.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */; };
@@ -35,17 +59,25 @@
 		71B4CDEE2600AFFE00034724 /* EntryParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDED2600AFFE00034724 /* EntryParserError.swift */; };
 		71B4CDF52600B2A600034724 /* EntryPageViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDF42600B2A600034724 /* EntryPageViewPresenter.swift */; };
 		71B4CDFF2600DCA500034724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDFE2600DCA500034724 /* NSAttributedString.swift */; };
+		71B8FF2C26230F4F000E88C8 /* DiscoverCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B8FF2B26230F4F000E88C8 /* DiscoverCoordinator.swift */; };
+		71B8FF3026231CA4000E88C8 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B8FF2F26231CA4000E88C8 /* DiscoverViewController.swift */; };
+		71B8FF332623235D000E88C8 /* CollectionSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B8FF322623235D000E88C8 /* CollectionSectionHeaderView.swift */; };
+		71B8FF3626232DFF000E88C8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B8FF3526232DFF000E88C8 /* CardView.swift */; };
 		71BABA61260D1C01001B5999 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BABA60260D1C01001B5999 /* ImageScrollView.swift */; };
+		71C9E555262CC8E500654D8F /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C9E554262CC8E500654D8F /* UIApplication.swift */; };
+		71CFEB92262CB7A300EA6D98 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CFEB91262CB7A200EA6D98 /* AddButton.swift */; };
+		71CFEB95262CC4AD00EA6D98 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CFEB94262CC4AC00EA6D98 /* CloseButton.swift */; };
 		71DDD0F82614D1D90072A154 /* TextRecognitionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DDD0F72614D1D90072A154 /* TextRecognitionProtocols.swift */; };
 		71DDD0FC2614D2190072A154 /* EntryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DDD0FB2614D2190072A154 /* EntryProtocols.swift */; };
 		71DDD1022614D3690072A154 /* WordlistProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DDD1012614D3690072A154 /* WordlistProtocols.swift */; };
-		71DE0DC225FBFE2B008E32F2 /* SearchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DE0DC125FBFE2B008E32F2 /* SearchNavigationController.swift */; };
 		71DE0DC925FC07A1008E32F2 /* EntryToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DE0DC825FC07A1008E32F2 /* EntryToolbar.swift */; };
 		71E5786B25F52A8200FA98E2 /* Word+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5786925F52A8200FA98E2 /* Word+CoreDataClass.swift */; };
 		71E5786C25F52A8200FA98E2 /* Word+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5786A25F52A8200FA98E2 /* Word+CoreDataProperties.swift */; };
 		71E5787025F52AC900FA98E2 /* EntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5786F25F52AC900FA98E2 /* EntryModel.swift */; };
 		71E5787325F52AD400FA98E2 /* DefinitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5787225F52AD400FA98E2 /* DefinitionModel.swift */; };
 		71EEE9A02603422000E6DFDD /* PrivateStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEE99F2603422000E6DFDD /* PrivateStrings.swift */; };
+		71F346C12626B0D700EA636B /* CardTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F346C02626B0D700EA636B /* CardTransitionManager.swift */; };
+		71F5E2992625C7B90066D26F /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5E2982625C7B90066D26F /* CardDetailViewController.swift */; };
 		71F8D78D261C816B00696C3A /* EntryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8D78C261C816B00696C3A /* EntryRepository.swift */; };
 		71F8D790261C853900696C3A /* EntryNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8D78F261C853900696C3A /* EntryNetworkError.swift */; };
 		996AD9D7AD99228994AEEDE9 /* Pods_LearnersDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765D0C98BA3CAF53792D4B37 /* Pods_LearnersDictionary.framework */; };
@@ -57,6 +89,8 @@
 		71050E40260796BB00A3F733 /* TextRecognitionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionPresenter.swift; sourceTree = "<group>"; };
 		710B614125F912CE0009BADA /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		710B614225F912CE0009BADA /* EntryPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryPageViewController.swift; sourceTree = "<group>"; };
+		711103A52635496F009DA5D0 /* UserCollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionDetailViewController.swift; sourceTree = "<group>"; };
+		711103A82635497C009DA5D0 /* UserCollectionDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionDetailPresenter.swift; sourceTree = "<group>"; };
 		71130DF725F269A600FF0BD6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		71130DFA25F26D3700FF0BD6 /* WordlistPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordlistPresenter.swift; sourceTree = "<group>"; };
 		712419E725F8AD4700A0A8B1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -70,12 +104,34 @@
 		7128ABEE25ED1938000633AD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7128ABEF25ED1938000633AD /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		712CD1202608D33600F6753A /* TextRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionService.swift; sourceTree = "<group>"; };
+		713355212625B5F400BC0CB1 /* CardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewCell.swift; sourceTree = "<group>"; };
 		7135B5752608E72300B7CBF8 /* RecognizedWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedWordModel.swift; sourceTree = "<group>"; };
+		7135B6DF2636A58A004F3DAC /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
+		7135B6E22636A5D1004F3DAC /* CollectionDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailPresenter.swift; sourceTree = "<group>"; };
+		7135B6E52636A9A2004F3DAC /* MockDiscoverCollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDiscoverCollectionService.swift; sourceTree = "<group>"; };
+		7135B6E82636B4DC004F3DAC /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
+		7135B6EC2636B686004F3DAC /* WordOfTheDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfTheDayModel.swift; sourceTree = "<group>"; };
+		7135B6F82636BE58004F3DAC /* CardDetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailConfigurator.swift; sourceTree = "<group>"; };
+		713B39C22636CB4000218709 /* TrackedScrollViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedScrollViewProtocol.swift; sourceTree = "<group>"; };
+		713B39C72636D82000218709 /* CollectionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailTableViewCell.swift; sourceTree = "<group>"; };
+		713F74912628C6F100DA4F2F /* UserCollectionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionsCoordinator.swift; sourceTree = "<group>"; };
+		7141297526395A36007DA33E /* DiscoverProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProtocols.swift; sourceTree = "<group>"; };
+		7141297A26395BD7007DA33E /* UserCollectionsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionsProtocols.swift; sourceTree = "<group>"; };
+		7141297E26395CCB007DA33E /* UserCollectionDetailProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionDetailProtocol.swift; sourceTree = "<group>"; };
 		7148CE452604AD7000E500F7 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		714F47DE25FFC236008E3434 /* EntryNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNetworkService.swift; sourceTree = "<group>"; };
 		71519778260F37CC00FFFEEB /* RecognizedWordLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedWordLayer.swift; sourceTree = "<group>"; };
 		7151977B260F3EDE00FFFEEB /* RecognizedWordsImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedWordsImageView.swift; sourceTree = "<group>"; };
+		715DA63C2632C0E600E360C5 /* UserCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionsViewController.swift; sourceTree = "<group>"; };
+		715DA63F2632C0EE00E360C5 /* UserCollectionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionsPresenter.swift; sourceTree = "<group>"; };
+		715DA6422632C30F00E360C5 /* UserCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionModel.swift; sourceTree = "<group>"; };
+		715DA6452632C39B00E360C5 /* DiscoverCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionModel.swift; sourceTree = "<group>"; };
+		715DA6492632C73900E360C5 /* MockUserCollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserCollectionService.swift; sourceTree = "<group>"; };
+		715DA64E2633475100E360C5 /* UserCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionCell.swift; sourceTree = "<group>"; };
 		71711998260A1D5A00D2B6AF /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		7177FA0C2623609D000D59C9 /* CollectionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCardView.swift; sourceTree = "<group>"; };
+		7177FA112623620F000D59C9 /* WordOfTheDayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfTheDayCardView.swift; sourceTree = "<group>"; };
+		7177FA18262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfTheDaySectionHeaderView.swift; sourceTree = "<group>"; };
 		717C4E042607D373005C5A50 /* TextRecognitionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionCoordinator.swift; sourceTree = "<group>"; };
 		718FD56D25F61BD4002DFC38 /* SenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenseModel.swift; sourceTree = "<group>"; };
 		71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wordlist.sqlite; sourceTree = "<group>"; };
@@ -83,17 +139,25 @@
 		71B4CDED2600AFFE00034724 /* EntryParserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryParserError.swift; sourceTree = "<group>"; };
 		71B4CDF42600B2A600034724 /* EntryPageViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPageViewPresenter.swift; sourceTree = "<group>"; };
 		71B4CDFE2600DCA500034724 /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
+		71B8FF2B26230F4F000E88C8 /* DiscoverCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCoordinator.swift; sourceTree = "<group>"; };
+		71B8FF2F26231CA4000E88C8 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		71B8FF322623235D000E88C8 /* CollectionSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionSectionHeaderView.swift; sourceTree = "<group>"; };
+		71B8FF3526232DFF000E88C8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		71BABA60260D1C01001B5999 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		71C9E554262CC8E500654D8F /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		71CFEB91262CB7A200EA6D98 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		71CFEB94262CC4AC00EA6D98 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		71DDD0F72614D1D90072A154 /* TextRecognitionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionProtocols.swift; sourceTree = "<group>"; };
 		71DDD0FB2614D2190072A154 /* EntryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryProtocols.swift; sourceTree = "<group>"; };
 		71DDD1012614D3690072A154 /* WordlistProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordlistProtocols.swift; sourceTree = "<group>"; };
-		71DE0DC125FBFE2B008E32F2 /* SearchNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigationController.swift; sourceTree = "<group>"; };
 		71DE0DC825FC07A1008E32F2 /* EntryToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryToolbar.swift; sourceTree = "<group>"; };
 		71E5786925F52A8200FA98E2 /* Word+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Word+CoreDataClass.swift"; sourceTree = "<group>"; };
 		71E5786A25F52A8200FA98E2 /* Word+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Word+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		71E5786F25F52AC900FA98E2 /* EntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryModel.swift; sourceTree = "<group>"; };
 		71E5787225F52AD400FA98E2 /* DefinitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionModel.swift; sourceTree = "<group>"; };
 		71EEE99F2603422000E6DFDD /* PrivateStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateStrings.swift; sourceTree = "<group>"; };
+		71F346C02626B0D700EA636B /* CardTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransitionManager.swift; sourceTree = "<group>"; };
+		71F5E2982625C7B90066D26F /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		71F8D78C261C816B00696C3A /* EntryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRepository.swift; sourceTree = "<group>"; };
 		71F8D78F261C853900696C3A /* EntryNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNetworkError.swift; sourceTree = "<group>"; };
 		765D0C98BA3CAF53792D4B37 /* Pods_LearnersDictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnersDictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +194,7 @@
 				71050E40260796BB00A3F733 /* TextRecognitionPresenter.swift */,
 				7151977B260F3EDE00FFFEEB /* RecognizedWordsImageView.swift */,
 				71519778260F37CC00FFFEEB /* RecognizedWordLayer.swift */,
+				71BABA60260D1C01001B5999 /* ImageScrollView.swift */,
 			);
 			path = "Text Recognition";
 			sourceTree = "<group>";
@@ -146,6 +211,27 @@
 			path = Entry;
 			sourceTree = "<group>";
 		};
+		711103A2263548FC009DA5D0 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				7141297A26395BD7007DA33E /* UserCollectionsProtocols.swift */,
+				715DA63C2632C0E600E360C5 /* UserCollectionsViewController.swift */,
+				715DA63F2632C0EE00E360C5 /* UserCollectionsPresenter.swift */,
+				715DA64E2633475100E360C5 /* UserCollectionCell.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		711103A32635491A009DA5D0 /* Collection Detail */ = {
+			isa = PBXGroup;
+			children = (
+				7141297E26395CCB007DA33E /* UserCollectionDetailProtocol.swift */,
+				711103A52635496F009DA5D0 /* UserCollectionDetailViewController.swift */,
+				711103A82635497C009DA5D0 /* UserCollectionDetailPresenter.swift */,
+			);
+			path = "Collection Detail";
+			sourceTree = "<group>";
+		};
 		71130DF625F2698500FF0BD6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +239,8 @@
 				714F47DE25FFC236008E3434 /* EntryNetworkService.swift */,
 				71B4CDE42600AF0800034724 /* EntryParserService.swift */,
 				712CD1202608D33600F6753A /* TextRecognitionService.swift */,
+				715DA6492632C73900E360C5 /* MockUserCollectionService.swift */,
+				7135B6E52636A9A2004F3DAC /* MockDiscoverCollectionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -164,6 +252,7 @@
 				71B4CDFE2600DCA500034724 /* NSAttributedString.swift */,
 				7148CE452604AD7000E500F7 /* UIViewController.swift */,
 				71711998260A1D5A00D2B6AF /* UIImage.swift */,
+				71C9E554262CC8E500654D8F /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -212,16 +301,66 @@
 			children = (
 				7128ABEF25ED1938000633AD /* MainTabBarController.swift */,
 				71DE0DAD25FB97D1008E32F2 /* Search */,
+				710B614025F912CE0009BADA /* Entry */,
+				71B8FF2A26230DE9000E88C8 /* Discover */,
+				713F748F2628C6D600DA4F2F /* User Collections */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		7151978426122F0A00FFFEEB /* Common Views */ = {
+		7135B6EF2636BCEE004F3DAC /* Discover (Root) */ = {
 			isa = PBXGroup;
 			children = (
-				71BABA60260D1C01001B5999 /* ImageScrollView.swift */,
+				7141297526395A36007DA33E /* DiscoverProtocols.swift */,
+				71B8FF2F26231CA4000E88C8 /* DiscoverViewController.swift */,
+				7135B6E82636B4DC004F3DAC /* DiscoverPresenter.swift */,
+				713355212625B5F400BC0CB1 /* CardViewCell.swift */,
+				7177FA18262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift */,
+				71B8FF322623235D000E88C8 /* CollectionSectionHeaderView.swift */,
 			);
-			path = "Common Views";
+			path = "Discover (Root)";
+			sourceTree = "<group>";
+		};
+		7135B6F12636BD2D004F3DAC /* Card View */ = {
+			isa = PBXGroup;
+			children = (
+				71B8FF3526232DFF000E88C8 /* CardView.swift */,
+				7177FA0C2623609D000D59C9 /* CollectionCardView.swift */,
+				7177FA112623620F000D59C9 /* WordOfTheDayCardView.swift */,
+				71CFEB91262CB7A200EA6D98 /* AddButton.swift */,
+				71CFEB94262CC4AC00EA6D98 /* CloseButton.swift */,
+			);
+			path = "Card View";
+			sourceTree = "<group>";
+		};
+		7135B6F42636BD88004F3DAC /* Collection Detail */ = {
+			isa = PBXGroup;
+			children = (
+				7135B6DF2636A58A004F3DAC /* CollectionDetailViewController.swift */,
+				7135B6E22636A5D1004F3DAC /* CollectionDetailPresenter.swift */,
+				713B39C72636D82000218709 /* CollectionDetailTableViewCell.swift */,
+			);
+			path = "Collection Detail";
+			sourceTree = "<group>";
+		};
+		7135B6F72636BE33004F3DAC /* Card Detail */ = {
+			isa = PBXGroup;
+			children = (
+				71F5E2982625C7B90066D26F /* CardDetailViewController.swift */,
+				7135B6F82636BE58004F3DAC /* CardDetailConfigurator.swift */,
+				713B39C22636CB4000218709 /* TrackedScrollViewProtocol.swift */,
+			);
+			path = "Card Detail";
+			sourceTree = "<group>";
+		};
+		713F748F2628C6D600DA4F2F /* User Collections */ = {
+			isa = PBXGroup;
+			children = (
+				713F74912628C6F100DA4F2F /* UserCollectionsCoordinator.swift */,
+				711103A2263548FC009DA5D0 /* Collections */,
+				711103A32635491A009DA5D0 /* Collection Detail */,
+			);
+			path = "User Collections";
 			sourceTree = "<group>";
 		};
 		71B0514E25ED4C0C00A1EA4B /* Models */ = {
@@ -229,6 +368,9 @@
 			children = (
 				71E5786725F52A2400FA98E2 /* Entry */,
 				7135B5752608E72300B7CBF8 /* RecognizedWordModel.swift */,
+				715DA6422632C30F00E360C5 /* UserCollectionModel.swift */,
+				715DA6452632C39B00E360C5 /* DiscoverCollectionModel.swift */,
+				7135B6EC2636B686004F3DAC /* WordOfTheDayModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -240,6 +382,19 @@
 				71B4CDED2600AFFE00034724 /* EntryParserError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		71B8FF2A26230DE9000E88C8 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				71B8FF2B26230F4F000E88C8 /* DiscoverCoordinator.swift */,
+				71F346C02626B0D700EA636B /* CardTransitionManager.swift */,
+				7135B6EF2636BCEE004F3DAC /* Discover (Root) */,
+				7135B6F12636BD2D004F3DAC /* Card View */,
+				7135B6F72636BE33004F3DAC /* Card Detail */,
+				7135B6F42636BD88004F3DAC /* Collection Detail */,
+			);
+			path = Discover;
 			sourceTree = "<group>";
 		};
 		71DE0DAB25FB9703008E32F2 /* Wordlist */ = {
@@ -256,11 +411,8 @@
 			isa = PBXGroup;
 			children = (
 				7128ABED25ED1938000633AD /* SearchCoordinator.swift */,
-				71DE0DC125FBFE2B008E32F2 /* SearchNavigationController.swift */,
 				71DE0DAB25FB9703008E32F2 /* Wordlist */,
-				710B614025F912CE0009BADA /* Entry */,
 				71050E3C2607952000A3F733 /* Text Recognition */,
-				7151978426122F0A00FFFEEB /* Common Views */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -468,39 +620,71 @@
 			buildActionMask = 2147483647;
 			files = (
 				71DDD0FC2614D2190072A154 /* EntryProtocols.swift in Sources */,
+				715DA6462632C39B00E360C5 /* DiscoverCollectionModel.swift in Sources */,
+				715DA64F2633475100E360C5 /* UserCollectionCell.swift in Sources */,
 				71B4CDF52600B2A600034724 /* EntryPageViewPresenter.swift in Sources */,
+				7135B6E62636A9A2004F3DAC /* MockDiscoverCollectionService.swift in Sources */,
+				7135B6ED2636B686004F3DAC /* WordOfTheDayModel.swift in Sources */,
 				718FD56E25F61BD4002DFC38 /* SenseModel.swift in Sources */,
+				7177FA122623620F000D59C9 /* WordOfTheDayCardView.swift in Sources */,
+				713B39C32636CB4000218709 /* TrackedScrollViewProtocol.swift in Sources */,
 				71DDD1022614D3690072A154 /* WordlistProtocols.swift in Sources */,
 				712419E825F8AD4700A0A8B1 /* Colors.swift in Sources */,
 				71E5787025F52AC900FA98E2 /* EntryModel.swift in Sources */,
+				7135B6E32636A5D1004F3DAC /* CollectionDetailPresenter.swift in Sources */,
 				710B614425F912CE0009BADA /* EntryPageViewController.swift in Sources */,
 				710B614325F912CE0009BADA /* EntryViewController.swift in Sources */,
+				715DA64A2632C73900E360C5 /* MockUserCollectionService.swift in Sources */,
 				717C4E052607D373005C5A50 /* TextRecognitionCoordinator.swift in Sources */,
 				7128ABF225ED1938000633AD /* SearchCoordinator.swift in Sources */,
+				71B8FF332623235D000E88C8 /* CollectionSectionHeaderView.swift in Sources */,
+				71CFEB92262CB7A300EA6D98 /* AddButton.swift in Sources */,
 				71050E41260796BB00A3F733 /* TextRecognitionPresenter.swift in Sources */,
+				7177FA19262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift in Sources */,
 				71E5786C25F52A8200FA98E2 /* Word+CoreDataProperties.swift in Sources */,
 				71050E3E2607969F00A3F733 /* TextRecognitionViewController.swift in Sources */,
 				71B4CDFF2600DCA500034724 /* NSAttributedString.swift in Sources */,
 				7151977C260F3EDE00FFFEEB /* RecognizedWordsImageView.swift in Sources */,
+				713355222625B5F400BC0CB1 /* CardViewCell.swift in Sources */,
+				71C9E555262CC8E500654D8F /* UIApplication.swift in Sources */,
+				711103A62635496F009DA5D0 /* UserCollectionDetailViewController.swift in Sources */,
+				713B39C82636D82000218709 /* CollectionDetailTableViewCell.swift in Sources */,
+				7141297B26395BD7007DA33E /* UserCollectionsProtocols.swift in Sources */,
 				71E5786B25F52A8200FA98E2 /* Word+CoreDataClass.swift in Sources */,
+				7177FA0D2623609D000D59C9 /* CollectionCardView.swift in Sources */,
 				71DDD0F82614D1D90072A154 /* TextRecognitionProtocols.swift in Sources */,
+				7135B6F92636BE58004F3DAC /* CardDetailConfigurator.swift in Sources */,
 				71711999260A1D5A00D2B6AF /* UIImage.swift in Sources */,
+				715DA6402632C0EE00E360C5 /* UserCollectionsPresenter.swift in Sources */,
 				71F8D790261C853900696C3A /* EntryNetworkError.swift in Sources */,
 				7128ABF125ED1938000633AD /* WordlistViewController.swift in Sources */,
 				71F8D78D261C816B00696C3A /* EntryRepository.swift in Sources */,
+				71F5E2992625C7B90066D26F /* CardDetailViewController.swift in Sources */,
+				711103A92635497C009DA5D0 /* UserCollectionDetailPresenter.swift in Sources */,
+				711C3E362628C8BB00E97CFC /* UserCollectionsCoordinator.swift in Sources */,
 				714F47DF25FFC236008E3434 /* EntryNetworkService.swift in Sources */,
 				71130DFB25F26D3700FF0BD6 /* WordlistPresenter.swift in Sources */,
 				71B4CDE52600AF0800034724 /* EntryParserService.swift in Sources */,
+				7135B6E02636A58A004F3DAC /* CollectionDetailViewController.swift in Sources */,
+				71B8FF2C26230F4F000E88C8 /* DiscoverCoordinator.swift in Sources */,
 				7148CE462604AD7000E500F7 /* UIViewController.swift in Sources */,
-				71DE0DC225FBFE2B008E32F2 /* SearchNavigationController.swift in Sources */,
 				7128ABF425ED1938000633AD /* MainTabBarController.swift in Sources */,
+				7141297626395A36007DA33E /* DiscoverProtocols.swift in Sources */,
 				71130DF825F269A600FF0BD6 /* CoreDataService.swift in Sources */,
+				71B8FF3026231CA4000E88C8 /* DiscoverViewController.swift in Sources */,
+				7141297F26395CCB007DA33E /* UserCollectionDetailProtocol.swift in Sources */,
+				715DA6432632C30F00E360C5 /* UserCollectionModel.swift in Sources */,
 				71DE0DC925FC07A1008E32F2 /* EntryToolbar.swift in Sources */,
+				71B8FF3626232DFF000E88C8 /* CardView.swift in Sources */,
 				712CD1212608D33600F6753A /* TextRecognitionService.swift in Sources */,
 				71EEE9A02603422000E6DFDD /* PrivateStrings.swift in Sources */,
+				715DA63D2632C0E600E360C5 /* UserCollectionsViewController.swift in Sources */,
 				71E5787325F52AD400FA98E2 /* DefinitionModel.swift in Sources */,
 				7128ABF325ED1938000633AD /* AppDelegate.swift in Sources */,
+				71F346C12626B0D700EA636B /* CardTransitionManager.swift in Sources */,
 				71B4CDEE2600AFFE00034724 /* EntryParserError.swift in Sources */,
+				71CFEB95262CC4AD00EA6D98 /* CloseButton.swift in Sources */,
+				7135B6E92636B4DC004F3DAC /* DiscoverPresenter.swift in Sources */,
 				7128ABDC25ED1915000633AD /* LearnersDictionary.xcdatamodeld in Sources */,
 				71BABA61260D1C01001B5999 /* ImageScrollView.swift in Sources */,
 				71519779260F37CC00FFFEEB /* RecognizedWordLayer.swift in Sources */,

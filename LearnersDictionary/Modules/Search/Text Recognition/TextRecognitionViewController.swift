@@ -41,7 +41,7 @@ class TextRecognitionViewController: UIViewController {
 	}
 }
 
-extension TextRecognitionViewController: TextRecognitionView {
+extension TextRecognitionViewController: TextRecognitionViewProtocol {
 	func set(image: UIImage) {
 		imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: image.size)
 		imageView.image = image

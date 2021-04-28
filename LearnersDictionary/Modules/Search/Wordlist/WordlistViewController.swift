@@ -8,14 +8,15 @@
 import UIKit
 import SnapKit
 
-class WordlistViewController: UIViewController, WordlistView {
+class WordlistViewController: UIViewController, WordlistViewProtocol {
 	var presenter: WordlistPresenterProtocol?
 	private var tableView = UITableView()
 	private var searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
 		super.viewDidLoad()
-		setupView()
+		title = "Search"
+		extendedLayoutIncludesOpaqueBars = true
 		setupTableView()
 		setupSearchController()
 		presenter?.viewDidLoad()
@@ -24,10 +25,6 @@ class WordlistViewController: UIViewController, WordlistView {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		navigationController?.navigationBar.shadowImage = nil
-	}
-
-	private func setupView() {
-		title = "Search"
 	}
 
 	func showError(message: String) {

@@ -8,19 +8,30 @@
 import UIKit
 
 extension UIColor {
+	static func dynamicColor(light: UIColor, dark: UIColor) -> UIColor {
+		guard #available(iOS 13.0, *) else { return light }
+		return UIColor { $0.userInterfaceStyle == .dark ? dark : light }
+	}
+
 	static var text: UIColor {
-		if #available(iOS 13.0, *) {
-			return label
-		} else {
-			return black
-		}
+		guard #available(iOS 13.0, *) else { return black }
+		return label
+	}
+
+	static var xMarkColor: UIColor {
+		guard #available(iOS 13.0, *) else { return white }
+		return label
 	}
 
 	static var background: UIColor {
-		if #available(iOS 13.0, *) {
-			return systemBackground
-		} else {
-			return white
-		}
+		guard #available(iOS 13.0, *) else { return white }
+		return systemBackground
+	}
+
+	static var navigationBarShadow: UIColor {
+		dynamicColor(
+			light: UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0),
+			dark: UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0)
+		)
 	}
 }

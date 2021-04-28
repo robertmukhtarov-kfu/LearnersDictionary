@@ -15,11 +15,13 @@ protocol SearchCoordinatorProtocol {
 }
 
 class SearchCoordinator: SearchCoordinatorProtocol {
-	var navigationController: SearchNavigationController
-	var textRecognitionCoordinator = TextRecognitionCoordinator()
+	let navigationController: UINavigationController
+	let textRecognitionCoordinator = TextRecognitionCoordinator()
 
-    init(navigationController: SearchNavigationController = SearchNavigationController()) {
+	init(navigationController: UINavigationController = UINavigationController()) {
 		self.navigationController = navigationController
+		navigationController.navigationBar.isTranslucent = false
+		navigationController.navigationBar.prefersLargeTitles = true
 		showWordlist()
     }
 

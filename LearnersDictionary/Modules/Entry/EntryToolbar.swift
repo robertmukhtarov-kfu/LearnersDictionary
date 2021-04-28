@@ -7,12 +7,13 @@
 
 import UIKit
 
-class EntryToolbar: UIToolbar, EntryToolbarView {
+class EntryToolbar: UIView, EntryToolbarView {
 	let segmentedControl = UISegmentedControl(items: [])
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		setupToolbar()
+		setupFakeNavbarShadow()
 	}
 
 	required init?(coder: NSCoder) {
@@ -20,18 +21,25 @@ class EntryToolbar: UIToolbar, EntryToolbarView {
 	}
 
 	private func setupToolbar() {
-		barTintColor = .background
-		isTranslucent = false
-		let container = UIView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height))
-		container.addSubview(segmentedControl)
-		container.snp.makeConstraints { make in
-			make.height.equalTo(container.frame.height)
-		}
+		backgroundColor = .background
+		addSubview(segmentedControl)
 		segmentedControl.snp.makeConstraints { make in
-			make.left.right.equalToSuperview()
-			make.top.equalTo(container.snp.top)
+			make.top.equalToSuperview()
+			make.centerX.equalToSuperview()
+			make.height.equalTo(32)
+			make.width.equalToSuperview().offset(-32)
 		}
-		setItems([UIBarButtonItem(customView: container)], animated: true)
+	}
+
+	private func setupFakeNavbarShadow() {
+		let fakeNavbarShadow = UIView(frame: CGRect(origin: .init(x: 0, y: 0), size: .zero))
+		fakeNavbarShadow.backgroundColor = .navigationBarShadow
+		addSubview(fakeNavbarShadow)
+		fakeNavbarShadow.snp.makeConstraints { make in
+			make.top.equalTo(snp.bottom)
+			make.left.right.equalToSuperview()
+			make.height.equalTo(0.5)
+		}
 	}
 
 	func configureSegmentedControl(with items: [String]) {

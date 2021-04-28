@@ -9,6 +9,6 @@ import Foundation
 
 struct SenseModel {
 	let number: String?
-	let definingText: String
+	let text: NSAttributedString
 //	let examples: [String]
 }

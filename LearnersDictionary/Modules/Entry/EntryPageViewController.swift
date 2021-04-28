@@ -7,11 +7,12 @@
 
 import UIKit
 
-class EntryPageViewController: UIPageViewController {
+class EntryPageViewController: UIPageViewController, TrackedScrollViewProtocol {
 	var presenter: EntryPageViewPresenterProtocol?
 	private var toolbar = EntryToolbar()
 	private var selectedIndex = 0
 	private var pages: [EntryViewController] = []
+	weak var trackedScrollViewDelegate: TrackedScrollViewDelegate?
 
 	init() {
 		super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -25,6 +26,12 @@ class EntryPageViewController: UIPageViewController {
 		super.viewDidLoad()
 		view.backgroundColor = .background
 		navigationItem.largeTitleDisplayMode = .never
+		navigationItem.rightBarButtonItem = UIBarButtonItem(
+			image: UIImage(named: "addCollectionNavBar"),
+			style: .plain,
+			target: nil,
+			action: nil
+		)
 		dataSource = self
 		delegate = self
 		setupToolbar()
@@ -37,10 +44,12 @@ class EntryPageViewController: UIPageViewController {
 	}
 
 	private func setupToolbar() {
-		toolbar = EntryToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 48))
 		view.addSubview(toolbar)
+		toolbar.snp.makeConstraints { make in
+			make.top.left.right.equalToSuperview()
+			make.height.equalTo(48)
+		}
 		hideNavbarShadow()
-		toolbar.delegate = self
 		toolbar.segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
 	}
 
@@ -64,7 +73,9 @@ extension EntryPageViewController: EntryPageView {
 	func configure(with entries: [EntryModel]) {
 		var functionalLabels: [String] = []
 		entries.forEach { entry in
-			pages.append(EntryViewController(entry: entry))
+			let entryViewController = EntryViewController(entry: entry)
+			entryViewController.trackedScrollViewDelegate = self
+			pages.append(entryViewController)
 			functionalLabels.append(entry.functionalLabel.capitalized)
 		}
 		toolbar.configureSegmentedControl(with: functionalLabels)
@@ -130,8 +141,8 @@ extension EntryPageViewController: UIPageViewControllerDataSource {
 	}
 }
 
-extension EntryPageViewController: UIToolbarDelegate {
-	func position(for bar: UIBarPositioning) -> UIBarPosition {
-		.topAttached
+extension EntryPageViewController: TrackedScrollViewDelegate {
+	func didScroll(_ scrollView: UIScrollView, to newPointY: CGFloat) {
+		trackedScrollViewDelegate?.didScroll(scrollView, to: newPointY)
 	}
 }

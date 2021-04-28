@@ -8,9 +8,10 @@
 import UIKit
 import SnapKit
 
-class EntryViewController: UIViewController {
+class EntryViewController: UIViewController, TrackedScrollViewProtocol {
 	let entry: EntryModel
 	let textView = UITextView()
+	weak var trackedScrollViewDelegate: TrackedScrollViewDelegate?
 
 	init(entry: EntryModel) {
 		self.entry = entry
@@ -26,6 +27,8 @@ class EntryViewController: UIViewController {
 		view.backgroundColor = .background
 		setupTextView()
 		setupEntry()
+		textView.delegate = self
+		textView.alwaysBounceVertical = true
 	}
 
 	private func setupTextView() {
@@ -55,11 +58,18 @@ class EntryViewController: UIViewController {
 				definitionsString.append(NSAttributedString.sense(
 					index: index,
 					number: sense.number,
-					definingText: sense.definingText)
+					definingText: sense.text)
 				)
 			}
 			definitionsString.append(NSAttributedString(string: "\n"))
 		}
 		return definitionsString
+	}
+}
+
+extension EntryViewController: UITextViewDelegate {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		let newOffset = scrollView.contentOffset.y
+		trackedScrollViewDelegate?.didScroll(scrollView, to: newOffset)
 	}
 }

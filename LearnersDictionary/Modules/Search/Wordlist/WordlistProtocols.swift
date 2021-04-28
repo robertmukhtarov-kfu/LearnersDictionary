@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol WordlistView: AnyObject {
+protocol WordlistViewProtocol: AnyObject {
 	func reloadData()
 	func showError(message: String)
 }

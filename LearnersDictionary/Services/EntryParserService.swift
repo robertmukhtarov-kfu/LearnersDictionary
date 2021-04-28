@@ -9,11 +9,11 @@ import Foundation
 import SwiftyJSON
 
 protocol EntryParserServiceProtocol {
-	func parse(_ jsonData: Data, for word: String, _ completion: @escaping (Result<[EntryModel], EntryParserError>) -> Void)
+	func parse(_ jsonData: Data, for word: String, completion: @escaping (Result<[EntryModel], EntryParserError>) -> Void)
 }
 
 class EntryParserService: EntryParserServiceProtocol {
-	func parse(_ jsonData: Data, for word: String, _ completion: @escaping (Result<[EntryModel], EntryParserError>) -> Void) {
+	func parse(_ jsonData: Data, for word: String, completion: @escaping (Result<[EntryModel], EntryParserError>) -> Void) {
 		guard let allEntries = try? JSON(data: jsonData) else {
 			return completion(.failure(.notJSON))
 		}
@@ -47,6 +47,7 @@ class EntryParserService: EntryParserServiceProtocol {
 			}
 			headword.removeAll { $0 == "*" }
 			guard headword == word else { break }
+			guard entry["def"][0]["sseq"] != JSON.null else { continue }
 			entries.append(entry)
 		}
 		return .success(entries)
@@ -130,19 +131,93 @@ class EntryParserService: EntryParserServiceProtocol {
 	private func getSenses(from jsonSenseSubsequence: [JSON]) -> Result<[SenseModel], EntryParserError> {
 		var senses: [SenseModel] = []
 		for sense in jsonSenseSubsequence {
-			guard sense[0].string == "sense" else { continue }
-			guard let senseContent = sense[1].dictionary else {
-				return .failure(.invalidSense)
+			let resultText = NSMutableAttributedString(string: "")
+			let senseContent: [String: JSON]
+			switch sense[0].string {
+			case "sense", "sen":
+				guard let content = sense[1].dictionary else {
+					return .failure(.invalidSense)
+				}
+				senseContent = content
+			case "bs":
+				guard let content = sense[1]["sense"].dictionary else {
+					return .failure(.invalidSense)
+				}
+				senseContent = content
+			default:
+				continue
 			}
+
 			let senseNumber = senseContent["sn"]?.string
-			guard let definingText = senseContent["dt"]?.array else {
-				return .failure(.invalidDefiningText)
+
+			if let grammaticalLabel = senseContent["sgram"]?.string {
+				let formattedGrammaticalLabel = NSAttributedString(
+					string: "[\(grammaticalLabel)] ",
+					attributes: .grammaticalLabel
+				)
+				resultText.append(formattedGrammaticalLabel)
 			}
-			guard let type = definingText[0][0].string else { continue }
-			guard type == "text" else { continue }
-			guard let text = definingText[0][1].string else { continue }
-			senses.append(SenseModel(number: senseNumber, definingText: text.replacingOccurrences(of: "{bc}", with: "")))
+
+			let generalLabels = getLabels("lbs", from: senseContent)
+			resultText.append(generalLabels)
+			let statusLabels = getLabels("sls", from: senseContent)
+			if generalLabels.length > 0 && statusLabels.length > 0 {
+				resultText.append(NSAttributedString(string: "; ", attributes: .statusLabel))
+			}
+			resultText.append(statusLabels)
+
+			if let definingText = getDefiningText(from: senseContent) {
+				let formattedDefiningText = NSAttributedString(
+					string: definingText,
+					attributes: .body
+				)
+				resultText.append(formattedDefiningText)
+			}
+
+			senses.append(SenseModel(number: senseNumber, text: resultText))
 		}
 		return .success(senses)
+	}
+
+	private func getLabels(_ type: String, from senseContentJson: [String: JSON]) -> NSAttributedString {
+		let resultText = NSMutableAttributedString()
+		if let labels = senseContentJson[type]?.array {
+			var result = ""
+			for (index, label) in labels.enumerated() {
+				guard let labelString = label.string else { continue }
+				result += labelString
+				if index != labels.endIndex - 1 {
+					result += ","
+				}
+				result += " "
+			}
+			let formattedResult = NSAttributedString(
+				string: result,
+				attributes: .statusLabel
+			)
+			resultText.append(formattedResult)
+		}
+		return resultText
+	}
+
+	private func getDefiningText(from senseContentJson: [String: JSON]) -> String? {
+		var result = ""
+		guard let definingText = senseContentJson["dt"]?.array else {
+			return nil
+		}
+		guard let type = definingText[0][0].string else { return nil }
+		switch type {
+		case "text":
+			guard let text = definingText[0][1].string else { return nil }
+			result += text
+		case "uns":
+			guard let usageNote = definingText[0][1][0][0].array else { return nil }
+			guard usageNote[0].string == "text" else { return nil }
+			guard let text = usageNote[1].string else { return nil }
+			result += text
+		default:
+			return nil
+		}
+		return result.replacingOccurrences(of: "{bc}", with: "")
 	}
 }
