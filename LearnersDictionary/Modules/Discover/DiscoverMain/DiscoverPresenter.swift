@@ -8,7 +8,7 @@
 import UIKit
 
 class DiscoverPresenter: DiscoverPresenterProtocol {
-	var coordinator: DiscoverCoordinator?
+	weak var coordinator: DiscoverCoordinator?
 	weak var view: DiscoverViewProtocol?
 
 	private var collections: [DiscoverCollectionModel] = []
@@ -29,7 +29,8 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 	}
 
 	func loadCollections() {
-		collectionService.collections { result in
+		collectionService.collections { [weak self] result in
+			guard let self = self else { return }
 			switch result {
 			case .success(let collections):
 				self.collections = collections

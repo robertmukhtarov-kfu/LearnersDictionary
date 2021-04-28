@@ -34,6 +34,8 @@ class EntryParserService: EntryParserServiceProtocol {
 		}
 	}
 
+	// MARK: - Private methods
+
 	private func getEntries(from json: JSON, for word: String) -> Result<[JSON], EntryParserError> {
 		var entries: [JSON] = []
 

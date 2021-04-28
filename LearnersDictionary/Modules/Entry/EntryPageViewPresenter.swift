@@ -8,7 +8,7 @@
 import Foundation
 
 class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
-	var coordinator: SearchCoordinator?
+	weak var coordinator: SearchCoordinator?
 	weak var view: EntryPageView?
 	var word: String
 
@@ -34,7 +34,8 @@ class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 	}
 
 	private func showEntries() {
-		entryRepository.entries(for: word) { result in
+		entryRepository.entries(for: word) { [weak self] result in
+			guard let self = self else { return }
 			switch result {
 			case .success(let parsedEntries):
 				self.view?.configure(with: parsedEntries)

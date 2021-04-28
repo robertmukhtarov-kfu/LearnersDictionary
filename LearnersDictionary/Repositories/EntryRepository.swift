@@ -16,10 +16,10 @@ class EntryRepository: EntryRepositoryProtocol {
 	private let entryParser = EntryParserService()
 
 	func entries(for word: String, completion: @escaping (Result<[EntryModel], Error>) -> Void) {
-		entryDownloader.loadEntries(for: word) { result in
+		entryDownloader.loadEntries(for: word) { [weak self] result in
 			switch result {
 			case .success(let entriesData):
-				self.entryParser.parse(entriesData, for: word) { result in
+				self?.entryParser.parse(entriesData, for: word) { result in
 					switch result {
 					case .success(let parsedEntries):
 						return completion(.success(parsedEntries))

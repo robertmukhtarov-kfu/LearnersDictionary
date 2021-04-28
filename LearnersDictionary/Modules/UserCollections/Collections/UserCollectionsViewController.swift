@@ -52,6 +52,8 @@ class UserCollectionsViewController: UIViewController, UserCollectionsViewProtoc
 		collectionView.reloadData()
 	}
 
+	// MARK: - Private Methods
+
 	private func setupCollectionView() {
 		collectionView.backgroundColor = .background
 		collectionView.delegate = self

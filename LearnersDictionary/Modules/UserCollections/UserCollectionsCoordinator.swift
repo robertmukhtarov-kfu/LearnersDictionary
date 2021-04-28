@@ -8,6 +8,9 @@
 import UIKit
 
 protocol UserCollectionsCoordinatorProtocol {
+	func showUserCollections()
+	func showUserCollectionDetails(collection: UserCollectionModel)
+	func showEntry(for word: String)
 }
 
 class UserCollectionsCoordinator: UserCollectionsCoordinatorProtocol {

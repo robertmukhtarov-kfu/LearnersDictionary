@@ -185,7 +185,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		71050E3C2607952000A3F733 /* Text Recognition */ = {
+		71050E3C2607952000A3F733 /* TextRecognition */ = {
 			isa = PBXGroup;
 			children = (
 				71DDD0F72614D1D90072A154 /* TextRecognitionProtocols.swift */,
@@ -196,7 +196,7 @@
 				71519778260F37CC00FFFEEB /* RecognizedWordLayer.swift */,
 				71BABA60260D1C01001B5999 /* ImageScrollView.swift */,
 			);
-			path = "Text Recognition";
+			path = TextRecognition;
 			sourceTree = "<group>";
 		};
 		710B614025F912CE0009BADA /* Entry */ = {
@@ -222,14 +222,14 @@
 			path = Collections;
 			sourceTree = "<group>";
 		};
-		711103A32635491A009DA5D0 /* Collection Detail */ = {
+		711103A32635491A009DA5D0 /* CollectionDetail */ = {
 			isa = PBXGroup;
 			children = (
 				7141297E26395CCB007DA33E /* UserCollectionDetailProtocol.swift */,
 				711103A52635496F009DA5D0 /* UserCollectionDetailViewController.swift */,
 				711103A82635497C009DA5D0 /* UserCollectionDetailPresenter.swift */,
 			);
-			path = "Collection Detail";
+			path = CollectionDetail;
 			sourceTree = "<group>";
 		};
 		71130DF625F2698500FF0BD6 /* Services */ = {
@@ -303,12 +303,12 @@
 				71DE0DAD25FB97D1008E32F2 /* Search */,
 				710B614025F912CE0009BADA /* Entry */,
 				71B8FF2A26230DE9000E88C8 /* Discover */,
-				713F748F2628C6D600DA4F2F /* User Collections */,
+				713F748F2628C6D600DA4F2F /* UserCollections */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		7135B6EF2636BCEE004F3DAC /* Discover (Root) */ = {
+		7135B6EF2636BCEE004F3DAC /* DiscoverMain */ = {
 			isa = PBXGroup;
 			children = (
 				7141297526395A36007DA33E /* DiscoverProtocols.swift */,
@@ -318,10 +318,10 @@
 				7177FA18262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift */,
 				71B8FF322623235D000E88C8 /* CollectionSectionHeaderView.swift */,
 			);
-			path = "Discover (Root)";
+			path = DiscoverMain;
 			sourceTree = "<group>";
 		};
-		7135B6F12636BD2D004F3DAC /* Card View */ = {
+		7135B6F12636BD2D004F3DAC /* CardView */ = {
 			isa = PBXGroup;
 			children = (
 				71B8FF3526232DFF000E88C8 /* CardView.swift */,
@@ -330,37 +330,37 @@
 				71CFEB91262CB7A200EA6D98 /* AddButton.swift */,
 				71CFEB94262CC4AC00EA6D98 /* CloseButton.swift */,
 			);
-			path = "Card View";
+			path = CardView;
 			sourceTree = "<group>";
 		};
-		7135B6F42636BD88004F3DAC /* Collection Detail */ = {
+		7135B6F42636BD88004F3DAC /* CollectionDetail */ = {
 			isa = PBXGroup;
 			children = (
 				7135B6DF2636A58A004F3DAC /* CollectionDetailViewController.swift */,
 				7135B6E22636A5D1004F3DAC /* CollectionDetailPresenter.swift */,
 				713B39C72636D82000218709 /* CollectionDetailTableViewCell.swift */,
 			);
-			path = "Collection Detail";
+			path = CollectionDetail;
 			sourceTree = "<group>";
 		};
-		7135B6F72636BE33004F3DAC /* Card Detail */ = {
+		7135B6F72636BE33004F3DAC /* CardDetail */ = {
 			isa = PBXGroup;
 			children = (
 				71F5E2982625C7B90066D26F /* CardDetailViewController.swift */,
 				7135B6F82636BE58004F3DAC /* CardDetailConfigurator.swift */,
 				713B39C22636CB4000218709 /* TrackedScrollViewProtocol.swift */,
 			);
-			path = "Card Detail";
+			path = CardDetail;
 			sourceTree = "<group>";
 		};
-		713F748F2628C6D600DA4F2F /* User Collections */ = {
+		713F748F2628C6D600DA4F2F /* UserCollections */ = {
 			isa = PBXGroup;
 			children = (
 				713F74912628C6F100DA4F2F /* UserCollectionsCoordinator.swift */,
 				711103A2263548FC009DA5D0 /* Collections */,
-				711103A32635491A009DA5D0 /* Collection Detail */,
+				711103A32635491A009DA5D0 /* CollectionDetail */,
 			);
-			path = "User Collections";
+			path = UserCollections;
 			sourceTree = "<group>";
 		};
 		71B0514E25ED4C0C00A1EA4B /* Models */ = {
@@ -389,10 +389,10 @@
 			children = (
 				71B8FF2B26230F4F000E88C8 /* DiscoverCoordinator.swift */,
 				71F346C02626B0D700EA636B /* CardTransitionManager.swift */,
-				7135B6EF2636BCEE004F3DAC /* Discover (Root) */,
-				7135B6F12636BD2D004F3DAC /* Card View */,
-				7135B6F72636BE33004F3DAC /* Card Detail */,
-				7135B6F42636BD88004F3DAC /* Collection Detail */,
+				7135B6EF2636BCEE004F3DAC /* DiscoverMain */,
+				7135B6F12636BD2D004F3DAC /* CardView */,
+				7135B6F72636BE33004F3DAC /* CardDetail */,
+				7135B6F42636BD88004F3DAC /* CollectionDetail */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -412,7 +412,7 @@
 			children = (
 				7128ABED25ED1938000633AD /* SearchCoordinator.swift */,
 				71DE0DAB25FB9703008E32F2 /* Wordlist */,
-				71050E3C2607952000A3F733 /* Text Recognition */,
+				71050E3C2607952000A3F733 /* TextRecognition */,
 			);
 			path = Search;
 			sourceTree = "<group>";

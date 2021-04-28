@@ -9,7 +9,7 @@ import Foundation
 
 class UserCollectionsPresenter: UserCollectionsPresenterProtocol {
 	weak var view: UserCollectionsViewProtocol?
-	var coordinator: UserCollectionsCoordinator?
+	weak var coordinator: UserCollectionsCoordinator?
 
 	var collectionsCount: Int {
 		collections.count
@@ -22,17 +22,6 @@ class UserCollectionsPresenter: UserCollectionsPresenterProtocol {
 	func viewDidLoad() {
 		setupCollections()
 		view?.reloadData()
-	}
-
-	private func setupCollections() {
-		userCollectionService.collections { result in
-			switch result {
-			case .success(let userCollections):
-				self.collections = userCollections
-			case .failure(let error):
-				print(error)
-			}
-		}
 	}
 
 	func getCollection(forCellAt indexPath: IndexPath) -> UserCollectionModel {
@@ -51,5 +40,18 @@ class UserCollectionsPresenter: UserCollectionsPresenterProtocol {
 	func didSelectCollection(at indexPath: IndexPath) {
 		let collection = collections[indexPath.row]
 		coordinator?.showUserCollectionDetails(collection: collection)
+	}
+
+	// MARK: - Private methods
+
+	private func setupCollections() {
+		userCollectionService.collections { result in
+			switch result {
+			case .success(let userCollections):
+				self.collections = userCollections
+			case .failure(let error):
+				print(error)
+			}
+		}
 	}
 }

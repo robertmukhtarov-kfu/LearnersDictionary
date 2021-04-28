@@ -20,8 +20,7 @@ class SearchCoordinator: SearchCoordinatorProtocol {
 
 	init(navigationController: UINavigationController = UINavigationController()) {
 		self.navigationController = navigationController
-		navigationController.navigationBar.isTranslucent = false
-		navigationController.navigationBar.prefersLargeTitles = true
+		setupNavigationController()
 		showWordlist()
     }
 
@@ -51,5 +50,12 @@ class SearchCoordinator: SearchCoordinatorProtocol {
 
 	func closeEntry() {
 		navigationController.popToRootViewController(animated: true)
+	}
+
+	// MARK: - Private Methods
+
+	func setupNavigationController() {
+		navigationController.navigationBar.isTranslucent = false
+		navigationController.navigationBar.prefersLargeTitles = true
 	}
 }

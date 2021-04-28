@@ -42,7 +42,7 @@ class DiscoverCoordinator: DiscoverCoordinatorProtocol {
 		let cardDetailConfigurator = CardDetailConfigurator()
 		let wordOfTheDayVC = cardDetailConfigurator.wordOfTheDay(wordOfTheDay, cardView: cardView)
 		wordOfTheDayVC.coordinator = self
-		cardDetailNavigationController.pushViewController(wordOfTheDayVC, animated: false)
+		cardDetailNavigationController.setViewControllers([wordOfTheDayVC], animated: false)
 		discoverViewController.present(cardDetailNavigationController, animated: true)
 	}
 
@@ -54,7 +54,7 @@ class DiscoverCoordinator: DiscoverCoordinatorProtocol {
 			coordinator: self
 		)
 		collectionDetailVC.coordinator = self
-		cardDetailNavigationController.pushViewController(collectionDetailVC, animated: false)
+		cardDetailNavigationController.setViewControllers([collectionDetailVC], animated: false)
 		discoverViewController.present(cardDetailNavigationController, animated: true)
 	}
 
@@ -67,8 +67,6 @@ class DiscoverCoordinator: DiscoverCoordinatorProtocol {
 	}
 
 	func dismissCardDetail() {
-		cardDetailNavigationController.dismiss(animated: true) {
-			self.cardDetailNavigationController.viewControllers.removeAll()
-		}
+		cardDetailNavigationController.dismiss(animated: true)
 	}
 }

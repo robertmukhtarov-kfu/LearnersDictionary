@@ -9,7 +9,7 @@ import Foundation
 
 class CollectionDetailPresenter {
 	weak var view: CollectionDetailViewController?
-	var coordinator: DiscoverCoordinator?
+	weak var coordinator: DiscoverCoordinator?
 	let collection: DiscoverCollectionModel
 
 	var wordCount: Int {

@@ -54,13 +54,12 @@ extension CardTransitionManager: UIViewControllerAnimatedTransitioning {
 			return
 		}
 
-		guard let cardView = transition == .present
-			? ((fromView as? MainTabBarController)?
-				.selectedViewController as? DiscoverViewController)?
-				.selectedCardView
-			: ((toView as? MainTabBarController)?
-				.selectedViewController as? DiscoverViewController)?
-				.selectedCardView
+		let mainTabBarController = transition == .present ? fromView : toView
+
+		guard let cardView =
+			((mainTabBarController as? MainTabBarController)?
+			.selectedViewController as? DiscoverViewController)?
+			.selectedCardView
 		else {
 			transitionContext.completeTransition(false)
 			return

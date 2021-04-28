@@ -9,7 +9,7 @@ import UIKit
 
 class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 	weak var view: TextRecognitionViewProtocol?
-	var coordinator: TextRecognitionCoordinator?
+	weak var coordinator: TextRecognitionCoordinator?
 
 	private let entryRepository = EntryRepository()
 	private let textRecognizer = TextRecognitionService()
@@ -27,7 +27,8 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 
 	func recognizeText(on image: UIImage) {
 		DispatchQueue.global(qos: .userInitiated).async {
-			self.textRecognizer.recognizeText(in: image) { result in
+			self.textRecognizer.recognizeText(in: image) { [weak self] result in
+				guard let self = self else { return }
 				DispatchQueue.main.async {
 					switch result {
 					case .success(let recognizedWords):

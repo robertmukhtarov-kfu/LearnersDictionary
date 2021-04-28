@@ -9,7 +9,7 @@ import Foundation
 
 class WordlistPresenter: WordlistPresenterProtocol {
 	weak var view: WordlistViewProtocol?
-	var coordinator: SearchCoordinator?
+	weak var coordinator: SearchCoordinator?
 	let coreDataService = CoreDataService()
 
 	var numberOfSections: Int {
@@ -43,6 +43,31 @@ class WordlistPresenter: WordlistPresenterProtocol {
 		wordlist[indexPath.section][indexPath.row]
 	}
 
+	func didSelectWord(at indexPath: IndexPath) {
+		let word = wordlist[indexPath.section][indexPath.row]
+		coordinator?.showEntry(for: word)
+	}
+
+	func searchBarTextDidChange(text: String) {
+		let prefix = text
+		guard !prefix.isEmpty else {
+			setupWordlist()
+			return
+		}
+		let predicate = NSPredicate(format: "spelling BEGINSWITH[cd] %@", prefix)
+		setupWordlist(predicate: predicate, indexOffset: text.count)
+	}
+
+	func searchBarCancelTapped() {
+		setupWordlist()
+	}
+
+	func cameraButtonTapped() {
+		coordinator?.showCamera()
+	}
+
+	// MARK: - Private methods
+
 	private func eraseWordlist() {
 		wordlist = [[String]](repeating: [], count: numberOfSections)
 	}
@@ -55,7 +80,8 @@ class WordlistPresenter: WordlistPresenterProtocol {
 			selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
 		)
 		let sortDescriptors = [descriptor]
-		coreDataService.fetchWordlist(predicate: predicate, sortDescriptors: sortDescriptors) { result in
+		coreDataService.fetchWordlist(predicate: predicate, sortDescriptors: sortDescriptors) { [weak self] result in
+			guard let self = self else { return }
 			switch result {
 			case .success(let words):
 				let wordsStr = words.map { $0.spelling }
@@ -84,28 +110,5 @@ class WordlistPresenter: WordlistPresenterProtocol {
 			.uppercased()
 		guard let firstLetterIndex = indexToSectionMap[firstLetter] else { return }
 		wordlist[firstLetterIndex].append(word)
-	}
-
-	func didSelectWord(at indexPath: IndexPath) {
-		let word = wordlist[indexPath.section][indexPath.row]
-		coordinator?.showEntry(for: word)
-	}
-
-	func searchBarTextDidChange(text: String) {
-		let prefix = text
-		guard !prefix.isEmpty else {
-			setupWordlist()
-			return
-		}
-		let predicate = NSPredicate(format: "spelling BEGINSWITH[cd] %@", prefix)
-		setupWordlist(predicate: predicate, indexOffset: text.count)
-	}
-
-	func searchBarCancelTapped() {
-		setupWordlist()
-	}
-
-	func cameraButtonTapped() {
-		coordinator?.showCamera()
 	}
 }
