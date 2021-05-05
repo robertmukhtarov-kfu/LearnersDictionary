@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CollectionCardView: CardView {
 	private let discoverCollection: DiscoverCollectionModel
@@ -24,7 +25,9 @@ class CollectionCardView: CardView {
 
 	override func setup() {
 		super.setup()
-		imageView.image = discoverCollection.image
+		if let imageURL = URL(string: discoverCollection.imageURL) {
+			imageView.kf.setImage(with: imageURL)
+		}
 		blurView.effect = UIBlurEffect(style: .extraLight)
 		blurView.snp.makeConstraints { make in
 			make.right.left.equalToSuperview()
@@ -39,7 +42,7 @@ class CollectionCardView: CardView {
 		blurView.contentView.addSubview(dateLabel)
 		blurView.contentView.addSubview(titleLabel)
 
-		dateLabel.text = discoverCollection.date
+		dateLabel.text = DateFormatter.dMMMMyyyy.string(from: discoverCollection.date)
 		dateLabel.font = .systemFont(ofSize: 12, weight: .bold)
 		dateLabel.textColor = .darkGray
 		dateLabel.snp.makeConstraints { make in

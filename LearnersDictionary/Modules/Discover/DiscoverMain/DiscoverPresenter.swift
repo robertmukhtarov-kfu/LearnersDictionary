@@ -12,33 +12,17 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 	weak var view: DiscoverViewProtocol?
 
 	private var collections: [DiscoverCollectionModel] = []
-	private let wordOfTheDay = WordOfTheDayModel(
-		image: UIImage(named: "landscape")!,
-		title: "landscape",
-		shortDefinition: "A picture that shows a natural scene of land or the countryside"
-	)
+	private var wordOfTheDay = WordOfTheDayModel(imageURL: "", title: "", shortDefinition: "")
 
-	let collectionService = MockDiscoverCollectionService()
+	private let discoverService = DiscoverService()
 
 	var collectionCount: Int {
 		collections.count
 	}
 
 	func viewDidLoad() {
+		loadWordOfTheDay()
 		loadCollections()
-	}
-
-	func loadCollections() {
-		collectionService.collections { [weak self] result in
-			guard let self = self else { return }
-			switch result {
-			case .success(let collections):
-				self.collections = collections
-				self.view?.reloadData()
-			case .failure(let error):
-				print(error)
-			}
-		}
 	}
 
 	func getWordOfTheDay() -> WordOfTheDayModel {
@@ -55,5 +39,38 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 
 	func showDiscoverCollection(at index: Int, cardView: CardView) {
 		coordinator?.showDiscoverCollection(collections[index], cardView: cardView)
+	}
+
+
+	// MARK: - Private Methods
+	
+	private func loadWordOfTheDay() {
+		discoverService.wordOfTheDay { [weak self] result in
+			guard let self = self else { return }
+			DispatchQueue.main.async {
+				switch result {
+				case .success(let wordOfTheDay):
+					self.wordOfTheDay = wordOfTheDay
+					self.view?.reloadWordOfTheDay()
+				case .failure(let error):
+					print(error)
+				}
+			}
+		}
+	}
+
+	private func loadCollections() {
+		discoverService.collections { [weak self] result in
+			guard let self = self else { return }
+			DispatchQueue.main.async {
+				switch result {
+				case .success(let collections):
+					self.collections = collections
+					self.view?.reloadCollections()
+				case .failure(let error):
+					print(error)
+				}
+			}
+		}
 	}
 }

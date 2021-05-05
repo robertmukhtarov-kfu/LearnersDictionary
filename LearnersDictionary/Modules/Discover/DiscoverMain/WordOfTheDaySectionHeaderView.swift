@@ -44,6 +44,6 @@ class WordOfTheDaySectionHeaderView: UICollectionReusableView {
 		stackView.addArrangedSubview(dateLabel)
 		dateLabel.textColor = .gray
 		dateLabel.font = .systemFont(ofSize: 12, weight: .bold)
-		dateLabel.text = "Wednesday 28 April".uppercased()
+		dateLabel.text = DateFormatter.EEEEdMMMM.string(from: Date()).uppercased()
 	}
 }

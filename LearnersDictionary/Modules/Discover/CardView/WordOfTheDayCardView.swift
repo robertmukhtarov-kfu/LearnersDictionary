@@ -8,18 +8,14 @@
 import UIKit
 
 class WordOfTheDayCardView: CardView {
-	let title: String
-	let definition: String
-	let imagePath: String
+	private let wordOfTheDay: WordOfTheDayModel
 
 	private let titleLabel = UILabel()
 	private let definitionLabel = UILabel()
 	private let addButton = AddButton(frame: CGRect(x: 0, y: 0, width: 80, height: 30))
 
-	init(presentationType: CardViewPresentationType, title: String = "Landscape", definition: String = "A picture that shows a natural scene of land or the countryside.", imagePath: String = "landscape") {
-		self.title = title
-		self.definition = definition
-		self.imagePath = imagePath
+	init(presentationType: CardViewPresentationType, wordOfTheDay: WordOfTheDayModel) {
+		self.wordOfTheDay = wordOfTheDay
 		super.init(presentationType: presentationType)
 	}
 
@@ -29,7 +25,9 @@ class WordOfTheDayCardView: CardView {
 
 	override func setup() {
 		super.setup()
-		imageView.image = UIImage(named: imagePath)
+		if let imageURL = URL(string: wordOfTheDay.imageURL) {
+			imageView.kf.setImage(with: imageURL)
+		}
 		blurView.effect = UIBlurEffect(style: .dark)
 		setupLabels()
 		setupAddButton()
@@ -38,11 +36,11 @@ class WordOfTheDayCardView: CardView {
 	private func setupLabels() {
 		blurView.contentView.addSubview(titleLabel)
 		blurView.contentView.addSubview(definitionLabel)
-		titleLabel.text = title
+		titleLabel.text = wordOfTheDay.title
 		titleLabel.textColor = .white
 		titleLabel.font = .systemFont(ofSize: 18, weight: .bold)
 		definitionLabel.numberOfLines = 0
-		definitionLabel.text = definition
+		definitionLabel.text = wordOfTheDay.shortDefinition
 		definitionLabel.font = .systemFont(ofSize: 12, weight: .regular)
 		definitionLabel.textColor = .white
 	}
@@ -107,9 +105,7 @@ class WordOfTheDayCardView: CardView {
 	override func viewCopy() -> CardView {
 		return WordOfTheDayCardView(
 			presentationType: presentationType,
-			title: title,
-			definition: definition,
-			imagePath: imagePath
+			wordOfTheDay: wordOfTheDay
 		)
 	}
 }

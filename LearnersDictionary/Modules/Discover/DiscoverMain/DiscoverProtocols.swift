@@ -8,13 +8,13 @@
 import UIKit
 
 protocol DiscoverViewProtocol: AnyObject {
-	func reloadData()
+	func reloadWordOfTheDay()
+	func reloadCollections()
 }
 
 protocol DiscoverPresenterProtocol {
 	var collectionCount: Int { get }
 	func viewDidLoad()
-	func loadCollections()
 	func getWordOfTheDay() -> WordOfTheDayModel
 	func getCollection(forCellAt indexPath: IndexPath) -> DiscoverCollectionModel
 	func showWordOfTheDay(cardView: CardView)

@@ -1,5 +1,6 @@
 # Private Files
 LearnersDictionary/Private
+LearnersDictionary/GoogleService-Info.plist
 
 # Xcode
 xcuserdata/

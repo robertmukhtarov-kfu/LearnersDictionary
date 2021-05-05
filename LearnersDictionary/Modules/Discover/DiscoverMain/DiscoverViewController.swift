@@ -17,8 +17,6 @@ class DiscoverViewController: UIViewController, DiscoverViewProtocol {
 	let cellWidth: CGFloat = UIScreen.main.bounds.width - 40
 	let cellSpacing: CGFloat = 30.0
 
-	let cardTransitionManager = CardTransitionManager()
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -51,8 +49,12 @@ class DiscoverViewController: UIViewController, DiscoverViewProtocol {
 		presenter?.viewDidLoad()
 	}
 
-	func reloadData() {
-		collectionView.reloadData()
+	func reloadWordOfTheDay() {
+		collectionView.reloadSections([0])
+	}
+
+	func reloadCollections() {
+		collectionView.reloadSections([1])
 	}
 }
 
@@ -74,7 +76,8 @@ extension DiscoverViewController: UICollectionViewDataSource {
 		let cardView: CardView
 		switch indexPath.section {
 		case 0:
-			cardView = WordOfTheDayCardView(presentationType: .card)
+			guard let wordOfTheDay = presenter?.getWordOfTheDay() else { fatalError("Couldn't get word of the day") }
+			cardView = WordOfTheDayCardView(presentationType: .card, wordOfTheDay: wordOfTheDay)
 		default:
 			guard let collection = presenter?.getCollection(forCellAt: indexPath) else { fatalError("Couldn't get collection") }
 			cardView = CollectionCardView(presentationType: .card, discoverCollection: collection)

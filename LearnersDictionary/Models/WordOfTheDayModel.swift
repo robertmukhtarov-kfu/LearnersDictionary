@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct WordOfTheDayModel {
-	let image: UIImage
+struct WordOfTheDayModel: Codable {
+	let imageURL: String
 	let title: String
 	let shortDefinition: String
 }

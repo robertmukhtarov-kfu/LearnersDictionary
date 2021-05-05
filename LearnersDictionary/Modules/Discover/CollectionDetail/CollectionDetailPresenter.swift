@@ -28,7 +28,7 @@ class CollectionDetailPresenter {
 		view?.reloadData()
 	}
 
-	func getWord(forCellAt indexPath: IndexPath) -> (title: String, shortDefinition: String) {
+	func getWord(forCellAt indexPath: IndexPath) -> DiscoverWordModel {
 		collection.words[indexPath.row]
 	}
 

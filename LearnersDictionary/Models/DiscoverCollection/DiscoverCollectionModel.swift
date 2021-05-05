@@ -7,9 +7,9 @@
 
 import UIKit
 
-struct DiscoverCollectionModel {
+struct DiscoverCollectionModel: Codable {
 	let title: String
-	let date: String
-	let image: UIImage
-	let words: [(title: String, shortDefinition: String)]
+	let date: Date
+	let imageURL: String
+	let words: [DiscoverWordModel]
 }
