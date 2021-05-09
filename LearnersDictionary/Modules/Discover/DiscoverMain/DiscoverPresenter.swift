@@ -43,7 +43,7 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 
 
 	// MARK: - Private Methods
-	
+
 	private func loadWordOfTheDay() {
 		discoverService.wordOfTheDay { [weak self] result in
 			guard let self = self else { return }

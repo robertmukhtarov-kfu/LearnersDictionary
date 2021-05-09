@@ -73,6 +73,7 @@ class CardDetailViewController: UIViewController, UIGestureRecognizerDelegate {
 			make.left.right.bottom.equalTo(view)
 		}
 		childViewController.didMove(toParent: self)
+		childView.layoutIfNeeded()
 	}
 
 	required init?(coder: NSCoder) {

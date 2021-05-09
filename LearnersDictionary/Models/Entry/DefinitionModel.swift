@@ -8,5 +8,6 @@
 import Foundation
 
 struct DefinitionModel {
+	let number: String?
 	let senses: [SenseModel]
 }

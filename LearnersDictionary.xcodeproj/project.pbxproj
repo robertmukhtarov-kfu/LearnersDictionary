@@ -52,6 +52,9 @@
 		715DA64A2632C73900E360C5 /* MockUserCollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DA6492632C73900E360C5 /* MockUserCollectionService.swift */; };
 		715DA64F2633475100E360C5 /* UserCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DA64E2633475100E360C5 /* UserCollectionCell.swift */; };
 		71711999260A1D5A00D2B6AF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71711998260A1D5A00D2B6AF /* UIImage.swift */; };
+		7176D4232648084100CAB24B /* DefinitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176D4222648084100CAB24B /* DefinitionView.swift */; };
+		7176D42526484BC600CAB24B /* HeadwordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176D42426484BC600CAB24B /* HeadwordView.swift */; };
+		7176D4272648523A00CAB24B /* EntryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176D4262648523A00CAB24B /* EntryTextView.swift */; };
 		7177FA0D2623609D000D59C9 /* CollectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7177FA0C2623609D000D59C9 /* CollectionCardView.swift */; };
 		7177FA122623620F000D59C9 /* WordOfTheDayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7177FA112623620F000D59C9 /* WordOfTheDayCardView.swift */; };
 		7177FA19262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7177FA18262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift */; };
@@ -135,6 +138,9 @@
 		715DA6492632C73900E360C5 /* MockUserCollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserCollectionService.swift; sourceTree = "<group>"; };
 		715DA64E2633475100E360C5 /* UserCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionCell.swift; sourceTree = "<group>"; };
 		71711998260A1D5A00D2B6AF /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		7176D4222648084100CAB24B /* DefinitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionView.swift; sourceTree = "<group>"; };
+		7176D42426484BC600CAB24B /* HeadwordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadwordView.swift; sourceTree = "<group>"; };
+		7176D4262648523A00CAB24B /* EntryTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTextView.swift; sourceTree = "<group>"; };
 		7177FA0C2623609D000D59C9 /* CollectionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCardView.swift; sourceTree = "<group>"; };
 		7177FA112623620F000D59C9 /* WordOfTheDayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfTheDayCardView.swift; sourceTree = "<group>"; };
 		7177FA18262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfTheDaySectionHeaderView.swift; sourceTree = "<group>"; };
@@ -212,7 +218,7 @@
 				71B4CDF42600B2A600034724 /* EntryPageViewPresenter.swift */,
 				710B614225F912CE0009BADA /* EntryPageViewController.swift */,
 				710B614125F912CE0009BADA /* EntryViewController.swift */,
-				71DE0DC825FC07A1008E32F2 /* EntryToolbar.swift */,
+				7176D421264806FF00CAB24B /* Views */,
 			);
 			path = Entry;
 			sourceTree = "<group>";
@@ -331,9 +337,7 @@
 				7141297526395A36007DA33E /* DiscoverProtocols.swift */,
 				71B8FF2F26231CA4000E88C8 /* DiscoverViewController.swift */,
 				7135B6E82636B4DC004F3DAC /* DiscoverPresenter.swift */,
-				713355212625B5F400BC0CB1 /* CardViewCell.swift */,
-				7177FA18262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift */,
-				71B8FF322623235D000E88C8 /* CollectionSectionHeaderView.swift */,
+				7176D4282648545C00CAB24B /* Views */,
 			);
 			path = DiscoverMain;
 			sourceTree = "<group>";
@@ -378,6 +382,27 @@
 				711103A32635491A009DA5D0 /* CollectionDetail */,
 			);
 			path = UserCollections;
+			sourceTree = "<group>";
+		};
+		7176D421264806FF00CAB24B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				71DE0DC825FC07A1008E32F2 /* EntryToolbar.swift */,
+				7176D4262648523A00CAB24B /* EntryTextView.swift */,
+				7176D4222648084100CAB24B /* DefinitionView.swift */,
+				7176D42426484BC600CAB24B /* HeadwordView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7176D4282648545C00CAB24B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				713355212625B5F400BC0CB1 /* CardViewCell.swift */,
+				7177FA18262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift */,
+				71B8FF322623235D000E88C8 /* CollectionSectionHeaderView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		71B0514E25ED4C0C00A1EA4B /* Models */ = {
@@ -645,6 +670,7 @@
 				7135B6ED2636B686004F3DAC /* WordOfTheDayModel.swift in Sources */,
 				718FD56E25F61BD4002DFC38 /* SenseModel.swift in Sources */,
 				7177FA122623620F000D59C9 /* WordOfTheDayCardView.swift in Sources */,
+				7176D42526484BC600CAB24B /* HeadwordView.swift in Sources */,
 				711670E02641430500CEF3EB /* DiscoverWordModel.swift in Sources */,
 				713B39C32636CB4000218709 /* TrackedScrollViewProtocol.swift in Sources */,
 				71DDD1022614D3690072A154 /* WordlistProtocols.swift in Sources */,
@@ -662,6 +688,7 @@
 				7177FA19262366D4000D59C9 /* WordOfTheDaySectionHeaderView.swift in Sources */,
 				71E5786C25F52A8200FA98E2 /* Word+CoreDataProperties.swift in Sources */,
 				71050E3E2607969F00A3F733 /* TextRecognitionViewController.swift in Sources */,
+				7176D4272648523A00CAB24B /* EntryTextView.swift in Sources */,
 				71B4CDFF2600DCA500034724 /* NSAttributedString.swift in Sources */,
 				7151977C260F3EDE00FFFEEB /* RecognizedWordsImageView.swift in Sources */,
 				713355222625B5F400BC0CB1 /* CardViewCell.swift in Sources */,
@@ -699,6 +726,7 @@
 				712CD1212608D33600F6753A /* TextRecognitionService.swift in Sources */,
 				71EEE9A02603422000E6DFDD /* PrivateStrings.swift in Sources */,
 				715DA63D2632C0E600E360C5 /* UserCollectionsViewController.swift in Sources */,
+				7176D4232648084100CAB24B /* DefinitionView.swift in Sources */,
 				71E5787325F52AD400FA98E2 /* DefinitionModel.swift in Sources */,
 				7128ABF325ED1938000633AD /* AppDelegate.swift in Sources */,
 				71F346C12626B0D700EA636B /* CardTransitionManager.swift in Sources */,

@@ -116,14 +116,25 @@ class EntryParserService: EntryParserServiceProtocol {
 				guard let ssubseq = ssubseq.array else {
 					return .failure(.invalidSenseSubsequence)
 				}
-				let senses: [SenseModel]
+				var senses: [SenseModel]
 				switch getSenses(from: ssubseq) {
 				case .success(let parsedSenses):
 					senses = parsedSenses
 				case .failure(let error):
 					return .failure(error)
 				}
-				definitions.append(DefinitionModel(senses: senses))
+				var definitionNumber: String?
+				if let firstSense = senses.first, let senseNumber = firstSense.number {
+					if let spaceIndex = senseNumber.firstIndex(of: " ") {
+						definitionNumber = String(senseNumber[..<spaceIndex])
+						let newSenseNumber = String(senseNumber[spaceIndex...]).trimmingCharacters(in: .whitespaces)
+						senses[0] = SenseModel(number: newSenseNumber, text: firstSense.text)
+					} else {
+						definitionNumber = senseNumber
+						senses[0] = SenseModel(number: nil, text: firstSense.text)
+					}
+				}
+				definitions.append(DefinitionModel(number: definitionNumber, senses: senses))
 			}
 			allDefinitions.append(definitions)
 		}

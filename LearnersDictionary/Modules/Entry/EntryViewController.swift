@@ -10,8 +10,21 @@ import SnapKit
 
 class EntryViewController: UIViewController, TrackedScrollViewProtocol {
 	let entry: EntryModel
-	let textView = UITextView()
 	weak var trackedScrollViewDelegate: TrackedScrollViewDelegate?
+
+	private let scrollView: UIScrollView = {
+		let scrollView = UIScrollView()
+		scrollView.alwaysBounceVertical = true
+		scrollView.contentInset = .init(top: 0, left: 20, bottom: 0, right: 20)
+		return scrollView
+	}()
+
+	private let stackView: UIStackView = {
+		let stackView = UIStackView()
+		stackView.axis = .vertical
+		stackView.spacing = 16
+		return stackView
+	}()
 
 	init(entry: EntryModel) {
 		self.entry = entry
@@ -25,49 +38,36 @@ class EntryViewController: UIViewController, TrackedScrollViewProtocol {
     override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .background
-		setupTextView()
-		setupEntry()
-		textView.delegate = self
-		textView.alwaysBounceVertical = true
+		setup()
 	}
 
-	private func setupTextView() {
-		view.addSubview(textView)
-		textView.isEditable = false
-		textView.snp.makeConstraints { make in
-			make.top.equalTo(view).inset(48)
-			make.width.bottom.equalTo(view)
+	private func setup() {
+		view.addSubview(scrollView)
+		scrollView.snp.makeConstraints { make in
+			make.top.equalToSuperview().offset(48)
+			make.left.right.bottom.equalToSuperview()
 		}
-		textView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-	}
-
-	private func setupEntry() {
-		let entryText = NSMutableAttributedString()
-		entryText.append(NSAttributedString.headword(string: entry.headword))
-		if let entryTranscription = entry.transcription {
-			entryText.append(NSAttributedString.transcription(string: entryTranscription))
+		scrollView.delegate = self
+		scrollView.addSubview(stackView)
+		stackView.snp.makeConstraints { make in
+			make.top.equalToSuperview().offset(16)
+			make.bottom.equalToSuperview().offset(-16)
+			make.left.right.equalToSuperview()
+			make.width.equalToSuperview().offset(-40)
 		}
-		entryText.append(definitionsString(from: entry.definitions))
-		textView.attributedText = entryText
-	}
-
-	private func definitionsString(from definitions: [DefinitionModel]) -> NSAttributedString {
-		let definitionsString = NSMutableAttributedString()
-		for definition in definitions {
-			for (index, sense) in definition.senses.enumerated() {
-				definitionsString.append(NSAttributedString.sense(
-					index: index,
-					number: sense.number,
-					definingText: sense.text)
-				)
-			}
-			definitionsString.append(NSAttributedString(string: "\n"))
+		stackView.addArrangedSubview(
+			HeadwordView(
+				headword: entry.headword,
+				transcription: entry.transcription
+			)
+		)
+		for definition in entry.definitions {
+			stackView.addArrangedSubview(DefinitionView(definition: definition))
 		}
-		return definitionsString
 	}
 }
 
-extension EntryViewController: UITextViewDelegate {
+extension EntryViewController: UIScrollViewDelegate {
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		let newOffset = scrollView.contentOffset.y
 		trackedScrollViewDelegate?.didScroll(scrollView, to: newOffset)

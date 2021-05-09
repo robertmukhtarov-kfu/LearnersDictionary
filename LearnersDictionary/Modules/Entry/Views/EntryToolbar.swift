@@ -32,7 +32,7 @@ class EntryToolbar: UIView, EntryToolbarView {
 	}
 
 	private func setupFakeNavbarShadow() {
-		let fakeNavbarShadow = UIView(frame: CGRect(origin: .init(x: 0, y: 0), size: .zero))
+		let fakeNavbarShadow = UIView(frame: .zero)
 		fakeNavbarShadow.backgroundColor = .navigationBarShadow
 		addSubview(fakeNavbarShadow)
 		fakeNavbarShadow.snp.makeConstraints { make in
