@@ -8,15 +8,14 @@
 import CoreData
 
 protocol CoreDataServiceProtocol {
-	func fetchWordlist(
-		predicate: NSPredicate?,
-		sortDescriptors: [NSSortDescriptor]?,
-		completion: (Result<[Word], Error>) -> Void
-	)
+	var persistentContainer: NSPersistentContainer { get }
+	func saveContext()
 }
 
 class CoreDataService: CoreDataServiceProtocol {
-	private lazy var persistentContainer: NSPersistentContainer = {
+	static let shared = CoreDataService()
+
+	lazy var persistentContainer: NSPersistentContainer = {
 		let container = NSPersistentContainer(name: "LearnersDictionary")
 		container.persistentStoreDescriptions = [description]
 		container.loadPersistentStores { _, error in
@@ -29,26 +28,23 @@ class CoreDataService: CoreDataServiceProtocol {
 
 	private let description = NSPersistentStoreDescription()
 
-	init() {
+	private init() {
 		setupDescription()
 	}
 
-	func fetchWordlist(
-		predicate: NSPredicate?,
-		sortDescriptors: [NSSortDescriptor]?,
-		completion: (Result<[Word], Error>) -> Void
-	) {
+	func saveContext() {
 		let context = persistentContainer.viewContext
-		let fetchRequest = Word.fetchRequest() as NSFetchRequest<Word>
-		fetchRequest.predicate = predicate
-		fetchRequest.sortDescriptors = sortDescriptors
-		do {
-			let words = try context.fetch(fetchRequest)
-			completion(.success(words))
-		} catch {
-			completion(.failure(error))
+		if context.hasChanges {
+			do {
+				try context.save()
+			} catch {
+				let nserror = error as NSError
+				fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+			}
 		}
 	}
+
+	// MARK: - Private Methods
 
 	private func setupDescription() {
 		let wordlistURL = getWordlistURL()

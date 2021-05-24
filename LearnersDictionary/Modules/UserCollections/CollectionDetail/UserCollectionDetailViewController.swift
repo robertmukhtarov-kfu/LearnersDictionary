@@ -9,12 +9,20 @@ import UIKit
 
 class UserCollectionDetailViewController: UIViewController, UserCollectionDetailViewProtocol {
 	var presenter: UserCollectionDetailPresenterProtocol?
+	private let settingsView = UserCollectionSettingsView()
+	private let tableView = UITableView()
 
 	lazy private var editButton = UIBarButtonItem(
 		title: "Edit",
 		style: .plain,
 		target: self,
 		action: #selector(editButtonPressed)
+	)
+	lazy private var cancelButton = UIBarButtonItem(
+		title: "Cancel",
+		style: .plain,
+		target: self,
+		action: #selector(cancelButtonPressed)
 	)
 
 	var isEditingActive: Bool = false {
@@ -23,11 +31,10 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 		}
 	}
 
-	private let tableView = UITableView()
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupToolbar()
+		setupSettingsView()
 		setupTableView()
 		presenter?.viewDidLoad()
 	}
@@ -42,11 +49,28 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 		setupNavigationBarForDisappearance()
 	}
 
+	func reloadData() {
+		tableView.reloadData()
+	}
+
+	func showDeleteCollectionAlert() {
+		let alert = UIAlertController(
+			title: "Delete Collection",
+			message: "Are you sure you want to delete this collection?",
+			preferredStyle: .alert
+		)
+		alert.addAction(.init(title: "Yes", style: .default) { [weak self] _ in
+			self?.presenter?.deleteCollection()
+		})
+		alert.addAction(.init(title: "No", style: .cancel))
+		present(alert, animated: true)
+	}
+
 	private func setupNavigationBarForAppearance() {
 		title = presenter?.title
 		navigationItem.largeTitleDisplayMode = .never
 		let navigationBar = navigationController?.navigationBar
-		navigationBar?.barTintColor = presenter?.color
+		navigationBar?.barTintColor = presenter?.color.toUIColor()
 		navigationBar?.tintColor = .white
 		navigationBar?.titleTextAttributes = [
 			.foregroundColor: UIColor.white,
@@ -67,7 +91,12 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 	}
 
 	private func setupToolbar() {
-		let deleteBarButton = UIBarButtonItem(title: "Delete Collection", style: .plain, target: self, action: nil)
+		let deleteBarButton = UIBarButtonItem(
+			title: "Delete Collection",
+			style: .plain,
+			target: self,
+			action: #selector(deleteCollectionButtonPressed)
+		)
 		deleteBarButton.tintColor = .systemRed
 		let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 		toolbarItems = [flexibleSpace, deleteBarButton, flexibleSpace]
@@ -77,11 +106,21 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 		isEditingActive.toggle()
 	}
 
+	@objc private func cancelButtonPressed() {
+		isEditingActive.toggle()
+	}
+
+	@objc private func deleteCollectionButtonPressed() {
+		presenter?.deleteCollectionButtonPressed()
+	}
+
 	private func enableEditing() {
 		navigationController?.setToolbarHidden(false, animated: true)
 		tableView.setEditing(true, animated: true)
 		editButton.title = "Done"
 		editButton.style = .done
+		navigationItem.leftBarButtonItem = cancelButton
+		showSettings()
 	}
 
 	private func disableEditing() {
@@ -89,6 +128,36 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 		tableView.setEditing(false, animated: true)
 		editButton.title = "Edit"
 		editButton.style = .plain
+		navigationItem.leftBarButtonItem = nil
+		hideSettings()
+	}
+
+	private func showSettings() {
+		settingsView.snp.updateConstraints { make in
+			make.top.equalToSuperview()
+		}
+		UIView.animate(withDuration: 0.3) {
+			self.view.layoutIfNeeded()
+		}
+	}
+
+	private func hideSettings() {
+		settingsView.snp.updateConstraints { make in
+			make.top.equalToSuperview().offset(-105)
+		}
+		UIView.animate(withDuration: 0.3) {
+			self.view.layoutIfNeeded()
+		}
+	}
+
+	private func setupSettingsView() {
+		settingsView.delegate = self
+		view.addSubview(settingsView)
+		settingsView.snp.makeConstraints { make in
+			make.top.equalToSuperview().offset(-105)
+			make.left.right.equalToSuperview()
+			make.height.equalTo(105)
+		}
 	}
 
 	private func setupTableView() {
@@ -96,19 +165,29 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 		tableView.dataSource = self
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { make in
-			make.edges.equalTo(view)
+			make.top.equalTo(settingsView.snp.bottom)
+			make.left.right.bottom.equalTo(view)
 		}
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CollectionWordCell")
 	}
+}
 
-	func reloadData() {
-		tableView.reloadData()
+extension UserCollectionDetailViewController: UserCollectionSettingsViewDelegate {
+	func didChangeTitle(to newTitle: String) {
+		title = newTitle
+	}
+
+	func didSelectColor(_ color: UserCollectionColor) {
+		self.navigationController?.navigationBar.barTintColor = color.toUIColor()
+		UIView.animate(withDuration: 0.3) {
+			self.navigationController?.navigationBar.layoutIfNeeded()
+		}
 	}
 }
 
 extension UserCollectionDetailViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		presenter?.wordCount ?? 0
+		return presenter?.wordCount ?? 0
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

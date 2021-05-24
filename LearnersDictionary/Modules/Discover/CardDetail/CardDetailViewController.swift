@@ -9,19 +9,20 @@ import UIKit
 
 class CardDetailViewController: UIViewController, UIGestureRecognizerDelegate {
 	var coordinator: DiscoverCoordinatorProtocol?
+	var addButtonAction: (() -> Void)?
 
 	let cardView: CardView
-	let childViewController: TrackedScrollViewProtocol
-	let childView: UIView
-	let distanceFromChildToCard: CGFloat
-	var cardViewTopConstraintConstant: CGFloat = 0.0 {
+	private let childViewController: TrackedScrollViewProtocol
+	private let childView: UIView
+	private let distanceFromChildToCard: CGFloat
+	private var cardViewTopConstraintConstant: CGFloat = 0.0 {
 		didSet {
 			cardView.snp.updateConstraints { make in
 				make.top.equalTo(view.snp.top).offset(cardViewTopConstraintConstant)
 			}
 		}
 	}
-	let blurredStatusBar = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+	private let blurredStatusBar = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
 
 	init(cardView: CardView, childViewController: TrackedScrollViewProtocol, distanceFromChildToCard: CGFloat = 0) {
 		self.cardView = cardView
@@ -102,5 +103,9 @@ extension CardDetailViewController: TrackedScrollViewDelegate {
 extension CardDetailViewController: CardViewDelegate {
 	func cardViewCloseButtonTapped() {
 		coordinator?.dismissCardDetail()
+	}
+
+	func addButtonTapped() {
+		addButtonAction?()
 	}
 }

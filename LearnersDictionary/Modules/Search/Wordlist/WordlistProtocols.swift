@@ -10,6 +10,7 @@ import UIKit
 protocol WordlistViewProtocol: AnyObject {
 	func reloadData()
 	func showError(message: String)
+	func showImagePickerAlert()
 }
 
 protocol WordlistPresenterProtocol {
@@ -22,4 +23,5 @@ protocol WordlistPresenterProtocol {
 	func searchBarCancelTapped()
 	func didSelectWord(at indexPath: IndexPath)
 	func cameraButtonTapped()
+	func showImagePicker(pickerSourceType: UIImagePickerController.SourceType)
 }

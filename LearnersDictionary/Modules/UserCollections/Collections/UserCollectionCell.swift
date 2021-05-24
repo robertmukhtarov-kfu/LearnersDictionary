@@ -18,6 +18,7 @@ class UserCollectionCell: UICollectionViewCell {
 		let label = UILabel()
 		label.textColor = .white
 		label.font = .systemFont(ofSize: 20, weight: .bold)
+		label.numberOfLines = 2
 		return label
 	}()
 

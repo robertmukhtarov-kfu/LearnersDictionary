@@ -14,6 +14,7 @@ enum CardViewPresentationType {
 
 protocol CardViewDelegate: AnyObject {
 	func cardViewCloseButtonTapped()
+	func addButtonTapped()
 }
 
 class CardView: UIView {

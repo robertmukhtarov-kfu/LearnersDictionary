@@ -27,6 +27,21 @@ class WordlistViewController: UIViewController, WordlistViewProtocol {
 		navigationController?.navigationBar.shadowImage = nil
 	}
 
+	func showImagePickerAlert() {
+		let alert = UIAlertController(
+			title: "Look up the words in the image",
+			message: "Select image from one of these options",
+			preferredStyle: .actionSheet
+		)
+		alert.addAction(UIAlertAction(title: "Take Photo", style: .default) { [weak self] _ in
+			self?.presenter?.showImagePicker(pickerSourceType: .camera)
+		})
+		alert.addAction(UIAlertAction(title: "Pick From Library", style: .default) { [weak self] _ in
+			self?.presenter?.showImagePicker(pickerSourceType: .photoLibrary)
+		})
+		present(alert, animated: true)
+	}
+
 	func showError(message: String) {
 		showErrorAlert(message: message)
 	}

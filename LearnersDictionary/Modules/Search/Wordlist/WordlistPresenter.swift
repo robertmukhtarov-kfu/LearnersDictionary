@@ -5,12 +5,12 @@
 //  Created by Robert Mukhtarov on 05.03.2021.
 //
 
-import Foundation
+import UIKit
 
 class WordlistPresenter: WordlistPresenterProtocol {
 	weak var view: WordlistViewProtocol?
 	weak var coordinator: SearchCoordinator?
-	let coreDataService = CoreDataService()
+	let wordRepository = WordRepository()
 
 	var numberOfSections: Int {
 		indexToSectionMap.count
@@ -19,7 +19,7 @@ class WordlistPresenter: WordlistPresenterProtocol {
 		indexToSectionMap.keys.sorted()
 	}
 
-	private var wordlist: [[String]] = []
+	private var wordlist: [[Word]] = []
 	private let indexToSectionMap = Dictionary(
 		uniqueKeysWithValues: "#ABCDEFGHIJKLMNOPQRSTUVWXYZ".enumerated().map {
 			(String($1), $0)
@@ -40,7 +40,7 @@ class WordlistPresenter: WordlistPresenterProtocol {
 	}
 
 	func getTitle(forCellAt indexPath: IndexPath) -> String {
-		wordlist[indexPath.section][indexPath.row]
+		wordlist[indexPath.section][indexPath.row].spelling
 	}
 
 	func didSelectWord(at indexPath: IndexPath) {
@@ -63,13 +63,17 @@ class WordlistPresenter: WordlistPresenterProtocol {
 	}
 
 	func cameraButtonTapped() {
-		coordinator?.showCamera()
+		view?.showImagePickerAlert()
+	}
+
+	func showImagePicker(pickerSourceType: UIImagePickerController.SourceType) {
+		coordinator?.showImagePicker(pickerSourceType: pickerSourceType)
 	}
 
 	// MARK: - Private methods
 
 	private func eraseWordlist() {
-		wordlist = [[String]](repeating: [], count: numberOfSections)
+		wordlist = [[Word]](repeating: [], count: numberOfSections)
 	}
 
 	private func setupWordlist(predicate: NSPredicate? = nil, indexOffset: Int = 0) {
@@ -80,12 +84,11 @@ class WordlistPresenter: WordlistPresenterProtocol {
 			selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
 		)
 		let sortDescriptors = [descriptor]
-		coreDataService.fetchWordlist(predicate: predicate, sortDescriptors: sortDescriptors) { [weak self] result in
+		wordRepository.fetchWordlist(predicate: predicate, sortDescriptors: sortDescriptors) { [weak self] result in
 			guard let self = self else { return }
 			switch result {
 			case .success(let words):
-				let wordsStr = words.map { $0.spelling }
-				wordsStr.forEach { self.add(word: $0, indexOffset: indexOffset) }
+				words.forEach { self.add(word: $0, indexOffset: indexOffset) }
 				self.view?.reloadData()
 			case .failure:
 				self.view?.showError(message: "Failed to load the wordlist.")
@@ -93,13 +96,14 @@ class WordlistPresenter: WordlistPresenterProtocol {
 		}
 	}
 
-	private func add(word: String, indexOffset: Int) {
-		guard word.count - 1 >= indexOffset else {
+	private func add(word: Word, indexOffset: Int) {
+		let wordStr = word.spelling
+		guard wordStr.count - 1 >= indexOffset else {
 			wordlist[0].append(word)
 			return
 		}
 
-		let firstChar = word[word.index(word.startIndex, offsetBy: indexOffset)]
+		let firstChar = wordStr[wordStr.index(wordStr.startIndex, offsetBy: indexOffset)]
 		guard firstChar.isLetter else {
 			wordlist[0].append(word)
 			return

@@ -10,15 +10,15 @@ import UIKit
 class TextRecognitionCoordinator: NSObject, TextRecognitionCoordinatorProtocol {
 	let imagePickerController = UIImagePickerController()
 
-	func start() {
+	func start(pickerSourceType: UIImagePickerController.SourceType) {
 		imagePickerController.delegate = self
 		imagePickerController.modalPresentationStyle = .fullScreen
 		imagePickerController.navigationController?.navigationBar.prefersLargeTitles = false
-		if UIImagePickerController.isSourceTypeAvailable(.camera) {
-			imagePickerController.sourceType = .camera
-		} else {
-			imagePickerController.sourceType = .photoLibrary
+		guard UIImagePickerController.isSourceTypeAvailable(pickerSourceType) else {
+			print("Source type \(pickerSourceType) is not available on this device")
+			return
 		}
+		imagePickerController.sourceType = pickerSourceType
 	}
 
 	func startTextRecognition(image: UIImage) {
@@ -37,9 +37,7 @@ class TextRecognitionCoordinator: NSObject, TextRecognitionCoordinatorProtocol {
 
 extension TextRecognitionCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-		guard let image = info[.originalImage] as? UIImage else {
-			return
-		}
+		guard let image = info[.originalImage] as? UIImage else { return }
 		startTextRecognition(image: image)
 	}
 }

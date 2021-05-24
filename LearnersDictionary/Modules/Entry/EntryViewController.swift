@@ -11,6 +11,7 @@ import SnapKit
 class EntryViewController: UIViewController, TrackedScrollViewProtocol {
 	let entry: EntryModel
 	weak var trackedScrollViewDelegate: TrackedScrollViewDelegate?
+	var presenter: EntryPageViewPresenterProtocol?
 
 	private let scrollView: UIScrollView = {
 		let scrollView = UIScrollView()
@@ -53,17 +54,24 @@ class EntryViewController: UIViewController, TrackedScrollViewProtocol {
 			make.top.equalToSuperview().offset(16)
 			make.bottom.equalToSuperview().offset(-16)
 			make.left.right.equalToSuperview()
-			make.width.equalToSuperview().offset(-40)
+			make.width.equalToSuperview().inset(40)
 		}
-		stackView.addArrangedSubview(
-			HeadwordView(
-				headword: entry.headword,
-				transcription: entry.transcription
-			)
+		let headwordView = HeadwordView(
+			headword: entry.headword,
+			transcription: entry.transcription,
+			audioFileName: entry.audioFileName
 		)
+		headwordView.delegate = self
+		stackView.addArrangedSubview(headwordView)
 		for definition in entry.definitions {
 			stackView.addArrangedSubview(DefinitionView(definition: definition))
 		}
+	}
+}
+
+extension EntryViewController: HeadwordViewDelegate {
+	func pronounceButtonTapped(for audioFileName: String) {
+		presenter?.pronounce(audioFileName: audioFileName)
 	}
 }
 

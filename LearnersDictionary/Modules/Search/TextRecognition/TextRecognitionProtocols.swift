@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TextRecognitionCoordinatorProtocol {
-	func start()
+	func start(pickerSourceType: UIImagePickerController.SourceType)
 	func startTextRecognition(image: UIImage)
 	func dismissImagePicker()
 }

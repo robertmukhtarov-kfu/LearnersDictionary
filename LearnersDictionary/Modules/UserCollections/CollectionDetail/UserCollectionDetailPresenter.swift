@@ -10,20 +10,23 @@ import UIKit
 class UserCollectionDetailPresenter: UserCollectionDetailPresenterProtocol {
 	weak var view: UserCollectionDetailViewProtocol?
 	var coordinator: UserCollectionsCoordinator?
-	var collection: UserCollectionModel
+	var collection: UserCollection
 
-	var wordCount: Int {
-		collection.words.count
-	}
-	var color: UIColor {
-		collection.color
-	}
+	private let userCollectionRepository: UserCollectionRepositoryProtocol
+
 	var title: String {
 		collection.title
 	}
+	var wordCount: Int {
+		collection.words.count
+	}
+	var color: UserCollectionColor {
+		collection.color
+	}
 
-	init(collection: UserCollectionModel) {
+	init(collection: UserCollection, repository: UserCollectionRepositoryProtocol) {
 		self.collection = collection
+		self.userCollectionRepository = repository
 	}
 
 	func viewDidLoad() {
@@ -31,24 +34,50 @@ class UserCollectionDetailPresenter: UserCollectionDetailPresenterProtocol {
 	}
 
 	func getWord(forCellAt indexPath: IndexPath) -> String {
-		collection.words[indexPath.row]
+		guard let word = collection.words[indexPath.row] as? Word else {
+			fatalError("Couldn't get word at indexPath \(indexPath)")
+		}
+		return word.spelling
 	}
 
 	func deleteWord(at indexPath: IndexPath) {
-		collection.words.remove(at: indexPath.row)
+		collection.removeFromWords(at: indexPath.item)
+		userCollectionRepository.save()
 	}
 
 	func moveWord(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
 		let sourceIndex = sourceIndexPath.item
 		let destinationIndex = destinationIndexPath.item
 
-		let word = collection.words[sourceIndex]
-		collection.words.remove(at: sourceIndex)
-		collection.words.insert(word, at: destinationIndex)
+		guard let word = collection.words[sourceIndex] as? Word else {
+			fatalError("Couldn't get word at indexPath \(sourceIndexPath) when trying to move it")
+		}
+		collection.removeFromWords(at: sourceIndex)
+		collection.insertIntoWords(word, at: destinationIndex)
+		userCollectionRepository.save()
 	}
 
 	func didSelectWord(at indexPath: IndexPath) {
-		let word = collection.words[indexPath.row]
+		guard let word = collection.words[indexPath.row] as? Word else {
+			fatalError("Couldn't get selected word at indexPath \(indexPath)")
+		}
 		coordinator?.showEntry(for: word)
+	}
+
+	func deleteCollectionButtonPressed() {
+		view?.showDeleteCollectionAlert()
+	}
+
+	func deleteCollection() {
+		userCollectionRepository.delete(collection: collection)
+		coordinator?.popToRootViewController()
+	}
+
+	func showSettings() {
+
+	}
+
+	func hideSettings() {
+		
 	}
 }

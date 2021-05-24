@@ -16,29 +16,39 @@ class UserCollectionsViewController: UIViewController, UserCollectionsViewProtoc
 		super.viewDidLoad()
 		view.backgroundColor = .background
 		extendedLayoutIncludesOpaqueBars = true
-		title = "My Collections"
+		title = presenter?.title
 		setupCollectionView()
 		setupNavigationBar()
-		presenter?.viewDidLoad()
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		navigationController?.setToolbarHidden(true, animated: true)
+		presenter?.viewWillAppear()
 	}
 
 	private func setupNavigationBar() {
-		navigationItem.leftBarButtonItem = UIBarButtonItem(
-			image: UIImage(named: "accountNavBar"),
-			style: .plain,
-			target: self,
-			action: #selector(showAccountScreen)
-		)
+		switch presenter?.mode {
+		case .add:
+			navigationItem.leftBarButtonItem = UIBarButtonItem(
+				barButtonSystemItem: .cancel,
+				target: self,
+				action: #selector(cancelButtonPressed)
+			)
+		default:
+			navigationItem.leftBarButtonItem = UIBarButtonItem(
+				image: UIImage(named: "accountNavBar"),
+				style: .plain,
+				target: self,
+				action: #selector(userProfileButtonTapped)
+			)
+		}
+
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
 			image: UIImage(named: "addCollectionNavBar"),
 			style: .plain,
 			target: self,
-			action: #selector(addNewCollection)
+			action: #selector(addNewCollectionButtonPressed)
 		)
 		navigationItem.largeTitleDisplayMode = .always
 		if #available(iOS 14.0, *) {
@@ -85,13 +95,35 @@ class UserCollectionsViewController: UIViewController, UserCollectionsViewProtoc
 		}
 	}
 
-	@objc private func addNewCollection() {
-		// TODO
-
+	@objc private func cancelButtonPressed() {
+		presenter?.cancelButtonPressed()
 	}
 
-	@objc private func showAccountScreen() {
-		// TODO
+	@objc private func addNewCollectionButtonPressed() {
+		presenter?.addNewCollectionButtonPressed()
+	}
+
+	func finish() {
+		dismiss(animated: true)
+	}
+
+	func showNewCollectionAlert() {
+		let alert = UIAlertController(title: "New Collection", message: "Name your new collection", preferredStyle: .alert)
+		alert.addTextField { textField in
+			textField.placeholder = "Name"
+		}
+		alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+			guard let text = alert.textFields?[0].text else {
+				fatalError("Failed to extract text field from alert")
+			}
+			self?.presenter?.addNewCollection(named: text)
+		})
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+		present(alert, animated: true)
+	}
+
+	@objc private func userProfileButtonTapped() {
+		presenter?.userProfileButtonTapped()
 	}
 }
 
@@ -109,9 +141,10 @@ extension UserCollectionsViewController: UICollectionViewDataSource {
 			) as? UserCollectionCell
 		else { fatalError("Couldn't dequeue cell") }
 
-		userCollectionCell.color = userCollection.color
+		userCollectionCell.color = userCollection.color.toUIColor()
 		userCollectionCell.titleLabel.text = userCollection.title
-		userCollectionCell.wordCountLabel.text = "\(userCollection.words.count) words"
+		let wordCount = userCollection.words.count
+		userCollectionCell.wordCountLabel.text = "\(wordCount) " + (wordCount != 1 ? "words" : "word")
 		return userCollectionCell
 	}
 }

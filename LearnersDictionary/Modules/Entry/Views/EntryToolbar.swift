@@ -38,7 +38,7 @@ class EntryToolbar: UIView, EntryToolbarView {
 		fakeNavbarShadow.snp.makeConstraints { make in
 			make.top.equalTo(snp.bottom)
 			make.left.right.equalToSuperview()
-			make.height.equalTo(0.5)
+			make.height.equalTo(0.25)
 		}
 	}
 

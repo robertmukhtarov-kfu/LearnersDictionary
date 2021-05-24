@@ -14,6 +14,8 @@ class DiscoverViewController: UIViewController, DiscoverViewProtocol {
 	private(set) var selectedCardView: CardView?
 	let blurredStatusBar = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
 
+	private let activityIndicatorViewController = ActivityIndicatorViewController()
+
 	let cellWidth: CGFloat = UIScreen.main.bounds.width - 40
 	let cellSpacing: CGFloat = 30.0
 
@@ -47,14 +49,28 @@ class DiscoverViewController: UIViewController, DiscoverViewProtocol {
 			make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
 		}
 		presenter?.viewDidLoad()
+		showActivityIndicator()
 	}
 
-	func reloadWordOfTheDay() {
-		collectionView.reloadSections([0])
+	func reloadData() {
+		collectionView.reloadData()
 	}
 
-	func reloadCollections() {
-		collectionView.reloadSections([1])
+	func showActivityIndicator() {
+		addChild(activityIndicatorViewController)
+		activityIndicatorViewController.view.frame = view.frame
+		view.addSubview(activityIndicatorViewController.view)
+		activityIndicatorViewController.didMove(toParent: self)
+	}
+
+	func hideActivityIndicator() {
+		UIView.animate(withDuration: 0.5) {
+			self.activityIndicatorViewController.view.layer.opacity = 0
+		} completion: { _ in
+			self.activityIndicatorViewController.willMove(toParent: nil)
+			self.activityIndicatorViewController.view.removeFromSuperview()
+			self.activityIndicatorViewController.removeFromParent()
+		}
 	}
 }
 

@@ -10,6 +10,7 @@ import Foundation
 enum EntryNetworkError: Error {
 	case entryLoadFailure
 	case noData
+	case invalidAudioFile
 }
 
 extension EntryNetworkError: LocalizedError {
@@ -19,6 +20,8 @@ extension EntryNetworkError: LocalizedError {
 			return "Failed to load the entries. Please check your internet connection."
 		case .noData:
 			return "Couldn't obtain the data."
+		case .invalidAudioFile:
+			return "Couldn't obtain the pronunciation."
 		}
 	}
 }

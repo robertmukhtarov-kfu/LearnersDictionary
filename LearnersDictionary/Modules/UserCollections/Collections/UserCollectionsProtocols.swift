@@ -9,12 +9,20 @@ import Foundation
 
 protocol UserCollectionsViewProtocol: AnyObject {
 	func reloadData()
+	func showNewCollectionAlert()
+	func finish()
 }
 
 protocol UserCollectionsPresenterProtocol {
+	var mode: UserCollectionsMode { get }
+	var title: String { get }
 	var collectionsCount: Int { get }
-	func viewDidLoad()
-	func getCollection(forCellAt indexPath: IndexPath) -> UserCollectionModel
+	func viewWillAppear()
+	func getCollection(forCellAt indexPath: IndexPath) -> UserCollection
 	func moveCollection(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
 	func didSelectCollection(at indexPath: IndexPath)
+	func addNewCollectionButtonPressed()
+	func cancelButtonPressed()
+	func addNewCollection(named name: String)
+	func userProfileButtonTapped()
 }

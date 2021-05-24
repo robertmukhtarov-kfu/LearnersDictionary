@@ -32,6 +32,6 @@ class MainTabBarController: UITabBarController {
 			selectedImage: nil
 		)
 
-		viewControllers = [searchVC, discoverVC, userCollectionsVC]
+		viewControllers = [userCollectionsVC, searchVC, discoverVC, ]
     }
 }

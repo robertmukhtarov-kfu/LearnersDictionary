@@ -12,6 +12,8 @@ class CollectionDetailPresenter {
 	weak var coordinator: DiscoverCoordinator?
 	let collection: DiscoverCollectionModel
 
+	private let wordRepository = WordRepository()
+
 	var wordCount: Int {
 		collection.words.count
 	}
@@ -33,7 +35,12 @@ class CollectionDetailPresenter {
 	}
 
 	func didSelectWord(at indexPath: IndexPath) {
-		let word = collection.words[indexPath.row]
-		coordinator?.showEntry(for: word.title)
+		let wordSpelling = collection.words[indexPath.row].title
+		guard let word = wordRepository.getWord(by: wordSpelling) else {
+			// TODO: alert
+			print("No such word in the database")
+			return
+		}
+		coordinator?.showEntry(for: word)
 	}
 }

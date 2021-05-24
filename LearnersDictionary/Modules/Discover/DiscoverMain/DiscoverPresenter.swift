@@ -14,15 +14,27 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 	private var collections: [DiscoverCollectionModel] = []
 	private var wordOfTheDay = WordOfTheDayModel(imageURL: "", title: "", shortDefinition: "")
 
+	private let wordRepository = WordRepository()
+
 	private let discoverService = DiscoverService()
+	private var tasksLeft = 2 {
+		didSet {
+			if tasksLeft == 0 {
+				DispatchQueue.main.async { [weak self] in
+					guard let self = self else { return }
+					self.view?.reloadData()
+					self.view?.hideActivityIndicator()
+				}
+			}
+		}
+	}
 
 	var collectionCount: Int {
 		collections.count
 	}
 
 	func viewDidLoad() {
-		loadWordOfTheDay()
-		loadCollections()
+		loadData()
 	}
 
 	func getWordOfTheDay() -> WordOfTheDayModel {
@@ -34,7 +46,12 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 	}
 
 	func showWordOfTheDay(cardView: CardView) {
-		coordinator?.showWordOfTheDay(wordOfTheDay, cardView: cardView)
+		guard let word = wordRepository.getWord(by: wordOfTheDay.title) else {
+			// TODO: alert
+			print("No such word in the database")
+			return
+		}
+		coordinator?.showWordOfTheDay(word, cardView: cardView)
 	}
 
 	func showDiscoverCollection(at index: Int, cardView: CardView) {
@@ -44,33 +61,34 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 
 	// MARK: - Private Methods
 
+	private func loadData() {
+		loadWordOfTheDay()
+		loadCollections()
+	}
+
 	private func loadWordOfTheDay() {
 		discoverService.wordOfTheDay { [weak self] result in
 			guard let self = self else { return }
-			DispatchQueue.main.async {
-				switch result {
-				case .success(let wordOfTheDay):
-					self.wordOfTheDay = wordOfTheDay
-					self.view?.reloadWordOfTheDay()
-				case .failure(let error):
-					print(error)
-				}
+			switch result {
+			case .success(let wordOfTheDay):
+				self.wordOfTheDay = wordOfTheDay
+			case .failure(let error):
+				print(error)
 			}
+			self.tasksLeft -= 1
 		}
 	}
 
 	private func loadCollections() {
 		discoverService.collections { [weak self] result in
 			guard let self = self else { return }
-			DispatchQueue.main.async {
-				switch result {
-				case .success(let collections):
-					self.collections = collections
-					self.view?.reloadCollections()
-				case .failure(let error):
-					print(error)
-				}
+			switch result {
+			case .success(let collections):
+				self.collections = collections
+			case .failure(let error):
+				print(error)
 			}
+			self.tasksLeft -= 1
 		}
 	}
 }

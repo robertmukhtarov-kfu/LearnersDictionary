@@ -12,12 +12,15 @@ protocol EntryPageView: AnyObject {
 	func configure(with entries: [EntryModel])
 	func showError(message: String)
 	func reset()
+	func showAddToCollectionScreen(viewController: UIViewController)
 }
 
 protocol EntryPageViewPresenterProtocol {
 	func viewDidLoad()
-	func set(word: String)
+	func set(word: Word)
 	func errorOccurred()
+	func addToCollectionButtonTapped()
+	func pronounce(audioFileName: String)
 }
 
 protocol EntryToolbarView {

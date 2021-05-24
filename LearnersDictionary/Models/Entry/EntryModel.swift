@@ -11,5 +11,6 @@ struct EntryModel {
 	let headword: String
 	let functionalLabel: String
 	let transcription: String?
+	let audioFileName: String?
 	let definitions: [DefinitionModel]
 }

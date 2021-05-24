@@ -8,8 +8,8 @@
 import UIKit
 
 protocol DiscoverViewProtocol: AnyObject {
-	func reloadWordOfTheDay()
-	func reloadCollections()
+	func reloadData()
+	func hideActivityIndicator()
 }
 
 protocol DiscoverPresenterProtocol {

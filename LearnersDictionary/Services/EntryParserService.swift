@@ -57,7 +57,7 @@ class EntryParserService: EntryParserServiceProtocol {
 
 	private func parseEntries(from jsonEntries: [JSON], for word: String) -> Result<[EntryModel], EntryParserError> {
 		let functions = getFunctionalLabels(from: jsonEntries)
-		let transcriptions = getTranscriptions(from: jsonEntries)
+		let pronunciations = getPronunciations(from: jsonEntries)
 		let definitions: [[DefinitionModel]]
 		var result: [EntryModel] = []
 
@@ -73,7 +73,8 @@ class EntryParserService: EntryParserServiceProtocol {
 				EntryModel(
 					headword: word,
 					functionalLabel: functions[i],
-					transcription: transcriptions[i],
+					transcription: pronunciations[i].transcription,
+					audioFileName: pronunciations[i].audioFileName,
 					definitions: definitions[i]
 				)
 			)
@@ -93,14 +94,21 @@ class EntryParserService: EntryParserServiceProtocol {
 		return functionalLabels
 	}
 
-	private func getTranscriptions(from jsonEntries: [JSON]) -> [String?] {
-		var pronunciations: [String?] = []
+	private func getPronunciations(from jsonEntries: [JSON]) -> [(transcription: String?, audioFileName: String?)] {
+		var pronunciations: [(transcription: String?, audioFileName: String?)] = []
 		for entry in jsonEntries {
-			guard let pronunciation = entry["hwi"]["prs"][0]["ipa"].string else {
-				pronunciations.append(nil)
+			guard
+				let pronunciation = entry["hwi"]["prs"][0].dictionary,
+				let transcription = pronunciation["ipa"]?.string
+			else {
+				pronunciations.append((transcription: nil, audioFileName: nil))
 				continue
 			}
-			pronunciations.append(pronunciation)
+			guard let audioFileName = pronunciation["sound"]?["audio"].string else {
+				pronunciations.append((transcription: transcription, audioFileName: nil))
+				continue
+			}
+			pronunciations.append((transcription: transcription, audioFileName: audioFileName))
 		}
 		return pronunciations
 	}

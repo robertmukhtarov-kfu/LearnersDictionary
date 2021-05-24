@@ -53,6 +53,11 @@ class WordOfTheDayCardView: CardView {
 			make.height.equalTo(addButton.frame.height)
 			make.right.equalTo(blurView).offset(-20)
 		}
+		addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+	}
+
+	@objc private func addButtonTapped() {
+		delegate?.addButtonTapped()
 	}
 
 	override func setFullMode() {

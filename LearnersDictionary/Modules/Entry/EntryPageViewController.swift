@@ -29,8 +29,8 @@ class EntryPageViewController: UIPageViewController, TrackedScrollViewProtocol {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
 			image: UIImage(named: "addCollectionNavBar"),
 			style: .plain,
-			target: nil,
-			action: nil
+			target: self,
+			action: #selector(addToCollectionButtonTapped)
 		)
 		dataSource = self
 		delegate = self
@@ -53,11 +53,16 @@ class EntryPageViewController: UIPageViewController, TrackedScrollViewProtocol {
 		toolbar.segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
 	}
 
+
 	@objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
 		let newIndex = sender.selectedSegmentIndex
 		let direction: UIPageViewController.NavigationDirection = newIndex > selectedIndex ? .forward : .reverse
 		selectedIndex = newIndex
 		setViewControllers([pages[selectedIndex]], direction: direction, animated: true)
+	}
+
+	@objc private func addToCollectionButtonTapped() {
+		presenter?.addToCollectionButtonTapped()
 	}
 
 	private func hideNavbarShadow() {
@@ -75,6 +80,7 @@ extension EntryPageViewController: EntryPageView {
 		entries.forEach { entry in
 			let entryViewController = EntryViewController(entry: entry)
 			entryViewController.trackedScrollViewDelegate = self
+			entryViewController.presenter = presenter
 			pages.append(entryViewController)
 			functionalLabels.append(entry.functionalLabel.capitalized)
 		}
@@ -94,6 +100,11 @@ extension EntryPageViewController: EntryPageView {
 		showErrorAlert(message: message) {
 			self.presenter?.errorOccurred()
 		}
+	}
+
+	func showAddToCollectionScreen(viewController: UIViewController) {
+		viewController.modalPresentationStyle = .fullScreen
+		present(viewController, animated: true)
 	}
 }
 

@@ -5,16 +5,20 @@
 //  Created by Robert Mukhtarov on 16.03.2021.
 //
 
-import Foundation
+import UIKit
+import AVFoundation
 
 class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 	weak var coordinator: SearchCoordinator?
 	weak var view: EntryPageView?
-	var word: String
+	var word: Word
 
-	let entryRepository = EntryRepository()
+	private let entryRepository = EntryRepository()
+	private let entryNetworkService = EntryNetworkService()
 
-	init(word: String) {
+	private var player: AVAudioPlayer?
+
+	init(word: Word) {
 		self.word = word
 	}
 
@@ -22,10 +26,10 @@ class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 		set(word: word)
 	}
 
-	func set(word: String) {
+	func set(word: Word) {
 		self.word = word
 		view?.reset()
-		view?.set(title: word)
+		view?.set(title: word.spelling)
 		showEntries()
 	}
 
@@ -33,8 +37,33 @@ class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 		coordinator?.closeEntry()
 	}
 
+	func addToCollectionButtonTapped() {
+		let navigationController = UINavigationController()
+		let userCollectionPresenter = UserCollectionsPresenter(mode: .add(word))
+		let userCollectionVC = UserCollectionsViewController()
+		userCollectionPresenter.view = userCollectionVC
+		userCollectionVC.presenter = userCollectionPresenter
+		navigationController.setViewControllers([userCollectionVC], animated: false)
+		view?.showAddToCollectionScreen(viewController: navigationController)
+	}
+
+	func pronounce(audioFileName: String) {
+		entryNetworkService.loadPronunciationAudio(for: audioFileName) { result in
+			switch result {
+			case .success(let audioData):
+				guard let pronunciationPlayer = try? AVAudioPlayer(data: audioData) else { return }
+				self.player = pronunciationPlayer
+				self.player?.play()
+			case .failure(let error):
+				print(error)
+			}
+		}
+	}
+
+	// MARK: - Private Methods
+
 	private func showEntries() {
-		entryRepository.entries(for: word) { [weak self] result in
+		entryRepository.entries(for: word.spelling) { [weak self] result in
 			guard let self = self else { return }
 			switch result {
 			case .success(let parsedEntries):

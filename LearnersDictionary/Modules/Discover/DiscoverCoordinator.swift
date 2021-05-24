@@ -8,9 +8,9 @@
 import UIKit
 
 protocol DiscoverCoordinatorProtocol {
-	func showWordOfTheDay(_ wordOfTheDay: WordOfTheDayModel, cardView: CardView)
+	func showWordOfTheDay(_ wordOfTheDay: Word, cardView: CardView)
 	func showDiscoverCollection(_ discoverCollection: DiscoverCollectionModel, cardView: CardView)
-	func showEntry(for word: String)
+	func showEntry(for word: Word)
 	func dismissCardDetail()
 }
 
@@ -38,7 +38,7 @@ class DiscoverCoordinator: DiscoverCoordinatorProtocol {
 		cardDetailNavigationController.transitioningDelegate = cardTransitionManager
 	}
 
-	func showWordOfTheDay(_ wordOfTheDay: WordOfTheDayModel, cardView: CardView) {
+	func showWordOfTheDay(_ wordOfTheDay: Word, cardView: CardView) {
 		let cardDetailConfigurator = CardDetailConfigurator()
 		let wordOfTheDayVC = cardDetailConfigurator.wordOfTheDay(wordOfTheDay, cardView: cardView)
 		wordOfTheDayVC.coordinator = self
@@ -58,7 +58,7 @@ class DiscoverCoordinator: DiscoverCoordinatorProtocol {
 		discoverViewController.present(cardDetailNavigationController, animated: true)
 	}
 
-	func showEntry(for word: String) {
+	func showEntry(for word: Word) {
 		let entryPageViewPresenter = EntryPageViewPresenter(word: word)
 		let entryPageViewController = EntryPageViewController()
 		entryPageViewPresenter.view = entryPageViewController

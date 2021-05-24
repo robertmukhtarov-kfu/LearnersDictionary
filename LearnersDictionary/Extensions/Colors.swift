@@ -34,4 +34,13 @@ extension UIColor {
 			dark: UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0)
 		)
 	}
+
+	static var divider: UIColor {
+		dynamicColor(
+			light: UIColor(red: 0.78, green: 0.78, blue: 0.78, alpha: 1.0),
+			dark: UIColor(red: 0.20, green: 0.20, blue: 0.21, alpha: 1.00)
+		)
+	}
+
+
 }

@@ -9,8 +9,9 @@ import UIKit
 
 protocol UserCollectionsCoordinatorProtocol {
 	func showUserCollections()
-	func showUserCollectionDetails(collection: UserCollectionModel)
-	func showEntry(for word: String)
+	func showUserCollectionDetails(collection: UserCollection, repository: UserCollectionRepositoryProtocol)
+	func showEntry(for word: Word)
+	func popToRootViewController()
 }
 
 class UserCollectionsCoordinator: UserCollectionsCoordinatorProtocol {
@@ -24,7 +25,7 @@ class UserCollectionsCoordinator: UserCollectionsCoordinatorProtocol {
 	}
 
 	func showUserCollections() {
-		let userCollectionPresenter = UserCollectionsPresenter()
+		let userCollectionPresenter = UserCollectionsPresenter(mode: .main)
 		let userCollectionVC = UserCollectionsViewController()
 		userCollectionPresenter.coordinator = self
 		userCollectionPresenter.view = userCollectionVC
@@ -32,8 +33,8 @@ class UserCollectionsCoordinator: UserCollectionsCoordinatorProtocol {
 		navigationController.pushViewController(userCollectionVC, animated: false)
 	}
 
-	func showUserCollectionDetails(collection: UserCollectionModel) {
-		let userCollectionDetailPresenter = UserCollectionDetailPresenter(collection: collection)
+	func showUserCollectionDetails(collection: UserCollection, repository: UserCollectionRepositoryProtocol) {
+		let userCollectionDetailPresenter = UserCollectionDetailPresenter(collection: collection, repository: repository)
 		let userCollectionDetailVC = UserCollectionDetailViewController()
 		userCollectionDetailPresenter.coordinator = self
 		userCollectionDetailPresenter.view = userCollectionDetailVC
@@ -41,11 +42,22 @@ class UserCollectionsCoordinator: UserCollectionsCoordinatorProtocol {
 		navigationController.pushViewController(userCollectionDetailVC, animated: true)
 	}
 
-	func showEntry(for word: String) {
+	func showEntry(for word: Word) {
 		let entryPageViewPresenter = EntryPageViewPresenter(word: word)
 		let entryPageViewController = EntryPageViewController()
 		entryPageViewPresenter.view = entryPageViewController
 		entryPageViewController.presenter = entryPageViewPresenter
 		navigationController.pushViewController(entryPageViewController, animated: true)
+	}
+
+	func popToRootViewController() {
+		navigationController.popToRootViewController(animated: true)
+	}
+
+	func showAuthorization() {
+		let authorizationCoordinator = AuthorizationCoordinator()
+		let authorizationNavigationController = authorizationCoordinator.navigationController
+		authorizationNavigationController.modalPresentationStyle = .fullScreen
+		navigationController.present(authorizationCoordinator.navigationController, animated: true)
 	}
 }

@@ -9,8 +9,8 @@ import UIKit
 
 protocol SearchCoordinatorProtocol {
 	func showWordlist()
-	func showEntry(for word: String)
-	func showCamera()
+	func showEntry(for word: Word)
+	func showImagePicker(pickerSourceType: UIImagePickerController.SourceType)
 	func closeEntry()
 }
 
@@ -33,7 +33,7 @@ class SearchCoordinator: SearchCoordinatorProtocol {
 		navigationController.pushViewController(wordlistVC, animated: false)
 	}
 
-	func showEntry(for word: String) {
+	func showEntry(for word: Word) {
 		let entryPageViewPresenter = EntryPageViewPresenter(word: word)
 		let entryPageViewController = EntryPageViewController()
 		entryPageViewPresenter.coordinator = self
@@ -42,8 +42,8 @@ class SearchCoordinator: SearchCoordinatorProtocol {
 		navigationController.pushViewController(entryPageViewController, animated: true)
 	}
 
-	func showCamera() {
-		textRecognitionCoordinator.start()
+	func showImagePicker(pickerSourceType: UIImagePickerController.SourceType) {
+		textRecognitionCoordinator.start(pickerSourceType: pickerSourceType)
 		let imagePickerVC = textRecognitionCoordinator.imagePickerController
 		navigationController.present(imagePickerVC, animated: true)
 	}

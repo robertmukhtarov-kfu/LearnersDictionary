@@ -11,5 +11,6 @@ target 'LearnersDictionary' do
   pod 'FittedSheets'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
   pod 'Kingfisher', '~> 6.0'
 end
