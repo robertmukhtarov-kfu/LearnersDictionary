@@ -69,7 +69,9 @@ class SignUpViewController: UIViewController {
 		emailTextField.delegate = self
 		passwordTextField.delegate = self
 		firstNameTextField.delegate = self
+		firstNameTextField.autocapitalizationType = .sentences
 		lastNameTextField.delegate = self
+		lastNameTextField.autocapitalizationType = .sentences
 
 		infoStackView.snp.makeConstraints { make in
 			make.center.equalToSuperview()

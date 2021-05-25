@@ -11,7 +11,7 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 	weak var view: TextRecognitionViewProtocol?
 	weak var coordinator: TextRecognitionCoordinator?
 
-	private let entryRepository = EntryRepository()
+	private let wordRepository = WordRepository()
 	private let textRecognizer = TextRecognitionService()
 
 	let image: UIImage
@@ -34,7 +34,7 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 					case .success(let recognizedWords):
 						self.view?.showRecognizedWords(recognizedWords)
 					case .failure(let error):
-						print(error.localizedDescription)
+						self.view?.showError(message: error.localizedDescription)
 					}
 				}
 			}
@@ -43,15 +43,15 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 
 	func lookUp(word: String) {
 		guard let view = view else { return }
-		view.prepareEntrySheet(for: word)
-		entryRepository.entries(for: word) { result in
-			switch result {
-			case .success(let parsedEntries):
-				view.showEntries(parsedEntries)
-			case .failure(let error):
-				view.showError(message: error.localizedDescription)
-			}
+		guard let wordToLookUp = wordRepository.getWord(by: word) else {
+			view.showError(message: "No entries found for “\(word)”.")
+			return
 		}
+		let entryPageViewPresenter = EntryPageViewPresenter(word: wordToLookUp)
+		let entryPageViewController = EntryPageViewController()
+		entryPageViewPresenter.view = entryPageViewController
+		entryPageViewController.presenter = entryPageViewPresenter
+		view.showEntry(with: entryPageViewController)
 	}
 
 	func doneButtonTapped() {

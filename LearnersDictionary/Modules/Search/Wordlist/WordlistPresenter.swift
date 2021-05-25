@@ -10,7 +10,7 @@ import UIKit
 class WordlistPresenter: WordlistPresenterProtocol {
 	weak var view: WordlistViewProtocol?
 	weak var coordinator: SearchCoordinator?
-	let wordRepository = WordRepository()
+	private let wordRepository = WordRepository()
 
 	var numberOfSections: Int {
 		indexToSectionMap.count

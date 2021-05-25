@@ -13,7 +13,12 @@ class TextRecognitionViewController: UIViewController {
 
 	private var isEntrySheetShown = false
 	private let imageView = RecognizedWordsImageView()
-	private var entryPageView = EntryPageViewController()
+
+	private let entryNavigationController: UINavigationController = {
+		let navigationController = UINavigationController()
+		navigationController.navigationBar.isTranslucent = false
+		return navigationController
+	}()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -53,24 +58,16 @@ extension TextRecognitionViewController: TextRecognitionViewProtocol {
 		}
 	}
 
-	func showEntries(_ entries: [EntryModel]) {
-		entryPageView.configure(with: entries)
-	}
-
 	func showRecognizedWords(_ words: [RecognizedWordModel]) {
 		words.forEach { imageView.addRectangle(for: $0) }
 	}
 
-	func prepareEntrySheet(for word: String) {
-		entryPageView.reset()
+	func showEntry(with viewController: UIViewController) {
+		entryNavigationController.setViewControllers([viewController], animated: false)
 		if !isEntrySheetShown { showEntrySheet() }
-		entryPageView.set(title: word)
 	}
 
 	private func showEntrySheet() {
-		let entryNavigationController = UINavigationController(rootViewController: entryPageView)
-		entryNavigationController.navigationBar.isTranslucent = false
-
 		let sheetOptions = SheetOptions(
 			shrinkPresentingViewController: false,
 			useInlineMode: true

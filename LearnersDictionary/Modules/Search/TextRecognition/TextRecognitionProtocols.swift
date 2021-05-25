@@ -15,10 +15,9 @@ protocol TextRecognitionCoordinatorProtocol {
 
 protocol TextRecognitionViewProtocol: AnyObject {
 	func set(image: UIImage)
-	func prepareEntrySheet(for word: String)
-	func showEntries(_ entries: [EntryModel])
 	func showRecognizedWords(_ words: [RecognizedWordModel])
 	func showError(message: String)
+	func showEntry(with viewController: UIViewController)
 }
 
 protocol TextRecognitionPresenterProtocol {

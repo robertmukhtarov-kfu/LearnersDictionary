@@ -48,7 +48,8 @@ class EntryPageViewPresenter: EntryPageViewPresenterProtocol {
 	}
 
 	func pronounce(audioFileName: String) {
-		entryNetworkService.loadPronunciationAudio(for: audioFileName) { result in
+		entryNetworkService.loadPronunciationAudio(for: audioFileName) { [weak self] result in
+			guard let self = self else { return }
 			switch result {
 			case .success(let audioData):
 				guard let pronunciationPlayer = try? AVAudioPlayer(data: audioData) else { return }

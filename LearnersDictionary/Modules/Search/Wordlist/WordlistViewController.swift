@@ -29,7 +29,7 @@ class WordlistViewController: UIViewController, WordlistViewProtocol {
 
 	func showImagePickerAlert() {
 		let alert = UIAlertController(
-			title: "Look up the words in the image",
+			title: "Look up the words in an image",
 			message: "Select image from one of these options",
 			preferredStyle: .actionSheet
 		)
@@ -39,6 +39,8 @@ class WordlistViewController: UIViewController, WordlistViewProtocol {
 		alert.addAction(UIAlertAction(title: "Pick From Library", style: .default) { [weak self] _ in
 			self?.presenter?.showImagePicker(pickerSourceType: .photoLibrary)
 		})
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
 		present(alert, animated: true)
 	}
 
