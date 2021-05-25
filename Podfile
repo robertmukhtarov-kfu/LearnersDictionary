@@ -8,9 +8,12 @@ target 'LearnersDictionary' do
   pod 'Alamofire', '~> 5.4.1'
   pod 'SwiftyJSON', '~> 5.0.0'
   pod 'GoogleMLKit/TextRecognition'
-  pod 'FittedSheets'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Kingfisher', '~> 6.0'
+  
+  # Local
+  pod 'FittedSheets', :path => 'LocalPods/FittedSheets'
+
 end

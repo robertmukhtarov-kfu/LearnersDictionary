@@ -1,6 +1,7 @@
 excluded:
   - Carthage
   - Pods
+  - LocalPods
   - DerivedData
 
 disabled_rules:

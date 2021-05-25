@@ -129,7 +129,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
-  - FittedSheets
+  - FittedSheets (from `LocalPods/FittedSheets`)
   - GoogleMLKit/TextRecognition
   - Kingfisher (~> 6.0)
   - SnapKit (~> 5.0.1)
@@ -145,7 +145,6 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseDatabase
     - FirebaseInstallations
-    - FittedSheets
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleMLKit
@@ -164,6 +163,10 @@ SPEC REPOS:
     - SnapKit
     - SwiftyJSON
 
+EXTERNAL SOURCES:
+  FittedSheets:
+    :path: LocalPods/FittedSheets
+
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Firebase: d8bd6bd34b4c7ed57bfdd056c66ff5adcdde53ab
@@ -173,7 +176,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 3d36e05da74cb8b7ce30e6594a8f201b982c725c
   FirebaseDatabase: b62e6e05aac439fe603d7ba68a2c764ca7357a58
   FirebaseInstallations: a58d4f72ec5861840b84df489f2668d970df558a
-  FittedSheets: 470a7740a083156d711ab6ccd37d1d539005e6aa
+  FittedSheets: 58a2097e9c8bbab4260c60e1f1f9e8dc7501908d
   GoogleAppMeasurement: 120eec8803fe65a4a7475fb3d3d59a61d0e1a866
   GoogleDataTransport: b006084b73915a42c28a3466961a4edda3065da6
   GoogleMLKit: 6ca2a10de262ee1017b52ac045e8967884ace992
@@ -192,6 +195,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: a569f529369ce14503bae6fe613991a66345e5ff
+PODFILE CHECKSUM: 370ba770c572448813208299cef38d90e9d70042
 
 COCOAPODS: 1.10.1

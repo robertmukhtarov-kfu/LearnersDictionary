@@ -5,6 +5,9 @@ LearnersDictionary/GoogleService-Info.plist
 # Xcode
 xcuserdata/
 
+# Pods
+Pods/
+
 # macOS
 .DS_Store
 .Trashes
