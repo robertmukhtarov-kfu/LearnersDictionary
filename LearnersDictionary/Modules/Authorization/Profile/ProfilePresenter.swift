@@ -11,7 +11,7 @@ class ProfilePresenter {
 	weak var view: ProfileViewController?
 	var coordinator: AuthorizationCoordinator?
 
-	private let userAuthenticationService = UserAuthenticationService()
+	private let userAuthenticationService = FirebaseUserAuthenticationService()
 
 	func viewDidLoad() {
 		loadData()
@@ -28,7 +28,7 @@ class ProfilePresenter {
 			case .success(let userInfo):
 				DispatchQueue.main.async {
 					self.view?.set(email: userInfo.email)
-					self.view?.set(name: "\(userInfo.firstName) \(userInfo.lastName)")
+					self.view?.set(name: userInfo.displayName)
 				}
 			case .failure(let error):
 				print(error)

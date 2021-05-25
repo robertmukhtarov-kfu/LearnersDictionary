@@ -11,7 +11,7 @@ class SignUpPresenter {
 	weak var view: SignUpViewController?
 	var coordinator: AuthorizationCoordinatorProtocol?
 
-	private let userAuthenticationService = UserAuthenticationService()
+	private let userAuthenticationService = FirebaseUserAuthenticationService()
 
 	func createUser(email: String, password: String, firstName: String, lastName: String) {
 		userAuthenticationService.signUp(

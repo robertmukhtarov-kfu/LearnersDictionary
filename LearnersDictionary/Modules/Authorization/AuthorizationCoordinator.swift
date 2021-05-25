@@ -17,7 +17,7 @@ protocol AuthorizationCoordinatorProtocol {
 
 class AuthorizationCoordinator: AuthorizationCoordinatorProtocol {
 	let navigationController: UINavigationController
-	private let userAuthenticationService = UserAuthenticationService()
+	private let userAuthenticationService = FirebaseUserAuthenticationService()
 
 	init(navigationController: UINavigationController = UINavigationController()) {
 		self.navigationController = navigationController

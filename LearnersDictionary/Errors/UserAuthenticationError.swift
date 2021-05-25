@@ -9,8 +9,9 @@ import Foundation
 
 enum UserAuthenticationError: Error {
 	case noUser
-	case noUID
+	case signUpFailure
 	case noEmail
+	case noDisplayName
 	case invalidData
 	case invalidUserInfo
 }
@@ -20,10 +21,12 @@ extension UserAuthenticationError: LocalizedError {
 		switch self {
 		case .noUser:
 			return "Unauthorized request"
-		case .noUID:
-			return "Failed to load UID"
+		case .signUpFailure:
+			return "Failed to load sign up the user"
 		case .noEmail:
 			return "Failed to load the email information"
+		case .noDisplayName:
+			return "Failed to load the name"
 		case .invalidData:
 			return "Invalid data"
 		case .invalidUserInfo:

@@ -18,12 +18,6 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 		target: self,
 		action: #selector(editButtonPressed)
 	)
-	lazy private var cancelButton = UIBarButtonItem(
-		title: "Cancel",
-		style: .plain,
-		target: self,
-		action: #selector(cancelButtonPressed)
-	)
 
 	var isEditingActive: Bool = false {
 		didSet {
@@ -106,10 +100,6 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 		isEditingActive.toggle()
 	}
 
-	@objc private func cancelButtonPressed() {
-		isEditingActive.toggle()
-	}
-
 	@objc private func deleteCollectionButtonPressed() {
 		presenter?.deleteCollectionButtonPressed()
 	}
@@ -119,7 +109,6 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 		tableView.setEditing(true, animated: true)
 		editButton.title = "Done"
 		editButton.style = .done
-		navigationItem.leftBarButtonItem = cancelButton
 		showSettings()
 	}
 
@@ -158,6 +147,11 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 			make.left.right.equalToSuperview()
 			make.height.equalTo(105)
 		}
+		guard
+			let title = presenter?.title,
+			let color = presenter?.color
+		else { return }
+		settingsView.configure(title: title, color: color)
 	}
 
 	private func setupTableView() {
@@ -175,6 +169,7 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 extension UserCollectionDetailViewController: UserCollectionSettingsViewDelegate {
 	func didChangeTitle(to newTitle: String) {
 		title = newTitle
+		presenter?.changeTitle(to: newTitle)
 	}
 
 	func didSelectColor(_ color: UserCollectionColor) {
@@ -182,6 +177,7 @@ extension UserCollectionDetailViewController: UserCollectionSettingsViewDelegate
 		UIView.animate(withDuration: 0.3) {
 			self.navigationController?.navigationBar.layoutIfNeeded()
 		}
+		presenter?.changeColor(to: color)
 	}
 }
 

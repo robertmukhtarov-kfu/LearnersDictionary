@@ -16,7 +16,7 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 
 	private let wordRepository = WordRepository()
 
-	private let discoverService = DiscoverService()
+	private let discoverService = FirebaseDiscoverService()
 	private var tasksLeft = 2 {
 		didSet {
 			if tasksLeft == 0 {

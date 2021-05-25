@@ -19,7 +19,7 @@
 		71130DF825F269A600FF0BD6 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71130DF725F269A600FF0BD6 /* CoreDataService.swift */; };
 		71130DFB25F26D3700FF0BD6 /* WordlistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71130DFA25F26D3700FF0BD6 /* WordlistPresenter.swift */; };
 		711670E02641430500CEF3EB /* DiscoverWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711670DF2641430500CEF3EB /* DiscoverWordModel.swift */; };
-		711670E2264169FF00CEF3EB /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711670E1264169FF00CEF3EB /* DiscoverService.swift */; };
+		711670E2264169FF00CEF3EB /* FirebaseDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711670E1264169FF00CEF3EB /* FirebaseDiscoverService.swift */; };
 		711670E62641824700CEF3EB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711670E52641824700CEF3EB /* DateFormatter.swift */; };
 		711C3E362628C8BB00E97CFC /* UserCollectionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F74912628C6F100DA4F2F /* UserCollectionsCoordinator.swift */; };
 		712419E825F8AD4700A0A8B1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712419E725F8AD4700A0A8B1 /* Colors.swift */; };
@@ -38,7 +38,7 @@
 		7135B6E92636B4DC004F3DAC /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B6E82636B4DC004F3DAC /* DiscoverPresenter.swift */; };
 		7135B6ED2636B686004F3DAC /* WordOfTheDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B6EC2636B686004F3DAC /* WordOfTheDayModel.swift */; };
 		7135B6F92636BE58004F3DAC /* CardDetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7135B6F82636BE58004F3DAC /* CardDetailConfigurator.swift */; };
-		7138CB202654EE36003A081B /* UserAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7138CB1F2654EE36003A081B /* UserAuthenticationService.swift */; };
+		7138CB202654EE36003A081B /* FirebaseUserAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7138CB1F2654EE36003A081B /* FirebaseUserAuthenticationService.swift */; };
 		7138CB2326551DE2003A081B /* UserAuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7138CB2226551DE2003A081B /* UserAuthenticationError.swift */; };
 		713B39C32636CB4000218709 /* TrackedScrollViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B39C22636CB4000218709 /* TrackedScrollViewProtocol.swift */; };
 		713B39C82636D82000218709 /* CollectionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713B39C72636D82000218709 /* CollectionDetailTableViewCell.swift */; };
@@ -78,6 +78,7 @@
 		719627E9265BBE6B0081B5F4 /* ColorSwatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719627E8265BBE6B0081B5F4 /* ColorSwatchCell.swift */; };
 		719627F3265BFB7C0081B5F4 /* UserCollectionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719627F2265BFB7B0081B5F4 /* UserCollectionSettingsView.swift */; };
 		719627F7265CB6370081B5F4 /* NoCollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719627F6265CB6370081B5F4 /* NoCollectionsView.swift */; };
+		719627FA265D7AE80081B5F4 /* FirebaseUserCollectionNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719627F9265D7AE80081B5F4 /* FirebaseUserCollectionNetworkService.swift */; };
 		71B0518025ED684D00A1EA4B /* Wordlist.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */; };
 		71B4CDE52600AF0800034724 /* EntryParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDE42600AF0800034724 /* EntryParserService.swift */; };
 		71B4CDEE2600AFFE00034724 /* EntryParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDED2600AFFE00034724 /* EntryParserError.swift */; };
@@ -127,7 +128,7 @@
 		71130DF725F269A600FF0BD6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		71130DFA25F26D3700FF0BD6 /* WordlistPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordlistPresenter.swift; sourceTree = "<group>"; };
 		711670DF2641430500CEF3EB /* DiscoverWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverWordModel.swift; sourceTree = "<group>"; };
-		711670E1264169FF00CEF3EB /* DiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverService.swift; sourceTree = "<group>"; };
+		711670E1264169FF00CEF3EB /* FirebaseDiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDiscoverService.swift; sourceTree = "<group>"; };
 		711670E52641824700CEF3EB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		712419E725F8AD4700A0A8B1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		7128ABCE25ED1915000633AD /* LearnersDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnersDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +148,7 @@
 		7135B6E82636B4DC004F3DAC /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
 		7135B6EC2636B686004F3DAC /* WordOfTheDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfTheDayModel.swift; sourceTree = "<group>"; };
 		7135B6F82636BE58004F3DAC /* CardDetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailConfigurator.swift; sourceTree = "<group>"; };
-		7138CB1F2654EE36003A081B /* UserAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationService.swift; sourceTree = "<group>"; };
+		7138CB1F2654EE36003A081B /* FirebaseUserAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserAuthenticationService.swift; sourceTree = "<group>"; };
 		7138CB2226551DE2003A081B /* UserAuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationError.swift; sourceTree = "<group>"; };
 		713B39C22636CB4000218709 /* TrackedScrollViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedScrollViewProtocol.swift; sourceTree = "<group>"; };
 		713B39C72636D82000218709 /* CollectionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -188,6 +189,7 @@
 		719627E8265BBE6B0081B5F4 /* ColorSwatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSwatchCell.swift; sourceTree = "<group>"; };
 		719627F2265BFB7B0081B5F4 /* UserCollectionSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionSettingsView.swift; sourceTree = "<group>"; };
 		719627F6265CB6370081B5F4 /* NoCollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCollectionsView.swift; sourceTree = "<group>"; };
+		719627F9265D7AE80081B5F4 /* FirebaseUserCollectionNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserCollectionNetworkService.swift; sourceTree = "<group>"; };
 		71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wordlist.sqlite; sourceTree = "<group>"; };
 		71B4CDE42600AF0800034724 /* EntryParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryParserService.swift; sourceTree = "<group>"; };
 		71B4CDED2600AFFE00034724 /* EntryParserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryParserError.swift; sourceTree = "<group>"; };
@@ -436,8 +438,9 @@
 		7138CB1D2654EDFA003A081B /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				7138CB1F2654EE36003A081B /* UserAuthenticationService.swift */,
-				711670E1264169FF00CEF3EB /* DiscoverService.swift */,
+				7138CB1F2654EE36003A081B /* FirebaseUserAuthenticationService.swift */,
+				719627F9265D7AE80081B5F4 /* FirebaseUserCollectionNetworkService.swift */,
+				711670E1264169FF00CEF3EB /* FirebaseDiscoverService.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -833,7 +836,7 @@
 			files = (
 				711670E62641824700CEF3EB /* DateFormatter.swift in Sources */,
 				7176D42B26485AC400CAB24B /* ActivityIndicatorViewController.swift in Sources */,
-				7138CB202654EE36003A081B /* UserAuthenticationService.swift in Sources */,
+				7138CB202654EE36003A081B /* FirebaseUserAuthenticationService.swift in Sources */,
 				71DDD0FC2614D2190072A154 /* EntryProtocols.swift in Sources */,
 				715DA6462632C39B00E360C5 /* DiscoverCollectionModel.swift in Sources */,
 				715DA64F2633475100E360C5 /* UserCollectionCell.swift in Sources */,
@@ -842,6 +845,7 @@
 				7135B6ED2636B686004F3DAC /* WordOfTheDayModel.swift in Sources */,
 				718FD56E25F61BD4002DFC38 /* SenseModel.swift in Sources */,
 				7177FA122623620F000D59C9 /* WordOfTheDayCardView.swift in Sources */,
+				719627FA265D7AE80081B5F4 /* FirebaseUserCollectionNetworkService.swift in Sources */,
 				7176D42526484BC600CAB24B /* HeadwordView.swift in Sources */,
 				71F6649D2653DFC50019EB00 /* UserCollection+CoreDataClass.swift in Sources */,
 				711670E02641430500CEF3EB /* DiscoverWordModel.swift in Sources */,
@@ -887,7 +891,7 @@
 				715DA6402632C0EE00E360C5 /* UserCollectionsPresenter.swift in Sources */,
 				71F8D790261C853900696C3A /* EntryNetworkError.swift in Sources */,
 				7128ABF125ED1938000633AD /* WordlistViewController.swift in Sources */,
-				711670E2264169FF00CEF3EB /* DiscoverService.swift in Sources */,
+				711670E2264169FF00CEF3EB /* FirebaseDiscoverService.swift in Sources */,
 				71F8D78D261C816B00696C3A /* EntryRepository.swift in Sources */,
 				71F5E2992625C7B90066D26F /* CardDetailViewController.swift in Sources */,
 				711103A92635497C009DA5D0 /* UserCollectionDetailPresenter.swift in Sources */,

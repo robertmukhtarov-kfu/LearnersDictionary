@@ -8,6 +8,8 @@
 import CoreData
 
 protocol UserCollectionRepositoryProtocol {
+	func createCollection(named title: String) -> UserCollection
+	func getUser() -> User
 	func delete(collection: UserCollection)
 	func save()
 }
@@ -15,6 +17,7 @@ protocol UserCollectionRepositoryProtocol {
 class UserCollectionRepository: UserCollectionRepositoryProtocol {
 	private let context = CoreDataService.shared.persistentContainer.viewContext
 	private let wordRepository = WordRepository()
+	private let userCollectionNetworkService = FirebaseUserCollectionNetworkService()
 
 	func createCollection(named title: String) -> UserCollection {
 		let newCollection = UserCollection(context: context)
@@ -64,6 +67,12 @@ class UserCollectionRepository: UserCollectionRepositoryProtocol {
 	}
 
 	func save() {
+		let modificationDate = Date()
+		let user = getUser()
+		user.lastModified = modificationDate
 		CoreDataService.shared.saveContext()
+
+		guard let collections = user.collections.array as? [UserCollection] else { return }
+		userCollectionNetworkService.saveCollections(collections, modificationDate: modificationDate)
 	}
 }

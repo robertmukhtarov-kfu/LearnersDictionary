@@ -11,7 +11,7 @@ class SignInPresenter {
 	weak var view: SignInViewController?
 	var coordinator: AuthorizationCoordinatorProtocol?
 
-	private let userAuthenticationService = UserAuthenticationService()
+	private let userAuthenticationService = FirebaseUserAuthenticationService()
 
 	func signIn(email: String, password: String) {
 		userAuthenticationService.signIn(email: email, password: password) { [weak self] result in

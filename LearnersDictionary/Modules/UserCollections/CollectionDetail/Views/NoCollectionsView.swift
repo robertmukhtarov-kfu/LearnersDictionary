@@ -42,4 +42,3 @@ class NoCollectionsView: UIStackView {
 		addArrangedSubview(hintLabel)
 	}
 }
-

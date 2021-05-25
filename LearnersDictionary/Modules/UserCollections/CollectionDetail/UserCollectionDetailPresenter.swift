@@ -33,6 +33,16 @@ class UserCollectionDetailPresenter: UserCollectionDetailPresenterProtocol {
 		view?.reloadData()
 	}
 
+	func changeTitle(to title: String) {
+		collection.title = title
+		userCollectionRepository.save()
+	}
+
+	func changeColor(to color: UserCollectionColor) {
+		collection.color = color
+		userCollectionRepository.save()
+	}
+
 	func getWord(forCellAt indexPath: IndexPath) -> String {
 		guard let word = collection.words[indexPath.row] as? Word else {
 			fatalError("Couldn't get word at indexPath \(indexPath)")
@@ -71,13 +81,5 @@ class UserCollectionDetailPresenter: UserCollectionDetailPresenterProtocol {
 	func deleteCollection() {
 		userCollectionRepository.delete(collection: collection)
 		coordinator?.popToRootViewController()
-	}
-
-	func showSettings() {
-
-	}
-
-	func hideSettings() {
-		
 	}
 }

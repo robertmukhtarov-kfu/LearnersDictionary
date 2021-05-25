@@ -17,12 +17,12 @@ protocol UserCollectionDetailPresenterProtocol {
 	var color: UserCollectionColor { get }
 	var title: String { get }
 	func viewDidLoad()
+	func changeTitle(to title: String)
+	func changeColor(to color: UserCollectionColor)
 	func getWord(forCellAt indexPath: IndexPath) -> String
 	func deleteWord(at indexPath: IndexPath)
 	func moveWord(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
 	func didSelectWord(at indexPath: IndexPath)
 	func deleteCollectionButtonPressed()
 	func deleteCollection()
-	func hideSettings()
-	func showSettings()
 }

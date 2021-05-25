@@ -1,5 +1,5 @@
 //
-//  DiscoverService.swift
+//  FirebaseDiscoverService.swift
 //  LearnersDictionary
 //
 //  Created by Robert Mukhtarov on 04.05.2021.
@@ -13,7 +13,7 @@ protocol DiscoverServiceProtocol {
 	func collections(completion: @escaping (Result<[DiscoverCollectionModel], Error>) -> Void)
 }
 
-class DiscoverService: DiscoverServiceProtocol {
+class FirebaseDiscoverService: DiscoverServiceProtocol {
 	private enum Paths {
 		static let wordOfTheDay = "wordOfTheDay"
 		static let discoverCollections = "discoverCollections"

@@ -59,7 +59,7 @@ class SignInViewController: UIViewController {
 
 	private func setup() {
 		extendedLayoutIncludesOpaqueBars = true
-		
+
 		view.backgroundColor = .background
 		view.addSubview(infoStackView)
 		view.addSubview(actionStackView)
@@ -99,7 +99,11 @@ class SignInViewController: UIViewController {
 			object: nil
 		)
 
-		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(
+			barButtonSystemItem: .cancel,
+			target: self,
+			action: #selector(cancelButtonTapped)
+		)
 
 		signInButton.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
 		signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)

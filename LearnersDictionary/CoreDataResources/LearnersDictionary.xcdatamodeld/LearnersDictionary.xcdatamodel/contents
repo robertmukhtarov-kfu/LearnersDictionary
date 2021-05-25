@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E232" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="lastModified" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="collections" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="UserCollection" inverseName="user" inverseEntity="UserCollection"/>
     </entity>
     <entity name="UserCollection" representedClassName="UserCollection" syncable="YES">
@@ -11,11 +12,11 @@
     </entity>
     <entity name="Word" representedClassName="Word" syncable="YES">
         <attribute name="spelling" attributeType="String"/>
-        <relationship name="userCollection" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserCollection" inverseName="words" inverseEntity="UserCollection"/>
+        <relationship name="userCollection" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="UserCollection" inverseName="words" inverseEntity="UserCollection"/>
     </entity>
     <elements>
-        <element name="UserCollection" positionX="-79.8470458984375" positionY="-272.420166015625" width="128" height="103"/>
+        <element name="User" positionX="-270.7339477539062" positionY="-241.6435546875" width="114.3607177734375" height="59"/>
+        <element name="UserCollection" positionX="-79.8470458984375" positionY="-272.420166015625" width="128" height="89"/>
         <element name="Word" positionX="110.9786376953125" positionY="-250.7488861083984" width="128" height="59"/>
-        <element name="User" positionX="-270.7339477539062" positionY="-241.6435546875" width="114.3607177734375" height="28"/>
     </elements>
 </model>

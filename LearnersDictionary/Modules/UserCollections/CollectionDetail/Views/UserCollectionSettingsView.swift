@@ -17,7 +17,7 @@ class UserCollectionSettingsView: UIView {
 	private let colors = UserCollectionColor.allCases
 	private let colorsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-	var delegate: UserCollectionSettingsViewDelegate?
+	weak var delegate: UserCollectionSettingsViewDelegate?
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -26,6 +26,15 @@ class UserCollectionSettingsView: UIView {
 
 	required init(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	func configure(title: String, color: UserCollectionColor) {
+		titleTextField.text = title
+		colorsCollectionView.selectItem(
+			at: IndexPath(row: Int(color.rawValue), section: 0),
+			animated: false,
+			scrollPosition: .top
+		)
 	}
 
 	private func setup() {
@@ -111,12 +120,11 @@ extension UserCollectionSettingsView: UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 		guard
 			let colorSwatchCell = cell as? ColorSwatchCell,
-			let selectedItemIndex = collectionView.indexPathsForSelectedItems?.first?.item,
-			indexPath.item == selectedItemIndex
+			let selectedItemIndex = collectionView.indexPathsForSelectedItems?.first?.item
 		else {
 			return
 		}
-		colorSwatchCell.select()
+		indexPath.item == selectedItemIndex ? colorSwatchCell.select() : colorSwatchCell.deselect()
 	}
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
