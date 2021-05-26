@@ -41,7 +41,7 @@ class TextRecognitionViewController: UIViewController {
 		imageView.delegate = self
 	}
 
-	@objc func doneButtonTapped(_ sender: UIBarButtonItem) {
+	@objc private func doneButtonTapped(_ sender: UIBarButtonItem) {
 		presenter?.doneButtonTapped()
 	}
 }

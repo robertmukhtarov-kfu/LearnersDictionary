@@ -22,7 +22,7 @@ class CloseButton: UIButton {
 		layer.opacity = 1.0
 		clipsToBounds = true
 
-		setImage(UIImage(named: "xmark"), for: .normal)
+		setImage(.xMark, for: .normal)
 		imageView?.tintColor = .xMarkColor
 		adjustsImageWhenHighlighted = false
 

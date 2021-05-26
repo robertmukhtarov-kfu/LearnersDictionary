@@ -26,7 +26,9 @@ class UserCollectionsPresenter: UserCollectionsPresenterProtocol {
 		}
 	}
 	var collectionsCount: Int {
-		user.collections.count
+		let collectionsCount = user.collections.count
+		collectionsCount == 0 ? view?.showNoCollectionsView() : view?.hideNoCollectionsView()
+		return collectionsCount
 	}
 
 	private let userCollectionRepository = UserCollectionRepository()
@@ -35,6 +37,11 @@ class UserCollectionsPresenter: UserCollectionsPresenterProtocol {
 	init(mode: UserCollectionsMode) {
 		self.mode = mode
 		user = userCollectionRepository.getUser()
+		userCollectionRepository.syncCollections { [weak self] in
+			DispatchQueue.main.async {
+				self?.view?.reloadData()
+			}
+		}
 	}
 
 	func viewWillAppear() {

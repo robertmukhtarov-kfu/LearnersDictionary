@@ -11,6 +11,8 @@ protocol UserCollectionsViewProtocol: AnyObject {
 	func reloadData()
 	func showNewCollectionAlert()
 	func finish()
+	func showNoCollectionsView()
+	func hideNoCollectionsView()
 }
 
 protocol UserCollectionsPresenterProtocol {

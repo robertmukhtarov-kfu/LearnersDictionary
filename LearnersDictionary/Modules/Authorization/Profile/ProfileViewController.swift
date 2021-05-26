@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, ProfileViewProtocol {
 	var presenter: ProfilePresenter?
 
 	private let stackView: UIStackView = {
@@ -44,6 +44,10 @@ class ProfileViewController: UIViewController {
 
 	func set(email: String) {
 		emailLabel.text = email
+	}
+
+	func showError(message: String) {
+		showErrorAlert(message: message)
 	}
 
     override func viewDidLoad() {

@@ -7,7 +7,6 @@
 
 import Foundation
 import FirebaseAuth
-import FirebaseDatabase
 
 protocol UserAuthenticationServiceProtocol {
 	func isAuthenticated() -> Bool
@@ -18,10 +17,8 @@ protocol UserAuthenticationServiceProtocol {
 }
 
 class FirebaseUserAuthenticationService: UserAuthenticationServiceProtocol {
-	private let usersRef = Database.database().reference().child("user")
-
 	func isAuthenticated() -> Bool {
-		return Auth.auth().currentUser != nil
+		Auth.auth().currentUser != nil
 	}
 
 	func signIn(email: String, password: String, completion: @escaping (Result<(), Error>) -> Void) {

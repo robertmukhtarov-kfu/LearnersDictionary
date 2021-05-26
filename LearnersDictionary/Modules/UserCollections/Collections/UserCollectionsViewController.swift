@@ -10,7 +10,12 @@ import UIKit
 class UserCollectionsViewController: UIViewController, UserCollectionsViewProtocol {
 	var presenter: UserCollectionsPresenterProtocol?
 
-	let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+	private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+	private let noCollectionsView = NoCollectionsView()
+
+	private enum ReuseIdentifier {
+		static let userCollectionCell = "UserCollectionCell"
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -18,6 +23,7 @@ class UserCollectionsViewController: UIViewController, UserCollectionsViewProtoc
 		extendedLayoutIncludesOpaqueBars = true
 		title = presenter?.title
 		setupCollectionView()
+		setupNoCollectionsView()
 		setupNavigationBar()
 	}
 
@@ -25,6 +31,63 @@ class UserCollectionsViewController: UIViewController, UserCollectionsViewProtoc
 		super.viewWillAppear(true)
 		navigationController?.setToolbarHidden(true, animated: true)
 		presenter?.viewWillAppear()
+	}
+
+	func reloadData() {
+		collectionView.reloadData()
+	}
+
+	func showNoCollectionsView() {
+		noCollectionsView.isHidden = false
+	}
+
+	func hideNoCollectionsView() {
+		noCollectionsView.isHidden = true
+	}
+
+	func showNewCollectionAlert() {
+		let alert = UIAlertController(title: "New Collection", message: "Name your new collection", preferredStyle: .alert)
+		alert.addTextField { textField in
+			textField.placeholder = "Name"
+		}
+		alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+			guard let text = alert.textFields?[0].text else {
+				fatalError("Failed to extract text field from alert")
+			}
+			self?.presenter?.addNewCollection(named: text)
+		})
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+		present(alert, animated: true)
+	}
+
+	func finish() {
+		dismiss(animated: true)
+	}
+
+	// MARK: - Private Methods
+
+	private func setupNoCollectionsView() {
+		view.addSubview(noCollectionsView)
+		noCollectionsView.snp.makeConstraints { make in
+			make.center.equalToSuperview()
+			make.width.equalTo(250)
+		}
+		noCollectionsView.isHidden = true
+	}
+
+	private func setupCollectionView() {
+		collectionView.backgroundColor = .background
+		collectionView.delegate = self
+		collectionView.dataSource = self
+		collectionView.alwaysBounceVertical = true
+		view.addSubview(collectionView)
+		collectionView.snp.makeConstraints { make in
+			make.edges.equalTo(view)
+		}
+		collectionView.register(UserCollectionCell.self, forCellWithReuseIdentifier: ReuseIdentifier.userCollectionCell)
+
+		let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+		collectionView.addGestureRecognizer(longPressGesture)
 	}
 
 	private func setupNavigationBar() {
@@ -37,7 +100,7 @@ class UserCollectionsViewController: UIViewController, UserCollectionsViewProtoc
 			)
 		default:
 			navigationItem.leftBarButtonItem = UIBarButtonItem(
-				image: UIImage(named: "accountNavBar"),
+				image: .accountNavBar,
 				style: .plain,
 				target: self,
 				action: #selector(userProfileButtonTapped)
@@ -45,7 +108,7 @@ class UserCollectionsViewController: UIViewController, UserCollectionsViewProtoc
 		}
 
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
-			image: UIImage(named: "addCollectionNavBar"),
+			image: .addCollectionNavBar,
 			style: .plain,
 			target: self,
 			action: #selector(addNewCollectionButtonPressed)
@@ -56,27 +119,6 @@ class UserCollectionsViewController: UIViewController, UserCollectionsViewProtoc
 		} else {
 			navigationItem.backButtonTitle = "Back"
 		}
-	}
-
-	func reloadData() {
-		collectionView.reloadData()
-	}
-
-	// MARK: - Private Methods
-
-	private func setupCollectionView() {
-		collectionView.backgroundColor = .background
-		collectionView.delegate = self
-		collectionView.dataSource = self
-		collectionView.alwaysBounceVertical = true
-		view.addSubview(collectionView)
-		collectionView.snp.makeConstraints { make in
-			make.edges.equalTo(view)
-		}
-		collectionView.register(UserCollectionCell.self, forCellWithReuseIdentifier: "UserCollectionCell")
-
-		let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-		collectionView.addGestureRecognizer(longPressGesture)
 	}
 
 	@objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
@@ -103,25 +145,6 @@ class UserCollectionsViewController: UIViewController, UserCollectionsViewProtoc
 		presenter?.addNewCollectionButtonPressed()
 	}
 
-	func finish() {
-		dismiss(animated: true)
-	}
-
-	func showNewCollectionAlert() {
-		let alert = UIAlertController(title: "New Collection", message: "Name your new collection", preferredStyle: .alert)
-		alert.addTextField { textField in
-			textField.placeholder = "Name"
-		}
-		alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-			guard let text = alert.textFields?[0].text else {
-				fatalError("Failed to extract text field from alert")
-			}
-			self?.presenter?.addNewCollection(named: text)
-		})
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-		present(alert, animated: true)
-	}
-
 	@objc private func userProfileButtonTapped() {
 		presenter?.userProfileButtonTapped()
 	}
@@ -136,7 +159,7 @@ extension UserCollectionsViewController: UICollectionViewDataSource {
 		guard
 			let userCollection = presenter?.getCollection(forCellAt: indexPath),
 			let userCollectionCell = collectionView.dequeueReusableCell(
-				withReuseIdentifier: "UserCollectionCell",
+				withReuseIdentifier: ReuseIdentifier.userCollectionCell,
 				for: indexPath
 			) as? UserCollectionCell
 		else { fatalError("Couldn't dequeue cell") }

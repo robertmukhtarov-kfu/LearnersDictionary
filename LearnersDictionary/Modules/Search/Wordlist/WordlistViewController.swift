@@ -13,6 +13,10 @@ class WordlistViewController: UIViewController, WordlistViewProtocol {
 	private var tableView = UITableView()
 	private var searchController = UISearchController(searchResultsController: nil)
 
+	private enum ReuseIdentifier {
+		static let wordCell = "wordCell"
+	}
+
     override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Search"
@@ -57,7 +61,7 @@ extension WordlistViewController: UITableViewDelegate, UITableViewDataSource {
 		tableView.snp.makeConstraints { make in
 			make.edges.equalTo(view)
 		}
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: ReuseIdentifier.wordCell)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,7 +69,7 @@ extension WordlistViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifier.wordCell, for: indexPath)
 		cell.textLabel?.text = presenter?.getTitle(forCellAt: indexPath)
 		return cell
     }
@@ -89,17 +93,6 @@ extension WordlistViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension WordlistViewController: UISearchBarDelegate {
-	private func setupSearchController() {
-		searchController.obscuresBackgroundDuringPresentation = false
-		let searchBar = searchController.searchBar
-		searchBar.delegate = self
-		searchBar.placeholder = "Type a word"
-		searchBar.showsBookmarkButton = true
-		searchBar.setImage(UIImage(named: "camera.fill"), for: .bookmark, state: .normal)
-		navigationItem.searchController = searchController
-		navigationItem.hidesSearchBarWhenScrolling = false
-	}
-
 	func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
 		presenter?.cameraButtonTapped()
 	}
@@ -111,5 +104,16 @@ extension WordlistViewController: UISearchBarDelegate {
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		guard let text = searchBar.text else { return }
 		if !text.isEmpty { presenter?.searchBarCancelTapped() }
+	}
+
+	private func setupSearchController() {
+		searchController.obscuresBackgroundDuringPresentation = false
+		let searchBar = searchController.searchBar
+		searchBar.delegate = self
+		searchBar.placeholder = "Type a word"
+		searchBar.showsBookmarkButton = true
+		searchBar.setImage(.cameraFill, for: .bookmark, state: .normal)
+		navigationItem.searchController = searchController
+		navigationItem.hidesSearchBarWhenScrolling = false
 	}
 }

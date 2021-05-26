@@ -12,6 +12,10 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 	private let settingsView = UserCollectionSettingsView()
 	private let tableView = UITableView()
 
+	private enum ReuseIdentifier {
+		static let collectionWordCell = "CollectionWordCell"
+	}
+
 	lazy private var editButton = UIBarButtonItem(
 		title: "Edit",
 		style: .plain,
@@ -162,12 +166,13 @@ class UserCollectionDetailViewController: UIViewController, UserCollectionDetail
 			make.top.equalTo(settingsView.snp.bottom)
 			make.left.right.bottom.equalTo(view)
 		}
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CollectionWordCell")
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: ReuseIdentifier.collectionWordCell)
 	}
 }
 
 extension UserCollectionDetailViewController: UserCollectionSettingsViewDelegate {
 	func didChangeTitle(to newTitle: String) {
+		let newTitle = newTitle.isEmpty ? "Untitled" : newTitle
 		title = newTitle
 		presenter?.changeTitle(to: newTitle)
 	}
@@ -187,7 +192,7 @@ extension UserCollectionDetailViewController: UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionWordCell", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifier.collectionWordCell, for: indexPath)
 		cell.textLabel?.text = presenter?.getWord(forCellAt: indexPath)
 		return cell
 	}

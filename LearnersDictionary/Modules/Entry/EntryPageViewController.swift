@@ -27,7 +27,7 @@ class EntryPageViewController: UIPageViewController, TrackedScrollViewProtocol {
 		view.backgroundColor = .background
 		navigationItem.largeTitleDisplayMode = .never
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
-			image: UIImage(named: "addCollectionNavBar"),
+			image: .addCollectionNavBar,
 			style: .plain,
 			target: self,
 			action: #selector(addToCollectionButtonTapped)

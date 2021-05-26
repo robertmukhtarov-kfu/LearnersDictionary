@@ -21,17 +21,17 @@ class MainTabBarController: UITabBarController {
 		let discoverVC = discoverCoordinator.discoverViewController
 		discoverVC.tabBarItem = UITabBarItem(
 			title: "Discover",
-			image: UIImage(named: "discover"),
+			image: .discover,
 			selectedImage: nil
 		)
 
 		let userCollectionsVC = userCollectionsCoordinator.navigationController
 		userCollectionsVC.tabBarItem = UITabBarItem(
 			title: "My Collections",
-			image: UIImage(named: "collections"),
+			image: .collections,
 			selectedImage: nil
 		)
 
-		viewControllers = [userCollectionsVC, searchVC, discoverVC, ]
+		viewControllers = [searchVC, discoverVC, userCollectionsVC]
     }
 }

@@ -17,9 +17,9 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 	private let wordRepository = WordRepository()
 
 	private let discoverService = FirebaseDiscoverService()
-	private var tasksLeft = 2 {
+	private var asyncTasksLeft = 2 {
 		didSet {
-			if tasksLeft == 0 {
+			if asyncTasksLeft == 0 {
 				DispatchQueue.main.async { [weak self] in
 					guard let self = self else { return }
 					self.view?.reloadData()
@@ -47,8 +47,7 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 
 	func showWordOfTheDay(cardView: CardView) {
 		guard let word = wordRepository.getWord(by: wordOfTheDay.title) else {
-			// TODO: alert
-			print("No such word in the database")
+			view?.showError(message: "No such word in the database")
 			return
 		}
 		coordinator?.showWordOfTheDay(word, cardView: cardView)
@@ -75,7 +74,7 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 			case .failure(let error):
 				print(error)
 			}
-			self.tasksLeft -= 1
+			self.asyncTasksLeft -= 1
 		}
 	}
 
@@ -88,7 +87,7 @@ class DiscoverPresenter: DiscoverPresenterProtocol {
 			case .failure(let error):
 				print(error)
 			}
-			self.tasksLeft -= 1
+			self.asyncTasksLeft -= 1
 		}
 	}
 }

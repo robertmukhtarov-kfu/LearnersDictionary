@@ -20,6 +20,15 @@ class EntryToolbar: UIView, EntryToolbarView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
+	func configureSegmentedControl(with items: [String]) {
+		for (index, title) in items.enumerated() {
+			segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
+		}
+		segmentedControl.selectedSegmentIndex = 0
+	}
+
+	// MARK: - Private Methods
+
 	private func setupToolbar() {
 		backgroundColor = .background
 		addSubview(segmentedControl)
@@ -40,12 +49,5 @@ class EntryToolbar: UIView, EntryToolbarView {
 			make.left.right.equalToSuperview()
 			make.height.equalTo(0.25)
 		}
-	}
-
-	func configureSegmentedControl(with items: [String]) {
-		for (index, title) in items.enumerated() {
-			segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
-		}
-		segmentedControl.selectedSegmentIndex = 0
 	}
 }

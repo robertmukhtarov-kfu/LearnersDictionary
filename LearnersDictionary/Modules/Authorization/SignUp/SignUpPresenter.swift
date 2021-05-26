@@ -7,11 +7,12 @@
 
 import Foundation
 
-class SignUpPresenter {
-	weak var view: SignUpViewController?
+class SignUpPresenter: SignUpPresenterProtocol {
+	weak var view: SignUpViewProtocol?
 	var coordinator: AuthorizationCoordinatorProtocol?
 
 	private let userAuthenticationService = FirebaseUserAuthenticationService()
+	private let userCollectionRepository = UserCollectionRepository()
 
 	func createUser(email: String, password: String, firstName: String, lastName: String) {
 		userAuthenticationService.signUp(
@@ -20,11 +21,14 @@ class SignUpPresenter {
 			firstName: firstName,
 			lastName: lastName
 		) { [weak self] result in
-			switch result {
-			case .success:
-				self?.coordinator?.dismiss()
-			case .failure(let error):
-				print(error.localizedDescription)
+			DispatchQueue.main.async { [weak self] in
+				switch result {
+				case .success:
+					self?.coordinator?.dismiss()
+					self?.userCollectionRepository.save()
+				case .failure(let error):
+					self?.view?.showError(message: error.localizedDescription)
+				}
 			}
 		}
 	}

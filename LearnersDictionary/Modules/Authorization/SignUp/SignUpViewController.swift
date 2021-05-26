@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class SignUpViewController: UIViewController {
-	var presenter: SignUpPresenter?
+class SignUpViewController: UIViewController, SignUpViewProtocol {
+	var presenter: SignUpPresenterProtocol?
 
 	private let infoStackView: UIStackView = {
 		let stackView = UIStackView()
@@ -58,6 +58,12 @@ class SignUpViewController: UIViewController {
 		super.viewDidLoad()
 		setup()
 	}
+
+	func showError(message: String) {
+		showErrorAlert(message: message)
+	}
+
+	// MARK: - Private Methods
 
 	private func setup() {
 		extendedLayoutIncludesOpaqueBars = true
@@ -119,10 +125,10 @@ class SignUpViewController: UIViewController {
 
 	@objc private func signUpButtonTapped() {
 		guard
-			let email = emailTextField.text,
-			let password = passwordTextField.text,
-			let firstName = firstNameTextField.text,
-			let lastName = lastNameTextField.text
+			let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+			let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+			let firstName = firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+			let lastName = lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
 		else {
 			return
 		}

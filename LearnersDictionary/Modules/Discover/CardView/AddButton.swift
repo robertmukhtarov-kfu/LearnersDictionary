@@ -27,7 +27,7 @@ class AddButton: UIButton {
 
 	private func setup() {
 		setTitle("ADD", for: .normal)
-		setImage(UIImage(named: "addToCollections"), for: .normal)
+		setImage(.addToCollections, for: .normal)
 		imageView?.tintColor = .white
 		adjustsImageWhenHighlighted = false
 		imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 12)

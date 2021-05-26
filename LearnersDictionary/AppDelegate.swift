@@ -17,11 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .background
 
+		FirebaseApp.configure()
+
 		tabBarController = MainTabBarController()
 		window?.rootViewController = tabBarController
 		window?.makeKeyAndVisible()
-
-		FirebaseApp.configure()
 
 		return true
     }

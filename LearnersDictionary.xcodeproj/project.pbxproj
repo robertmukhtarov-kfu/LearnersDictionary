@@ -79,6 +79,9 @@
 		719627F3265BFB7C0081B5F4 /* UserCollectionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719627F2265BFB7B0081B5F4 /* UserCollectionSettingsView.swift */; };
 		719627F7265CB6370081B5F4 /* NoCollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719627F6265CB6370081B5F4 /* NoCollectionsView.swift */; };
 		719627FA265D7AE80081B5F4 /* FirebaseUserCollectionNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719627F9265D7AE80081B5F4 /* FirebaseUserCollectionNetworkService.swift */; };
+		719627FE265EC2C00081B5F4 /* UserCollectionNetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719627FD265EC2BF0081B5F4 /* UserCollectionNetworkServiceError.swift */; };
+		71962801265ECFCD0081B5F4 /* CollectionDetailProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71962800265ECFCD0081B5F4 /* CollectionDetailProtocols.swift */; };
+		71962803265EDEAA0081B5F4 /* AuthorizationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71962802265EDEAA0081B5F4 /* AuthorizationProtocols.swift */; };
 		71B0518025ED684D00A1EA4B /* Wordlist.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */; };
 		71B4CDE52600AF0800034724 /* EntryParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDE42600AF0800034724 /* EntryParserService.swift */; };
 		71B4CDEE2600AFFE00034724 /* EntryParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4CDED2600AFFE00034724 /* EntryParserError.swift */; };
@@ -190,6 +193,9 @@
 		719627F2265BFB7B0081B5F4 /* UserCollectionSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionSettingsView.swift; sourceTree = "<group>"; };
 		719627F6265CB6370081B5F4 /* NoCollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCollectionsView.swift; sourceTree = "<group>"; };
 		719627F9265D7AE80081B5F4 /* FirebaseUserCollectionNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserCollectionNetworkService.swift; sourceTree = "<group>"; };
+		719627FD265EC2BF0081B5F4 /* UserCollectionNetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionNetworkServiceError.swift; sourceTree = "<group>"; };
+		71962800265ECFCD0081B5F4 /* CollectionDetailProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailProtocols.swift; sourceTree = "<group>"; };
+		71962802265EDEAA0081B5F4 /* AuthorizationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProtocols.swift; sourceTree = "<group>"; };
 		71B0517F25ED684D00A1EA4B /* Wordlist.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wordlist.sqlite; sourceTree = "<group>"; };
 		71B4CDE42600AF0800034724 /* EntryParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryParserService.swift; sourceTree = "<group>"; };
 		71B4CDED2600AFFE00034724 /* EntryParserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryParserError.swift; sourceTree = "<group>"; };
@@ -357,11 +363,11 @@
 				71F8D78B261C808A00696C3A /* Repositories */,
 				71B4CDEC2600AFDD00034724 /* Errors */,
 				712419EA25F8AD4B00A0A8B1 /* Extensions */,
-				7128ABDD25ED1916000633AD /* Assets.xcassets */,
 				7176D42C2649727400CAB24B /* CoreDataResources */,
+				7128ABDD25ED1916000633AD /* Assets.xcassets */,
 				7128ABDF25ED1916000633AD /* LaunchScreen.storyboard */,
-				71F664942653BD550019EB00 /* GoogleService-Info.plist */,
 				7128ABE225ED1916000633AD /* Info.plist */,
+				71F664942653BD550019EB00 /* GoogleService-Info.plist */,
 				71EEE99E2603420500E6DFDD /* Private */,
 			);
 			path = LearnersDictionary;
@@ -376,7 +382,6 @@
 				71B8FF2A26230DE9000E88C8 /* Discover */,
 				713F748F2628C6D600DA4F2F /* UserCollections */,
 				718792DF2652D6920007B037 /* Authorization */,
-				7176D42926485AA300CAB24B /* Common */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				7141297526395A36007DA33E /* DiscoverProtocols.swift */,
 				71B8FF2F26231CA4000E88C8 /* DiscoverViewController.swift */,
 				7135B6E82636B4DC004F3DAC /* DiscoverPresenter.swift */,
+				7176D42A26485AC400CAB24B /* ActivityIndicatorViewController.swift */,
 				7176D4282648545C00CAB24B /* Views */,
 			);
 			path = DiscoverMain;
@@ -418,6 +424,7 @@
 		7135B6F42636BD88004F3DAC /* CollectionDetail */ = {
 			isa = PBXGroup;
 			children = (
+				71962800265ECFCD0081B5F4 /* CollectionDetailProtocols.swift */,
 				7135B6DF2636A58A004F3DAC /* CollectionDetailViewController.swift */,
 				7135B6E22636A5D1004F3DAC /* CollectionDetailPresenter.swift */,
 				713B39C72636D82000218709 /* CollectionDetailTableViewCell.swift */,
@@ -476,14 +483,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		7176D42926485AA300CAB24B /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				7176D42A26485AC400CAB24B /* ActivityIndicatorViewController.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		7176D42C2649727400CAB24B /* CoreDataResources */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,6 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				718792E02652D7230007B037 /* AuthorizationCoordinator.swift */,
+				71962802265EDEAA0081B5F4 /* AuthorizationProtocols.swift */,
 				718792E22652D7FB0007B037 /* SignIn */,
 				718792F42652F0090007B037 /* SignUp */,
 				718792F12652D9510007B037 /* Profile */,
@@ -581,6 +581,7 @@
 				71F8D78F261C853900696C3A /* EntryNetworkError.swift */,
 				71B4CDED2600AFFE00034724 /* EntryParserError.swift */,
 				7138CB2226551DE2003A081B /* UserAuthenticationError.swift */,
+				719627FD265EC2BF0081B5F4 /* UserCollectionNetworkServiceError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -892,10 +893,12 @@
 				71F8D790261C853900696C3A /* EntryNetworkError.swift in Sources */,
 				7128ABF125ED1938000633AD /* WordlistViewController.swift in Sources */,
 				711670E2264169FF00CEF3EB /* FirebaseDiscoverService.swift in Sources */,
+				71962801265ECFCD0081B5F4 /* CollectionDetailProtocols.swift in Sources */,
 				71F8D78D261C816B00696C3A /* EntryRepository.swift in Sources */,
 				71F5E2992625C7B90066D26F /* CardDetailViewController.swift in Sources */,
 				711103A92635497C009DA5D0 /* UserCollectionDetailPresenter.swift in Sources */,
 				711C3E362628C8BB00E97CFC /* UserCollectionsCoordinator.swift in Sources */,
+				719627FE265EC2C00081B5F4 /* UserCollectionNetworkServiceError.swift in Sources */,
 				714F47DF25FFC236008E3434 /* EntryNetworkService.swift in Sources */,
 				71130DFB25F26D3700FF0BD6 /* WordlistPresenter.swift in Sources */,
 				71B4CDE52600AF0800034724 /* EntryParserService.swift in Sources */,
@@ -931,6 +934,7 @@
 				719627E9265BBE6B0081B5F4 /* ColorSwatchCell.swift in Sources */,
 				7128ABDC25ED1915000633AD /* LearnersDictionary.xcdatamodeld in Sources */,
 				71BABA61260D1C01001B5999 /* ImageScrollView.swift in Sources */,
+				71962803265EDEAA0081B5F4 /* AuthorizationProtocols.swift in Sources */,
 				71519779260F37CC00FFFEEB /* RecognizedWordLayer.swift in Sources */,
 				718792F32652D9630007B037 /* ProfileViewController.swift in Sources */,
 				7135B5762608E72300B7CBF8 /* RecognizedWordModel.swift in Sources */,

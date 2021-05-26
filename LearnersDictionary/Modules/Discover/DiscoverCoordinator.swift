@@ -25,19 +25,6 @@ class DiscoverCoordinator: DiscoverCoordinatorProtocol {
 		setupNavigationController()
 	}
 
-	private func setupDiscoverController() {
-		let discoverPresenter = DiscoverPresenter()
-		discoverPresenter.coordinator = self
-		discoverPresenter.view = discoverViewController
-		discoverViewController.presenter = discoverPresenter
-	}
-
-	private func setupNavigationController() {
-		cardDetailNavigationController.navigationBar.isTranslucent = false
-		cardDetailNavigationController.modalPresentationStyle = .overFullScreen
-		cardDetailNavigationController.transitioningDelegate = cardTransitionManager
-	}
-
 	func showWordOfTheDay(_ wordOfTheDay: Word, cardView: CardView) {
 		let cardDetailConfigurator = CardDetailConfigurator()
 		let wordOfTheDayVC = cardDetailConfigurator.wordOfTheDay(wordOfTheDay, cardView: cardView)
@@ -68,5 +55,20 @@ class DiscoverCoordinator: DiscoverCoordinatorProtocol {
 
 	func dismissCardDetail() {
 		cardDetailNavigationController.dismiss(animated: true)
+	}
+
+	// MARK: - Private Methods
+
+	private func setupDiscoverController() {
+		let discoverPresenter = DiscoverPresenter()
+		discoverPresenter.coordinator = self
+		discoverPresenter.view = discoverViewController
+		discoverViewController.presenter = discoverPresenter
+	}
+
+	private func setupNavigationController() {
+		cardDetailNavigationController.navigationBar.isTranslucent = false
+		cardDetailNavigationController.modalPresentationStyle = .overFullScreen
+		cardDetailNavigationController.transitioningDelegate = cardTransitionManager
 	}
 }

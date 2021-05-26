@@ -10,6 +10,7 @@ import UIKit
 protocol DiscoverViewProtocol: AnyObject {
 	func reloadData()
 	func hideActivityIndicator()
+	func showError(message: String)
 }
 
 protocol DiscoverPresenterProtocol {

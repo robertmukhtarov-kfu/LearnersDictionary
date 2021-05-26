@@ -19,35 +19,15 @@ class DiscoverViewController: UIViewController, DiscoverViewProtocol {
 	let cellWidth: CGFloat = UIScreen.main.bounds.width - 40
 	let cellSpacing: CGFloat = 30.0
 
+	private enum ReuseIdentifier {
+		static let wordOfTheDaySectionHeaderView = "WordOfTheDaySectionHeaderView"
+		static let collectionSectionHeaderView = "CollectionSectionHeaderView"
+		static let cardViewCell = "CardViewCell"
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		collectionView.backgroundColor = .background
-		collectionView.layer.masksToBounds = false
-
-		view.addSubview(collectionView)
-		collectionView.snp.makeConstraints { make in
-			make.edges.equalTo(view)
-		}
-		collectionView.register(
-			WordOfTheDaySectionHeaderView.self,
-			forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-			withReuseIdentifier: "WordOfTheDaySectionHeaderView"
-		)
-		collectionView.register(
-			CollectionSectionHeaderView.self,
-			forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-			withReuseIdentifier: "CollectionSectionHeaderView"
-		)
-		collectionView.register(CardViewCell.self, forCellWithReuseIdentifier: "CardViewCell")
-		collectionView.dataSource = self
-		collectionView.delegate = self
-
-		view.addSubview(blurredStatusBar)
-		blurredStatusBar.snp.makeConstraints { make in
-			make.top.left.right.equalTo(view)
-			make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
-		}
+		setup()
 		presenter?.viewDidLoad()
 		showActivityIndicator()
 	}
@@ -63,6 +43,10 @@ class DiscoverViewController: UIViewController, DiscoverViewProtocol {
 		activityIndicatorViewController.didMove(toParent: self)
 	}
 
+	func showError(message: String) {
+		showErrorAlert(message: message)
+	}
+
 	func hideActivityIndicator() {
 		UIView.animate(withDuration: 0.5) {
 			self.activityIndicatorViewController.view.layer.opacity = 0
@@ -70,6 +54,35 @@ class DiscoverViewController: UIViewController, DiscoverViewProtocol {
 			self.activityIndicatorViewController.willMove(toParent: nil)
 			self.activityIndicatorViewController.view.removeFromSuperview()
 			self.activityIndicatorViewController.removeFromParent()
+		}
+	}
+
+	private func setup() {
+		collectionView.backgroundColor = .background
+		collectionView.layer.masksToBounds = false
+
+		view.addSubview(collectionView)
+		collectionView.snp.makeConstraints { make in
+			make.edges.equalTo(view)
+		}
+		collectionView.register(
+			WordOfTheDaySectionHeaderView.self,
+			forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+			withReuseIdentifier: ReuseIdentifier.wordOfTheDaySectionHeaderView
+		)
+		collectionView.register(
+			CollectionSectionHeaderView.self,
+			forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+			withReuseIdentifier: ReuseIdentifier.collectionSectionHeaderView
+		)
+		collectionView.register(CardViewCell.self, forCellWithReuseIdentifier: ReuseIdentifier.cardViewCell)
+		collectionView.dataSource = self
+		collectionView.delegate = self
+
+		view.addSubview(blurredStatusBar)
+		blurredStatusBar.snp.makeConstraints { make in
+			make.top.left.right.equalTo(view)
+			make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
 		}
 	}
 }
@@ -99,7 +112,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
 			cardView = CollectionCardView(presentationType: .card, discoverCollection: collection)
 		}
 		guard let cardCell = collectionView.dequeueReusableCell(
-			withReuseIdentifier: "CardViewCell",
+			withReuseIdentifier: ReuseIdentifier.cardViewCell,
 			for: indexPath
 		) as? CardViewCell else {
 			fatalError("Couldn't dequeue cell")
@@ -114,14 +127,14 @@ extension DiscoverViewController: UICollectionViewDataSource {
 			case 0:
 				guard let wordOfTheDaySectionHeaderView = collectionView.dequeueReusableSupplementaryView(
 					ofKind: kind,
-					withReuseIdentifier: "WordOfTheDaySectionHeaderView",
+					withReuseIdentifier: ReuseIdentifier.wordOfTheDaySectionHeaderView,
 					for: indexPath
 				) as? WordOfTheDaySectionHeaderView else { fatalError("Couldn't dequeue Word of the Day header") }
 				return wordOfTheDaySectionHeaderView
 			default:
 				guard let collectionSectionHeaderView = collectionView.dequeueReusableSupplementaryView(
 					ofKind: kind,
-					withReuseIdentifier: "CollectionSectionHeaderView",
+					withReuseIdentifier: ReuseIdentifier.collectionSectionHeaderView,
 					for: indexPath
 				) as? CollectionSectionHeaderView else { fatalError("Couldn't dequeue Collections header") }
 				collectionSectionHeaderView.title = "Collections"

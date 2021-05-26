@@ -30,7 +30,7 @@ class HeadwordView: UIStackView {
 	private let transcriptionTextView = EntryTextView()
 	private let pronounceButton: UIButton = {
 		let button = UIButton(type: .system)
-		button.setImage(UIImage(named: "pronounce"), for: .normal)
+		button.setImage(.pronounce, for: .normal)
 		button.addTarget(nil, action: #selector(pronounceButtonTapped), for: .touchUpInside)
 		return button
 	}()

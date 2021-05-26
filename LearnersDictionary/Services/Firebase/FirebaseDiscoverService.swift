@@ -19,7 +19,7 @@ class FirebaseDiscoverService: DiscoverServiceProtocol {
 		static let discoverCollections = "discoverCollections"
 	}
 
-	private lazy var dbReference = Database.database().reference()
+	private var dbReference = Database.database().reference()
 
 	private let jsonDecoder: JSONDecoder = {
 		let decoder = JSONDecoder()

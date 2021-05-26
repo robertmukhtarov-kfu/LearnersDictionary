@@ -32,7 +32,11 @@ class TextRecognitionPresenter: TextRecognitionPresenterProtocol {
 				DispatchQueue.main.async {
 					switch result {
 					case .success(let recognizedWords):
-						self.view?.showRecognizedWords(recognizedWords)
+						if recognizedWords.isEmpty {
+							self.view?.showError(message: "Couldn't detect words in this image")
+						} else {
+							self.view?.showRecognizedWords(recognizedWords)
+						}
 					case .failure(let error):
 						self.view?.showError(message: error.localizedDescription)
 					}

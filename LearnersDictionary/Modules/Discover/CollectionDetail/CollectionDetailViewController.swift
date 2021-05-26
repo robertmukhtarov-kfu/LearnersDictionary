@@ -7,10 +7,15 @@
 
 import UIKit
 
-class CollectionDetailViewController: UIViewController, TrackedScrollViewProtocol {
-	var presenter: CollectionDetailPresenter?
-	let tableView = UITableView()
+class CollectionDetailViewController: UIViewController, CollectionDetailViewProtocol, TrackedScrollViewProtocol {
+	var presenter: CollectionDetailPresenterProtocol?
 	weak var trackedScrollViewDelegate: TrackedScrollViewDelegate?
+
+	private let tableView = UITableView()
+
+	private enum ReuseIdentifier {
+		static let collectionCell = "CollectionCell"
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -20,12 +25,16 @@ class CollectionDetailViewController: UIViewController, TrackedScrollViewProtoco
 	private func setupTableView() {
 		tableView.delegate = self
 		tableView.dataSource = self
-		tableView.register(CollectionDetailTableViewCell.self, forCellReuseIdentifier: "CollectionCell")
+		tableView.register(CollectionDetailTableViewCell.self, forCellReuseIdentifier: ReuseIdentifier.collectionCell)
 
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { make in
 			make.edges.equalTo(view)
 		}
+	}
+
+	func showError(message: String) {
+		showErrorAlert(message: message)
 	}
 
 	func reloadData() {
@@ -39,7 +48,7 @@ extension CollectionDetailViewController: UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell") else {
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifier.collectionCell) else {
 			fatalError("Couldn't dequeue cell")
 		}
 		guard let word = presenter?.getWord(forCellAt: indexPath) else { fatalError("Couldn't get the word at \(indexPath)") }

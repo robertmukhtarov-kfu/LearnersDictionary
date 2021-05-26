@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Text recognition preparation
+
 extension UIImage {
 	public func redrawnWithCorrectOrientation() -> UIImage? {
 		UIGraphicsBeginImageContextWithOptions(size, false, scale)
@@ -17,5 +19,41 @@ extension UIImage {
 
 	private var data: Data? {
 		return pngData() ?? jpegData(compressionQuality: 0.85)
+	}
+}
+
+// MARK: - Static variables
+
+extension UIImage {
+	static var discover: UIImage? {
+		UIImage(named: "discover")
+	}
+
+	static var collections: UIImage? {
+		UIImage(named: "collections")
+	}
+
+	static var cameraFill: UIImage? {
+		UIImage(named: "camera.fill")
+	}
+
+	static var addCollectionNavBar: UIImage? {
+		UIImage(named: "addCollectionNavBar")
+	}
+
+	static var pronounce: UIImage? {
+		UIImage(named: "pronounce")
+	}
+
+	static var addToCollections: UIImage? {
+		UIImage(named: "addToCollections")
+	}
+
+	static var xMark: UIImage? {
+		UIImage(named: "xmark")
+	}
+
+	static var accountNavBar: UIImage? {
+		UIImage(named: "accountNavBar")
 	}
 }

@@ -17,6 +17,10 @@ class UserCollectionSettingsView: UIView {
 	private let colors = UserCollectionColor.allCases
 	private let colorsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
+	private enum ReuseIdentifier {
+		static let colorSwatchCell = "ColorSwatchCell"
+	}
+
 	weak var delegate: UserCollectionSettingsViewDelegate?
 
 	override init(frame: CGRect) {
@@ -98,7 +102,7 @@ class UserCollectionSettingsView: UIView {
 			layout.itemSize = CGSize(width: 42, height: 42)
 			layout.minimumLineSpacing = 20
 		}
-		colorsCollectionView.register(ColorSwatchCell.self, forCellWithReuseIdentifier: "ColorSwatchCell")
+		colorsCollectionView.register(ColorSwatchCell.self, forCellWithReuseIdentifier: ReuseIdentifier.colorSwatchCell)
 	}
 }
 
@@ -108,7 +112,10 @@ extension UserCollectionSettingsView: UICollectionViewDataSource {
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorSwatchCell", for: indexPath) as? ColorSwatchCell else {
+		guard let cell = collectionView.dequeueReusableCell(
+			withReuseIdentifier: ReuseIdentifier.colorSwatchCell,
+			for: indexPath
+		) as? ColorSwatchCell else {
 			fatalError("Could not dequeue cell")
 		}
 		cell.set(color: colors[indexPath.item])

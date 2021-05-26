@@ -7,11 +7,11 @@
 
 import Foundation
 
-class CollectionDetailPresenter {
-	weak var view: CollectionDetailViewController?
+class CollectionDetailPresenter: CollectionDetailPresenterProtocol {
+	weak var view: CollectionDetailViewProtocol?
 	weak var coordinator: DiscoverCoordinator?
-	let collection: DiscoverCollectionModel
 
+	private let collection: DiscoverCollectionModel
 	private let wordRepository = WordRepository()
 
 	var wordCount: Int {
@@ -37,8 +37,7 @@ class CollectionDetailPresenter {
 	func didSelectWord(at indexPath: IndexPath) {
 		let wordSpelling = collection.words[indexPath.row].title
 		guard let word = wordRepository.getWord(by: wordSpelling) else {
-			// TODO: alert
-			print("No such word in the database")
+			view?.showError(message: "No such word in the database")
 			return
 		}
 		coordinator?.showEntry(for: word)

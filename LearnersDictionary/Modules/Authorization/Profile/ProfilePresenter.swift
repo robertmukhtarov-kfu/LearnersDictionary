@@ -7,8 +7,8 @@
 
 import Foundation
 
-class ProfilePresenter {
-	weak var view: ProfileViewController?
+class ProfilePresenter: ProfilePresenterProtocol {
+	weak var view: ProfileViewProtocol?
 	var coordinator: AuthorizationCoordinator?
 
 	private let userAuthenticationService = FirebaseUserAuthenticationService()
@@ -21,28 +21,28 @@ class ProfilePresenter {
 		coordinator?.dismiss()
 	}
 
-	private func loadData() {
-		userAuthenticationService.getUserInfo { [weak self] result in
-			guard let self = self else { return }
-			switch result {
-			case .success(let userInfo):
-				DispatchQueue.main.async {
-					self.view?.set(email: userInfo.email)
-					self.view?.set(name: userInfo.displayName)
-				}
-			case .failure(let error):
-				print(error)
-			}
-		}
-	}
-
 	func signOut() {
 		userAuthenticationService.signOut { result in
 			switch result {
 			case .success:
 				coordinator?.showSignInView()
 			case .failure(let error):
-				print(error.localizedDescription)
+				view?.showError(message: error.localizedDescription)
+			}
+		}
+	}
+
+	private func loadData() {
+		userAuthenticationService.getUserInfo { [weak self] result in
+			guard let self = self else { return }
+			DispatchQueue.main.async {
+				switch result {
+				case .success(let userInfo):
+					self.view?.set(email: userInfo.email)
+					self.view?.set(name: userInfo.displayName)
+				case .failure(let error):
+					self.view?.showError(message: error.localizedDescription)
+				}
 			}
 		}
 	}
